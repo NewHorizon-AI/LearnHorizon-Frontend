@@ -7,6 +7,9 @@ import Image from "next/image";
 import NavBar from "@/components/navbar/NavBar";
 import CustomCarousel from "@/components/carousel/CustomCarousel";
 import IntroSection from "@/components/intro/IntroSection";
+import PrincipalPanel from "@/components/principalPanel/PrincipalPanel";
+import ContactSection from "@/components/contact/ContactSection";
+import Footer from "@/components/footer/Footer";
 
 // Importando datos de prueba
 import carouselData from "@/data/carouselData.json";
@@ -18,10 +21,13 @@ export default function Home() {
 
   return (
     <>
+      <NavBar />
       <main>
-        <NavBar />
         <CustomCarousel carouselData={carousel} />
         <IntroSection />
+        <PrincipalPanel />
+        <ContactSection />
+        <Footer />
       </main>
     </>
   );

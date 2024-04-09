@@ -9,12 +9,18 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 
-const CustomCarousel = ({ carouselData }) => {
+import { CarouselItemInterface } from "@/interface/CarouselItem";
+
+interface CustomCarouselProps {
+  carouselData: CarouselItemInterface[];
+}
+
+const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
   // Estado para el índice actual del carrusel
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Función para actualizar el índice actual al cambiar los controles del carrusel
-  const handleCarouselControl = (newIndex) => {
+  const handleCarouselControl = (newIndex: number) => {
     if (newIndex < 0) {
       setCurrentIndex(carouselData.length - 1);
     } else if (newIndex >= carouselData.length) {

@@ -1,9 +1,5 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/tDh2EoKACrG
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import { Button } from "@/components/ui/button";
+import { JSX, SVGProps } from "react";
 
 export default function Component() {
   return (
@@ -59,10 +55,10 @@ export default function Component() {
       <div className="absolute inset-0 flex justify-center items-center">
         <div className="bg-black bg-opacity-75 text-white p-4 rounded-md">
           <h2 className="text-3xl font-bold mb-2">
-            Becoming Visible: Bringing American Women's History into Focus
+            Becoming Visible: Bringing American Womens History into Focus
           </h2>
           <p>
-            Discover how women's histories have been recorded, remembered, lost,
+            Discover how womens histories have been recorded, remembered, lost,
             and recovered.
           </p>
         </div>
@@ -71,7 +67,9 @@ export default function Component() {
   );
 }
 
-function ChevronLeftIcon(props) {
+function ChevronLeftIcon(
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
   return (
     <svg
       {...props}
@@ -90,7 +88,9 @@ function ChevronLeftIcon(props) {
   );
 }
 
-function ChevronRightIcon(props) {
+function ChevronRightIcon(
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
   return (
     <svg
       {...props}

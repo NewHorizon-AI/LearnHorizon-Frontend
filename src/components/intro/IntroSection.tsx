@@ -13,7 +13,7 @@ const IntroSection = () => {
   ];
 
   return (
-    <div className="bg-gray-100">
+    <div className="">
       <nav className="flex justify-center space-x-4 py-4">
         {/* Utilizando los botones de ShadCN */}
         {navigationButtons.map((buttonText) => (

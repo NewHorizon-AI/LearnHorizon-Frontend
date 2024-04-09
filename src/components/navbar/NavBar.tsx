@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { JSX, SVGProps } from "react";
 
 function NavBar() {
   return (
@@ -46,7 +47,7 @@ function NavBar() {
   );
 }
 
-function BellIcon(props) {
+function BellIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -66,7 +67,7 @@ function BellIcon(props) {
   );
 }
 
-function LogOutIcon(props) {
+function LogOutIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -87,7 +88,7 @@ function LogOutIcon(props) {
   );
 }
 
-function PackageIcon(props) {
+function PackageIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -109,7 +110,7 @@ function PackageIcon(props) {
   );
 }
 
-function SearchIcon(props) {
+function SearchIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -129,7 +130,9 @@ function SearchIcon(props) {
   );
 }
 
-function SettingsIcon(props) {
+function SettingsIcon(
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
   return (
     <svg
       {...props}
