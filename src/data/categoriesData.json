@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "Ingeniería",
+    "description": "Ingeniería de sistemas"
+  },
+  {
+    "id": 2,
+    "title": "Ciencias de la Computación",
+    "description": "Estudio teórico y práctico de la computación y sus aplicaciones"
+  },
+  {
+    "id": 3,
+    "title": "Ingeniería Eléctrica",
+    "description": "Diseño y estudio de sistemas eléctricos y electrónicos"
+  },
+  {
+    "id": 4,
+    "title": "Ingeniería Mecánica",
+    "description": "Diseño y estudio de sistemas mecánicos y máquinas"
+  },
+  {
+    "id": 5,
+    "title": "Ingeniería Civil",
+    "description": "Diseño y construcción de infraestructuras civiles"
+  }
+]

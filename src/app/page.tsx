@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import NavBar from "@/components/navbar/NavBar";
-import CustomCarousel from "@/components/carousel/CustomCarousel";
+import CustomCarousel from "@/components/carousel/MainCarousel";
 import IntroSection from "@/components/intro/IntroSection";
 import PrincipalPanel from "@/components/principalPanel/PrincipalPanel";
 import ContactSection from "@/components/contact/ContactSection";

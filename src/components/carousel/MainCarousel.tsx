@@ -1,46 +1,48 @@
-"use client";
+'use client'
 
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+  CarouselPrevious
+} from '@/components/ui/carousel'
+import Autoplay from 'embla-carousel-autoplay'
 
-import { type CarouselApi } from "@/components/ui/carousel";
+import { type CarouselApi } from '@/components/ui/carousel'
 
-import { CarouselItemInterface } from "@/interface/CarouselItem";
+import { type CarouselItemInterface } from '@/interface/CarouselItem'
+
+import InsideCarousel from './InsideCarousel'
 
 interface CustomCarouselProps {
-  carouselData: CarouselItemInterface[];
+  carouselData: CarouselItemInterface[]
 }
 
 const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  );
+    Autoplay({ delay: 5000, stopOnInteraction: true })
+  )
   // Estado para el índice actual del carrusel
   // const [currentIndex, setCurrentIndex] = useState(0);
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  const [api, setApi] = useState<CarouselApi>() // API del carrusel
+  const [current, setCurrent] = useState(0) // Índice actual del carrusel
+  const [count, setCount] = useState(0) // Número total de elementos en el carrusel
 
   useEffect(() => {
-    if (!api) {
-      return;
+    if (api == null) {
+      return
     }
 
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
+    setCount(api.scrollSnapList().length) // Establece el número total de elementos en el carrusel
+    setCurrent(api.selectedScrollSnap() + 1) // Establece el índice actual del carrusel
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1) // Actualiza el índice actual del carrusel
+    })
+  }, [api])
 
   return (
     <Carousel className="" setApi={setApi} plugins={[plugin.current]}>
@@ -50,26 +52,17 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
             className=" flex items-center justify-center w-ful"
             key={item.id}
           >
-            <div
-              style={{ position: "relative", width: "100vw", height: "50vh" }}
-            >
-              <Image
-                src={item.image} // Asegúrate de que 'item.image' sea una URL válida
-                alt={`Slide ${item.text}`} // Proporciona un texto alternativo descriptivo
-                layout="fill" // La imagen se expandirá para cubrir el área del contenedor
-                className="object-cover object-center"
-              />
-            </div>
+            <InsideCarousel carouselItem={item} />
           </CarouselItem>
         ))}
       </CarouselContent>
       <CarouselPrevious className="absolute left-0 z-10" />
       <CarouselNext className="absolute right-0 z-10" />
     </Carousel>
-  );
-};
+  )
+}
 
-export default CustomCarousel;
+export default CustomCarousel
 
 /* <div>
       <Carousel>
