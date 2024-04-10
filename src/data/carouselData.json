@@ -3,30 +3,18 @@
     "id": 1,
     "title": "Title 1",
     "text": "Text 1",
-    "image": "https://via.placeholder.com/150/92c952"
+    "image": "/carousel/3.jpg"
   },
   {
     "id": 2,
     "title": "Title 2",
     "text": "Text 2",
-    "image": "https://via.placeholder.com/150/771796"
+    "image": "/carousel/2.jpg"
   },
   {
     "id": 3,
     "title": "Title 3",
     "text": "Text 3",
-    "image": "https://via.placeholder.com/150/24f355"
-  },
-  {
-    "id": 4,
-    "title": "Title 4",
-    "text": "Text 4",
-    "image": "https://via.placeholder.com/150/f66b97"
-  },
-  {
-    "id": 5,
-    "title": "Title 5",
-    "text": "Text 5",
-    "image": "https://via.placeholder.com/150/51aa97"
+    "image": "/carousel/1.jpg"
   }
 ]

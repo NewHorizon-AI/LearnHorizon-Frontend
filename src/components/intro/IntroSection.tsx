@@ -14,13 +14,14 @@ const IntroSection = () => {
 
   return (
     <div className="">
-      <nav className="flex justify-center space-x-4 py-4">
-        {/* Utilizando los botones de ShadCN */}
-        {navigationButtons.map((buttonText) => (
-          <Button key={buttonText} variant="outline">
-            {buttonText}
-          </Button>
-        ))}
+      <nav className="flex justify-center py-4 overflow-auto">
+        <div className="flex space-x-4 max-w-full flex-nowrap whitespace-nowrap">
+          {navigationButtons.map((buttonText) => (
+            <Button key={buttonText} variant="outline">
+              {buttonText}
+            </Button>
+          ))}
+        </div>
       </nav>
       <div className="text-center py-10">
         <h1 className="text-4xl font-bold mb-2">

@@ -1,13 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   Carousel,
-  CarouselItem,
   CarouselContent,
-  CarouselPrevious,
+  CarouselItem,
   CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
+import { type CarouselApi } from "@/components/ui/carousel";
 
 import { CarouselItemInterface } from "@/interface/CarouselItem";
 
@@ -16,22 +20,58 @@ interface CustomCarouselProps {
 }
 
 const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
   // Estado para el índice actual del carrusel
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
 
-  // Función para actualizar el índice actual al cambiar los controles del carrusel
-  const handleCarouselControl = (newIndex: number) => {
-    if (newIndex < 0) {
-      setCurrentIndex(carouselData.length - 1);
-    } else if (newIndex >= carouselData.length) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(newIndex);
+  useEffect(() => {
+    if (!api) {
+      return;
     }
-  };
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
 
   return (
-    <div className="relative ">
+    <Carousel className="" setApi={setApi} plugins={[plugin.current]}>
+      <CarouselContent>
+        {carouselData.map((item) => (
+          <CarouselItem
+            className=" flex items-center justify-center w-ful"
+            key={item.id}
+          >
+            <div
+              style={{ position: "relative", width: "100vw", height: "50vh" }}
+            >
+              <Image
+                src={item.image} // Asegúrate de que 'item.image' sea una URL válida
+                alt={`Slide ${item.text}`} // Proporciona un texto alternativo descriptivo
+                layout="fill" // La imagen se expandirá para cubrir el área del contenedor
+                className="object-cover object-center"
+              />
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="absolute left-0 z-10" />
+      <CarouselNext className="absolute right-0 z-10" />
+    </Carousel>
+  );
+};
+
+export default CustomCarousel;
+
+/* <div>
       <Carousel>
         <CarouselContent>
           {carouselData.map((item, index) => (
@@ -61,24 +101,21 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
         <CarouselNext
           onClick={() => handleCarouselControl(currentIndex + 1)}
           className="absolute right-0 z-10"
-        />
-        {/* Indicadores del carrusel */}
-        <div className="absolute bottom-0 left-0 right-0 flex justify-center p-4">
-          {carouselData.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`h-2 w-2 mx-1 rounded-full ${
-                currentIndex === index ? "bg-white" : "bg-gray-400"
-              }`}
-              aria-current={currentIndex === index ? "true" : "false"}
-              aria-label={`Slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      </Carousel>
-    </div>
-  );
-};
+    //     />
+    //     {/* Indicadores del carrusel */
 
-export default CustomCarousel;
+//     <div className="absolute bottom-0 left-0 right-0 flex justify-center p-4">
+//       {carouselData.map((_, index) => (
+//         <button
+//           key={index}
+//           onClick={() => setCurrentIndex(index)}
+//           className={`h-2 w-2 mx-1 rounded-full ${
+//             currentIndex === index ? "bg-white" : "bg-gray-400"
+//           }`}
+//           aria-current={currentIndex === index ? "true" : "false"}
+//           aria-label={`Slide ${index + 1}`}
+//         />
+//       ))}
+//     </div>
+//   </Carousel>
+// </div> */}
