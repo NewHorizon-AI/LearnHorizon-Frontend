@@ -21,12 +21,15 @@ interface CustomCarouselProps {
 }
 
 const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
-  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
+  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: false }))
   // Estado para el índice actual del carrusel
   // const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi>() // API del carrusel
   const [current, setCurrent] = useState(0) // Índice actual del carrusel
   const [count, setCount] = useState(0) // Número total de elementos en el carrusel
+
+  // Referencia para el temporizador de reinicio del autoplay
+  const autoplayTimer = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     if (api == null) {
@@ -43,7 +46,19 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
 
   // Función para manejar el clic en un puntito
   const goToSlide = (index: number): void => {
+    // Detiene el autoplay
+    plugin.current.stop()
+
+    // Detiene cualquier temporizador existente para evitar múltiples reinicios
+    if (autoplayTimer.current != null) {
+      clearTimeout(autoplayTimer.current)
+    }
     api?.scrollTo(index)
+
+    // Reinicia el autoplay después de 5 segundos de inactividad
+    autoplayTimer.current = setTimeout(() => {
+      plugin.current.play()
+    }, 5000) // Ajusta el tiempo según sea necesario
   }
 
   return (
