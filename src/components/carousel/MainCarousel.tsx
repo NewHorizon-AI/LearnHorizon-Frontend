@@ -1,7 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
+import React, { useState, useEffect, useRef } from 'react'
 import {
   Carousel,
   CarouselContent,
@@ -22,9 +21,7 @@ interface CustomCarouselProps {
 }
 
 const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
-  const plugin = React.useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: true })
-  )
+  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
   // Estado para el índice actual del carrusel
   // const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi>() // API del carrusel
@@ -44,20 +41,41 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
     })
   }, [api])
 
+  // Función para manejar el clic en un puntito
+  const goToSlide = (index: number): void => {
+    api?.scrollTo(index)
+  }
+
   return (
-    <Carousel className="" setApi={setApi} plugins={[plugin.current]}>
-      <CarouselContent>
+    <Carousel
+      setApi={setApi}
+      plugins={[plugin.current]}
+      opts={{
+        align: 'center',
+        loop: true
+      }}
+    >
+      <CarouselContent className="w-full">
         {carouselData.map((item) => (
-          <CarouselItem
-            className=" flex items-center justify-center w-ful"
-            key={item.id}
-          >
+          <CarouselItem key={item.id}>
             <InsideCarousel carouselItem={item} />
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="absolute left-0 z-10" />
-      <CarouselNext className="absolute right-0 z-10" />
+      <CarouselPrevious className="sm:flex hidden absolute left-0 z-10 ml-6" />
+      <CarouselNext className="sm:flex hidden absolute right-0 z-10 mr-6" />
+      <div className="flex justify-center space-x-2 mt-4">
+        {Array.from({ length: count }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              goToSlide(index)
+            }}
+            className={`h-3 w-3 rounded-full ${current === index + 1 ? 'bg-blue-600' : 'bg-gray-400'}`}
+            aria-label={`Go to slide ${index + 1}`}
+          ></button>
+        ))}
+      </div>
     </Carousel>
   )
 }

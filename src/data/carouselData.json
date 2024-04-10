@@ -1,20 +1,20 @@
 [
   {
     "id": 1,
-    "title": "Title 1",
-    "text": "Text 1",
+    "title": "Lorem ipsum dolor sit amet, ",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum nec nulla quis placerat. In non maximus tellus. In ut lectus a lectus placerat rutrum. Pellentesque vel neque vitae quam porta euismod non ac risus. Ut elementum feugiat nunc at tempor. Nullam non tempus tortor,",
     "image": "/carousel/3.jpg"
   },
   {
     "id": 2,
-    "title": "Title 2",
-    "text": "Text 2",
+    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum nec nulla quis placerat. In non maximus tellus. In ut lectus a lectus placerat rutrum. Pellentesque vel neque vitae quam porta euismod non ac risus. Ut elementum feugiat nunc at tempor. Nullam non tempus tortor,",
     "image": "/carousel/2.jpg"
   },
   {
     "id": 3,
-    "title": "Title 3",
-    "text": "Text 3",
+    "title": "Lorem consectetur adipiscing elit",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum nec nulla quis placerat. In non maximus tellus. In ut lectus a lectus placerat rutrum. Pellentesque vel neque vitae quam porta euismod non ac risus. Ut elementum feugiat nunc at tempor. Nullam non tempus tortor,",
     "image": "/carousel/1.jpg"
   }
 ]
