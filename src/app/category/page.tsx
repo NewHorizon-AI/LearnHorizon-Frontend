@@ -1,14 +1,12 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
+import React from 'react'
 
-import Image from "next/image";
+import NavBar from '@/components/navbar/NavBar'
+import CategoryView from '@/components/categoryView/CategoryView'
+import Footer from '@/components/footer/Footer'
 
-import NavBar from "@/components/navbar/NavBar";
-import CategoryView from "@/components/categoryView/CategoryView";
-import Footer from "@/components/footer/Footer";
-
-export default function Category() {
+export default function Category(): React.JSX.Element {
   return (
     <>
       <NavBar />
@@ -17,5 +15,5 @@ export default function Category() {
         <Footer />
       </main>
     </>
-  );
+  )
 }

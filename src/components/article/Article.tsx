@@ -1,26 +1,25 @@
-"use client";
+'use client'
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import React, { useState } from 'react'
 
-const ModeloView = () => {
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+
+export default function ModeloView(): React.ReactElement {
   // Suponiendo que los datos vendrían de una API o un estado global
-  const [modelo, setModelo] = useState({
-    imageUrl: "https://via.placeholder.com/150/f9cee5", // Reemplaza con la URL de tu imagen
-    title: "Nombre del modelo",
-    creator: "Doctor A.",
-    description: "Descripción detallada del modelo...",
-    tags: ["3D", "modeling", "art", "design", "CGI"], // Reemplazar con las etiquetas reales
+  const [modelo] = useState({
+    imageUrl: 'https://via.placeholder.com/150/f9cee5', // Reemplaza con la URL de tu imagen
+    title: 'Nombre del modelo',
+    creator: 'Doctor A.',
+    description: 'Descripción detallada del modelo...',
+    tags: ['3D', 'modeling', 'art', 'design', 'CGI'], // Reemplazar con las etiquetas reales
     comments: [
       {
-        user: "user1",
-        comment: "¡Gran trabajo!",
-      },
-      // Más comentarios...
-    ],
-  });
+        user: 'user1',
+        comment: '¡Gran trabajo!'
+      }
+    ]
+  })
 
   return (
     <div className="flex flex-col items-center">
@@ -55,7 +54,5 @@ const ModeloView = () => {
         <Button>Enviar</Button>
       </div>
     </div>
-  );
-};
-
-export default ModeloView;
+  )
+}

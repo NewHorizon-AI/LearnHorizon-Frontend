@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react'
 // Asegúrate de que Button está importado correctamente según tu estructura de archivos
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 
-const IntroSection = () => {
+function IntroSection(): React.JSX.Element {
   const navigationButtons = [
-    "PRELUDIO",
-    "PROYECTO",
-    "COLECCIONES",
-    "EQUIPO",
-    "NOTICIAS",
-    "CONTACTO",
-  ];
+    'PRELUDIO',
+    'PROYECTO',
+    'COLECCIONES',
+    'EQUIPO',
+    'NOTICIAS',
+    'CONTACTO'
+  ]
 
   return (
     <div className="">
@@ -36,7 +36,7 @@ const IntroSection = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default IntroSection;
+export default IntroSection

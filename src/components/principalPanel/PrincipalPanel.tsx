@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { CardHeader, CardContent, Card } from "@/components/ui/card";
-import { JSX, SVGProps } from "react";
+import Link from 'next/link'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { CardHeader, CardContent, Card } from '@/components/ui/card'
+import { type JSX, type SVGProps } from 'react'
 
-export default function principalPanel() {
+export default function principalPanel(): React.JSX.Element {
   return (
     <div className="container grid gap-6 px-4 lg:grid-cols-6 lg:gap-10 xl:px-6">
       <div className="space-y-4 lg:col-span-1">
@@ -157,12 +157,12 @@ export default function principalPanel() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function BackpackIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
-) {
+): React.JSX.Element {
   return (
     <svg
       {...props}
@@ -182,12 +182,12 @@ function BackpackIcon(
       <path d="M8 10h8" />
       <path d="M8 18h8" />
     </svg>
-  );
+  )
 }
 
 function BuildingIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
-) {
+): React.JSX.Element {
   return (
     <svg
       {...props}
@@ -213,10 +213,12 @@ function BuildingIcon(
       <path d="M8 10h.01" />
       <path d="M8 14h.01" />
     </svg>
-  );
+  )
 }
 
-function MapIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+function MapIcon(
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+): React.JSX.Element {
   return (
     <svg
       {...props}
@@ -234,12 +236,12 @@ function MapIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       <line x1="9" x2="9" y1="3" y2="18" />
       <line x1="15" x2="15" y1="6" y2="21" />
     </svg>
-  );
+  )
 }
 
 function MountainIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
-) {
+): React.JSX.Element {
   return (
     <svg
       {...props}
@@ -255,10 +257,12 @@ function MountainIcon(
     >
       <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
     </svg>
-  );
+  )
 }
 
-function SearchIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+function SearchIcon(
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+): React.JSX.Element {
   return (
     <svg
       {...props}
@@ -275,12 +279,12 @@ function SearchIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       <circle cx="11" cy="11" r="8" />
       <path d="m21 21-4.3-4.3" />
     </svg>
-  );
+  )
 }
 
 function UmbrellaIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
-) {
+): React.JSX.Element {
   return (
     <svg
       {...props}
@@ -298,5 +302,5 @@ function UmbrellaIcon(
       <path d="M12 12v8a2 2 0 0 0 4 0" />
       <path d="M12 2v1" />
     </svg>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Button } from '@/components/ui/button'
 
-export default function Component() {
+export default function Component(): React.JSX.Element {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32">
       <div className="container grid max-w-2xl px-4 gap-10 md:px-6">
@@ -37,5 +37,5 @@ export default function Component() {
         </div>
       </div>
     </section>
-  );
+  )
 }

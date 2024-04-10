@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 // Asegúrate de tener estos iconos disponibles o reemplazarlos con otros de tu elección.
 import {
   FaFacebook,
   FaTwitter,
   FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
+  FaLinkedinIn
+} from 'react-icons/fa'
 
-const Footer = () => {
+function Footer(): React.JSX.Element {
   return (
     <footer className="bg-gray-900 text-gray-200 p-8 mt-10">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -27,7 +27,7 @@ const Footer = () => {
         <div>
           <h2 className="text-xl font-bold mb-4">Enlaces Útiles</h2>
           <ul className="space-y-2">
-            {["Acerca de", "Blog", "Productos", "Contacto"].map((text) => (
+            {['Acerca de', 'Blog', 'Productos', 'Contacto'].map((text) => (
               <li key={text}>
                 <a
                   href={`/${text.toLowerCase()}`}
@@ -68,7 +68,7 @@ const Footer = () => {
         </p>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

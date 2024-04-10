@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 'use client'
 
 import * as React from 'react'
@@ -32,7 +34,7 @@ type CarouselContextProps = {
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
 
-function useCarousel() {
+function useCarousel(): CarouselContextProps {
   const context = React.useContext(CarouselContext)
 
   if (!context) {
@@ -69,12 +71,10 @@ const Carousel = React.forwardRef<
     const [canScrollNext, setCanScrollNext] = React.useState(false)
 
     const onSelect = React.useCallback((api: CarouselApi) => {
-      if (!api) {
-        return
+      if (api != null) {
+        setCanScrollPrev(api.canScrollPrev())
+        setCanScrollNext(api.canScrollNext())
       }
-
-      setCanScrollPrev(api.canScrollPrev())
-      setCanScrollNext(api.canScrollNext())
     }, [])
 
     const scrollPrev = React.useCallback(() => {

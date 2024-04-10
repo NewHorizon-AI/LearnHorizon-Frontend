@@ -1,8 +1,8 @@
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import { JSX, SVGProps } from "react";
+import { Input } from '@/components/ui/input'
+import Link from 'next/link'
+import { type JSX, type SVGProps } from 'react'
 
-export default function Component() {
+export default function Component(): React.JSX.Element {
   return (
     <section className="w-full py-12 md:py-24">
       <div className="container grid gap-4 px-4 md:px-6 items-center">
@@ -119,10 +119,12 @@ export default function Component() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-function SearchIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+function SearchIcon(
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+): React.JSX.Element {
   return (
     <svg
       {...props}
@@ -139,5 +141,5 @@ function SearchIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       <circle cx="11" cy="11" r="8" />
       <path d="m21 21-4.3-4.3" />
     </svg>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import React from "react";
+import React from 'react'
 
-import NavBar from "@/components/navbar/NavBar";
-import Article from "@/components/article/Article";
-import Footer from "@/components/footer/Footer";
+import NavBar from '@/components/navbar/NavBar'
+import Article from '@/components/article/Article'
+import Footer from '@/components/footer/Footer'
 
-export default function Category() {
+export default function Category(): React.JSX.Element {
   return (
     <>
       <NavBar />
@@ -15,5 +15,5 @@ export default function Category() {
         <Footer />
       </main>
     </>
-  );
+  )
 }
