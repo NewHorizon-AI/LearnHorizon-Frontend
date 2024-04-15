@@ -4,7 +4,7 @@ import { type JSX, type SVGProps } from 'react'
 
 function NavBar(): React.JSX.Element {
   return (
-    <nav className="flex items-center h-14 px-4 border-b">
+    <nav className="sticky top-0 left-0 right-0 z-50 bg-white border-b shadow flex items-center h-14 px-4">
       <div className="flex items-center gap-2">
         <PackageIcon className="h-6 w-6" />
         <h1 className="text-lg font-bold tracking-tighter">Learn Horizon</h1>
