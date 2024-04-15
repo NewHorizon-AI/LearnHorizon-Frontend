@@ -3,10 +3,10 @@
 import React, { useState } from 'react'
 
 import NavBar from '@/components/navbar/NavBar'
-import CustomCarousel from '@/components/carousel/MainCarousel'
+
 import IntroSection from '@/components/intro/IntroSection'
 import PrincipalPanel from '@/components/principalPanel/PrincipalPanel'
-import ContactSection from '@/components/contact/ContactSection'
+
 import Footer from '@/components/footer/Footer'
 
 // Importando datos de prueba
@@ -21,10 +21,8 @@ export default function Home(): React.JSX.Element {
     <>
       <NavBar />
       <main>
-        <CustomCarousel carouselData={carousel} />
-        <IntroSection />
+        <IntroSection carousel={carousel} />
         <PrincipalPanel />
-        <ContactSection />
         <Footer />
       </main>
     </>

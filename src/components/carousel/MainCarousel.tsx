@@ -16,11 +16,11 @@ import { type CarouselItemInterface } from '@/interface/CarouselItem'
 
 import InsideCarousel from './InsideCarousel'
 
-interface CustomCarouselProps {
+interface MainCarouselProps {
   carouselData: CarouselItemInterface[]
 }
 
-const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
+const MainCarousel: React.FC<MainCarouselProps> = ({ carouselData }) => {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: false }))
   // Estado para el índice actual del carrusel
   // const [currentIndex, setCurrentIndex] = useState(0);
@@ -95,7 +95,7 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({ carouselData }) => {
   )
 }
 
-export default CustomCarousel
+export default MainCarousel
 
 /* <div>
       <Carousel>
