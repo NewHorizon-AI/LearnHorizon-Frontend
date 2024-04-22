@@ -1,6 +1,8 @@
 export interface ICategory {
+  _id: string
   title: string
   description: string
+  publicationCount: number
 }
 
 export interface IUser {
@@ -27,18 +29,19 @@ export interface IComment {
 }
 
 export interface IPublication {
+  _id: string
   title: string
   photo: string
   subtitle: string
   description: string
   markdownContent: string
   tags: string[]
-  publicationDate: Date
   views: number
   likes: number
   dislikes: number
-  author: IUser
+  author: IUser[]
   category: ICategory
   status: 'published' | 'review' | 'draft'
   comments: IComment[]
+  publicationDate: Date
 }
