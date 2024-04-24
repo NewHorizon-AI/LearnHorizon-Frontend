@@ -8,8 +8,11 @@ import {
 } from 'react-icons/io5' // Asegúrate de tener instalado react-icons
 import { Input } from '@/components/ui/input' // Asegúrate de ajustar la importación según la ubicación de tu componente Input
 import { Button } from '@/components/ui/button'
-import PublicationCard from './_PublicationCard'
+// import PublicationCard from './_PublicationCard'
 
+import Link from 'next/link'
+
+import PublicationCard from './PublicationCard'
 const PublicationDisplay: React.FC = () => {
   const publications = [
     {
@@ -47,14 +50,16 @@ const PublicationDisplay: React.FC = () => {
             type="search"
           />
         </div>
-        <div className="grid gap-4">
+        <div className="flex flex-wrap justify-center gap-4 p-4">
           {publications.map((publication) => (
-            <PublicationCard
-              key={publication.title} // Asegúrate de que el key sea único; si los títulos pueden repetirse, usa un id.
-              title={publication.title}
-              icon={publication.icon}
-              description={publication.description}
-            />
+            <Link
+              key={publication.title}
+              href={`/publication/${publication.title}`}
+            >
+              <div className="flex-none w-60">
+                <PublicationCard {...publication} />
+              </div>
+            </Link>
           ))}
         </div>
         <div className="flex justify-center">

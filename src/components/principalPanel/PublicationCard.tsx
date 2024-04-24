@@ -1,9 +1,11 @@
 // Implementamos el componente funcional con las propiedades tipadas
 import React from 'react'
-import { type IPublicationCard } from '@/interface/IBackend'
+import {
+  type IPublicationCard,
+  type IPublicationUserCard
+} from '@/interface/IBackend'
 
 const PublicationCard: React.FC<IPublicationCard> = ({
-  _id,
   title,
   photo,
   description,
@@ -26,7 +28,7 @@ const PublicationCard: React.FC<IPublicationCard> = ({
             alt="Author"
             className="w-10 h-10 rounded-full mr-2"
           />
-          <span className="text-gray-700">{author}</span>
+          {/* <span className="ml-2 text-gray-700">{author.name}</span> */}
         </div>
         <div className="flex justify-between items-center mt-2 text-gray-600">
           <span>👁️ {views} vistas</span>

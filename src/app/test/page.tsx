@@ -40,10 +40,12 @@ const PublicationDisplay: React.FC = () => {
   if (loading) return <div>Loading...</div>
 
   return (
-    <div>
+    <div className="flex flex-wrap justify-center gap-4 p-4">
       {publications.map((publication) => (
-        <Link key={publication._id} href="#">
-          <PublicationCard {...publication} />
+        <Link key={publication._id} href={`/publication/${publication._id}`}>
+          <div className="flex-none w-96">
+            <PublicationCard {...publication} />
+          </div>
         </Link>
       ))}
     </div>

@@ -58,6 +58,8 @@ export type IPublicationCard = Pick<
   | 'publicationDate'
 >
 
+export type IPublicationUserCard = Pick<IUser, 'image' | 'name'>
+
 // interfaces.ts
 
 export interface IFindParams {
