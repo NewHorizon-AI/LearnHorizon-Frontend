@@ -6,6 +6,7 @@ module.exports = {
   },
   extends: [
     'standard-with-typescript',
+    'next/babel',
     'next/core-web-vitals',
     'plugin:react/recommended',
     'prettier',
