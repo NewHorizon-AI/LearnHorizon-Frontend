@@ -28,6 +28,10 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    '@typescript-eslint/space-before-function-parent': 'off'
+    '@typescript-eslint/space-before-function-parent': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
+    ]
   }
 }

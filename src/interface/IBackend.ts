@@ -40,8 +40,28 @@ export interface IPublication {
   likes: number
   dislikes: number
   author: IUser[]
-  category: ICategory
+  category: ICategory[]
   status: 'published' | 'review' | 'draft'
   comments: IComment[]
   publicationDate: Date
+}
+
+// Publicacion para las tarjetas de publicaciones
+export type IPublicationCard = Pick<
+  IPublication,
+  | '_id'
+  | 'title'
+  | 'photo'
+  | 'description'
+  | 'author'
+  | 'views'
+  | 'publicationDate'
+>
+
+// interfaces.ts
+
+export interface IFindParams {
+  page: number
+  pageSize: number
+  order: 'ascendant' | 'descendant'
 }

@@ -6,7 +6,7 @@ export const GET = async (
   { params }: { params: ICategory }
 ): Promise<Response> => {
   try {
-    const { data } = await axios.get(`http://localhost:3001/category`)
+    const { data } = await axios.get(`http://localhost:3001/categories`)
 
     return new Response(JSON.stringify(data), { status: 200 })
   } catch (error: any) {

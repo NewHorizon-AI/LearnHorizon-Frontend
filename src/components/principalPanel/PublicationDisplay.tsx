@@ -8,7 +8,7 @@ import {
 } from 'react-icons/io5' // Asegúrate de tener instalado react-icons
 import { Input } from '@/components/ui/input' // Asegúrate de ajustar la importación según la ubicación de tu componente Input
 import { Button } from '@/components/ui/button'
-import PublicationCard from './PublicationCard'
+import PublicationCard from './_PublicationCard'
 
 const PublicationDisplay: React.FC = () => {
   const publications = [

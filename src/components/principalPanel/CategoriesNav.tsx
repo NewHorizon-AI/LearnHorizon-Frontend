@@ -41,7 +41,7 @@ const CategoriesNav: React.FC = () => {
         {categories.map((category) => (
           <Link
             key={category._id}
-            href="#" // Aquí puedes añadir la lógica de enrutamiento específico para cada categoría
+            href="#"
             className="flex items-center space-x-2 text-base font-medium rounded-md hover:translate-x-2 transition-colors hover:text-gray-900 dark:hover:text-gray-50"
           >
             <span>{category.title}</span>
