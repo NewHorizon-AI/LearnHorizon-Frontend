@@ -2,6 +2,8 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { type JSX, type SVGProps } from 'react'
 
+import SearchBar from '@/components/ui/SearchBar'
+
 function NavBar(): React.JSX.Element {
   return (
     <nav className="sticky top-0 left-0 right-0 z-50 bg-white border-b shadow flex items-center h-14 px-4">
@@ -9,16 +11,7 @@ function NavBar(): React.JSX.Element {
         <PackageIcon className="h-6 w-6" />
         <h1 className="text-lg font-bold tracking-tighter">Learn Horizon</h1>
       </div>
-      <div className="flex-1 mx-4">
-        <div className="relative rounded-lg  dark:bg-gray-800">
-          <SearchIcon className="absolute inset-y-0 inset-x-2.5 top-2.5 translate-x-0.5 h-4 w-4 text-gray-400 dark:text-gray-500" />
-          <Input
-            className="bg-transparent appearance-none pl-8 sm:w-[200px] md:w-[250px] lg:w-[300px] xl:w-[350px] bg-gray-100"
-            placeholder="Search"
-            type="search"
-          />
-        </div>
-      </div>
+      <SearchBar />
       <div className="flex items-center gap-4 ml-auto">
         <Button size="icon" variant="outline">
           <BellIcon className="h-4 w-4" />

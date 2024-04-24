@@ -24,7 +24,7 @@ const PublicationCard: React.FC<IPublicationCard> = ({
         <h3 className="text-lg font-bold line-clamp-2">{title}</h3>
         <div className="flex items-center mt-2">
           <img
-            src="path_to_author_image.jpg" // Reemplazar con la ruta de la imagen real del autor si es necesario
+            src="path_to_author_image.jpg"
             alt="Author"
             className="w-10 h-10 rounded-full mr-2"
           />

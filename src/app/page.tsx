@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import NavBar from '@/components/navbar/NavBar'
 
 import IntroSection from '@/components/intro/IntroSection'
-import PrincipalPanel from '@/components/principalPanel/PrincipalPanel'
+import PublicationExplorer from '@/components/explorer/PublicationExplorer'
 
 import Footer from '@/components/footer/Footer'
 
@@ -22,7 +22,7 @@ export default function Home(): React.JSX.Element {
       <NavBar />
       <main>
         <IntroSection carousel={carousel} />
-        <PrincipalPanel />
+        <PublicationExplorer />
         <Footer />
       </main>
     </>

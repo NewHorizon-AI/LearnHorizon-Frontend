@@ -4,6 +4,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { type IPublicationCard } from '@/interface/IBackend'
 import PublicationCard from '@/components/explorer/PublicationCard'
+import SearchBar from '@/components/ui/SearchBar'
 
 const PublicationDisplay: React.FC = () => {
   const [publications, setPublications] = useState<IPublicationCard[]>([])
@@ -40,14 +41,17 @@ const PublicationDisplay: React.FC = () => {
   if (loading) return <div>Loading...</div>
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 p-4">
-      {publications.map((publication) => (
-        <Link key={publication._id} href={`/publication/${publication._id}`}>
-          <div className="flex-none w-96">
-            <PublicationCard {...publication} />
-          </div>
-        </Link>
-      ))}
+    <div>
+      <SearchBar />
+      <div className="flex flex-wrap justify-center gap-4 p-4">
+        {publications.map((publication) => (
+          <Link key={publication._id} href={`/publication/${publication._id}`}>
+            <div className="flex-none w-96">
+              <PublicationCard {...publication} />
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   )
 }

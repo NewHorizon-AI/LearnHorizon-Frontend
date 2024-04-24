@@ -1,14 +1,17 @@
-import React from 'react'
+'Use client'
+
+import React, { useEffect, useState, useCallback } from 'react'
 import {
   IoSearch as SearchIcon,
   IoUmbrella as UmbrellaIcon,
   IoCompass as MountainIcon,
   IoBusiness as BuildingIcon,
   IoBackspace as BackpackIcon
-} from 'react-icons/io5' // Asegúrate de tener instalado react-icons
-import { Input } from '@/components/ui/input' // Asegúrate de ajustar la importación según la ubicación de tu componente Input
+} from 'react-icons/io5'
+
+// Components from the UI library
+import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-// import PublicationCard from './_PublicationCard'
 
 import Link from 'next/link'
 

@@ -28,7 +28,15 @@ const CategoriesNav: React.FC = () => {
   }, [])
 
   if (error !== null) {
-    return <div>Error: {error}</div>
+    return (
+      <div className="space-y-4 lg:col-span-1">
+        <div className="flex items-center space-x-3">
+          <MapIcon className="w-5 h-5 bg-gray-200 rounded-lg p-3 dark:bg-gray-800 dark:bg-opacity-70" />
+          <h3 className="text-2xl font-bold tracking-tighter">Categorías</h3>
+        </div>
+        <div className="max-w-12">Error: {error}</div>
+      </div>
+    )
   }
 
   return (
