@@ -2,7 +2,9 @@ import React from 'react'
 
 // Importando componentes
 import CategoriesNav from './explorer/CategoriesNav'
-import ExplorerDisplay from './explorer/ExplorerDisplay'
+
+import { ModelsDisplay } from '@/components/ui/modelsDisplay'
+
 import SearchBar from '@/components/ui/SearchBar'
 
 // Importando tipos
@@ -26,7 +28,7 @@ export default function ModelExplorer({
         <div className="pb-4">
           <SearchBar />
         </div>
-        <ExplorerDisplay models={models} />
+        <ModelsDisplay models={models} columns={4} />
       </div>
     </section>
   )

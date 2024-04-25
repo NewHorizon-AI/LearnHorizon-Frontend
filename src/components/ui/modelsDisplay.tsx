@@ -1,25 +1,38 @@
 import React from 'react'
-import {
-  type IPublicationCard,
-  type IPublicationUserCard
-} from '@/interface/IBackend'
+import Link from 'next/link'
 
-const PublicationCard: React.FC<IPublicationCard> = ({
-  title,
-  photo,
-  description,
-  author,
-  views,
-  publicationDate
-}) => {
+// Importando tipos
+import { IModelCard } from '@/interface/IBackend'
+
+function ModelsDisplay({
+  models,
+  columns
+}: {
+  models: IModelCard[]
+  columns: number
+}): React.JSX.Element {
+  return (
+    <div>
+      <div className="flex flex-wrap justify-center gap-4">
+        {models.map((model) => (
+          <Link key={model._id} href={`/models/${model._id}`}>
+            <div className="flex-none md:w-64 lg:w-80 xl:w-96">
+              <ModelCard model={model} />
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function ModelCard({ model }: { model: IModelCard }): React.JSX.Element {
+  const { title, photo, description, authors, views, publicationDate } = model
   // Convertir la fecha de publicación a un objeto Date
   const date = new Date(publicationDate)
   // Formatear la fecha a un formato legible
   const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-  // Asegurarse de que author es un arreglo
-  const authorArray = Array.isArray(author) ? author : [author]
-
-  console.log(author)
+  // Asegurarse de que authors es un arreglo
 
   return (
     <div className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer">
@@ -32,20 +45,6 @@ const PublicationCard: React.FC<IPublicationCard> = ({
         <h3 className="text-lg font-bold line-clamp-2">{title}</h3>
         <div className="flex items-center mt-2">
           {/* Iterar sobre el arreglo de autores y generar un elemento para cada uno */}
-          {authorArray.slice(0, 2).map((authorObj, index) => (
-            <div
-              key={index}
-              style={{ position: 'relative', left: `${index * -10}px` }}
-            >
-              <img
-                src={authorObj.image}
-                alt="Author"
-                className="w-10 h-10 rounded-full mr-2"
-              />
-              <span className="ml-2 text-gray-700">{authorObj.name}</span>
-            </div>
-          ))}
-          {author.length > 2 && <span className="ml-2 text-gray-700">...</span>}
         </div>
         <div className="flex justify-between items-center mt-2 text-gray-600">
           <span>👁️ {views} vistas</span>
@@ -57,4 +56,4 @@ const PublicationCard: React.FC<IPublicationCard> = ({
   )
 }
 
-export default PublicationCard
+export { ModelsDisplay }
