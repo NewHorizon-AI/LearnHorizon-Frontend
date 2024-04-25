@@ -46,24 +46,25 @@ export interface IPublication {
   publicationDate: Date
 }
 
-// Publicacion para las tarjetas de publicaciones
-export type IPublicationCard = Pick<
-  IPublication,
-  | '_id'
-  | 'title'
-  | 'photo'
-  | 'description'
-  | 'author'
-  | 'views'
-  | 'publicationDate'
->
+export interface IUserCard {
+  image?: string
+  name: string
+}
 
-export type IPublicationUserCard = Pick<IUser, 'image' | 'name'>
+export interface IModelCard {
+  _id: string
+  title: string
+  photo: string
+  description: string
+  views: number
+  authors: IUserCard[]
+  category: ICategory[]
+  publicationDate: Date
+}
 
-// interfaces.ts
-
-export interface IFindParams {
+export interface IFindModels {
   page: number
   pageSize: number
   order: 'ascendant' | 'descendant'
+  modelsArray: IModelCard[]
 }

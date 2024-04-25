@@ -11,12 +11,14 @@ const InsideCarousel: React.FC<CustomCarouselProps> = ({ carouselItem }) => {
   return (
     <section style={{ position: 'relative', width: '100vw', height: '60vh' }}>
       {/* Imagen del carrusel */}
-      <Image
-        src={carouselItem.image}
-        alt={`Slide ${carouselItem.text}`}
-        fill
-        className="object-cover object-center" // Estilos de la imagen
-      />
+      <div className="absolute w-full h-full">
+        <Image
+          src={carouselItem.image}
+          alt={`Slide ${carouselItem.text}`}
+          fill
+          className="object-cover object-center" // Estilos de la imagen
+        />
+      </div>
       {/* Contenido del carrusel */}
 
       {/* MOBILE */}
@@ -47,3 +49,21 @@ const InsideCarousel: React.FC<CustomCarouselProps> = ({ carouselItem }) => {
 }
 
 export default InsideCarousel
+
+// const InsideCarousel: React.FC<CustomCarouselProps> = ({ carouselItem }) => {
+//   return (
+//     <section className="relative w-full aspect-video max-h-[500px] m-0 p-0">
+//       {/* Imagen del carrusel */}
+//       <div className="absolute w-full h-full m-0 p-0">
+//         <Image
+//           src={carouselItem.image}
+//           alt={`Slide ${carouselItem.text}`}
+//           layout="fill" // Utiliza layout='fill' en lugar de fill
+//           priority
+//           className="object-cover object-center" // Elimina la clase box-content
+//         />
+//       </div>
+//       {/* Resto del código */}
+//     </section>
+//   )
+// }
