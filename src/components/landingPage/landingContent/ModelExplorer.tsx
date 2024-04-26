@@ -5,7 +5,7 @@ import CategoriesNav from './explorer/CategoriesNav'
 
 import { ModelsDisplay } from '@/components/ui/modelsDisplay'
 
-import SearchBar from '@/components/ui/SearchBar'
+import { SearchBar } from '@/components/ui/searchBar'
 
 // Importando tipos
 import { IModelCard, IFindModels, ICategory } from '@/interface/IBackend'
@@ -20,15 +20,14 @@ export default function ModelExplorer({
   categories: ICategory[]
 }): React.JSX.Element {
   return (
-    <section className="container min-h-screen flex flex-col lg:flex-row">
-      <div className="flex-none">
+    <section className="min-h-screen flex flex-col lg:flex-row">
+      <div className="">
         <CategoriesNav categories={categories} />
       </div>
-      <div className="flex-grow">
-        <div className="pb-4">
-          <SearchBar />
-        </div>
-        <ModelsDisplay models={models} columns={4} />
+
+      <div className="flex-grow sm:container">
+        <SearchBar className="pb-4" />
+        <ModelsDisplay models={models} />
       </div>
     </section>
   )

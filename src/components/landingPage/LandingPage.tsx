@@ -1,3 +1,17 @@
+/*
+  Explicacion:
+  - Página de inicio que se muestra al usuario cuando no ha iniciado sesión.
+  
+  - Muestra un carrusel con imágenes de modelos.
+  - Muestra un mensaje de bienvenida.
+  - Muestra una sección para explorar los modelos.
+  - Muestra el footer.
+
+  - Recibe los datos del carrusel, los modelos y las categorías.
+  - Recibe una función para cambiar los modelos.
+  - Recibe las categorías.
+*/
+
 import React from 'react'
 
 // Importing components
@@ -29,7 +43,7 @@ export default function LandingPage({
     <>
       <NavBar />
       <MainCarousel carouselData={carousel} />
-      <main>
+      <main className="container">
         <WelcomeSection />
         <ModelExplorer
           models={models}

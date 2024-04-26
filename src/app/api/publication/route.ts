@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
-import { type IPublicationCard } from '@/interface/IBackend'
+import { type IModelCard } from '@/interface/IBackend'
 
 export const GET = async (
   req: NextApiRequest,
@@ -12,9 +12,8 @@ export const GET = async (
       const page = url.searchParams.get('page')
       const pageSize = url.searchParams.get('pageSize')
       const order = url.searchParams.get('order')
-      console.log(page, pageSize, order)
 
-      const { data } = await axios.get<IPublicationCard[]>(
+      const { data } = await axios.get<IModelCard[]>(
         `http://localhost:3001/publications/search?page=${page}&pageSize=${pageSize}&order=${order}`
       )
 

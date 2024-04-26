@@ -5,21 +5,19 @@ import Link from 'next/link'
 import { IModelCard } from '@/interface/IBackend'
 
 function ModelsDisplay({
-  models,
-  columns
+  models
 }: {
   models: IModelCard[]
-  columns: number
 }): React.JSX.Element {
   return (
     <div>
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 2xl:grid-cols-4 gap-4">
         {models.map((model) => (
-          <Link key={model._id} href={`/models/${model._id}`}>
-            <div className="flex-none md:w-64 lg:w-80 xl:w-96">
+          <div>
+            <Link key={model._id} href={`/models/${model._id}`}>
               <ModelCard model={model} />
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))}
       </div>
     </div>

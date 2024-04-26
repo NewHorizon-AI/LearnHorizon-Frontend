@@ -1,3 +1,14 @@
+/*
+Explicación:
+  - Este archivo es el componente principal de la página principal.
+  - Este componente se encarga de manejar el estado de los modelos y las categorías.
+  - Se encarga de hacer las peticiones al servidor para obtener los datos de los modelos y las categorías.
+  - Se encarga de renderizar el componente LandingPage.
+  - Se encarga de pasarle los datos de los modelos, categorías y carrusel al componente LandingPage.
+  - Se encarga de manejar el cambio de página de los modelos.
+  - Se encarga de manejar el cambio de orden de los modelos.
+*/
+
 'use client'
 
 import React, { useState, useEffect } from 'react'
