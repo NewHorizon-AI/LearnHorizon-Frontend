@@ -13,8 +13,8 @@ function ModelsDisplay({
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 2xl:grid-cols-4 gap-4">
         {models.map((model) => (
-          <div>
-            <Link key={model._id} href={`/models/${model._id}`}>
+          <div key={model._id}>
+            <Link href={`/model/${model._id}`}>
               <ModelCard model={model} />
             </Link>
           </div>

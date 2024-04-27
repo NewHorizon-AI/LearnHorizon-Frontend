@@ -43,7 +43,7 @@ export default function Home(): React.JSX.Element {
   useEffect(() => {
     const fetchModels = async () => {
       const response = await fetch(
-        `/api/publication?page=${models.page}&pageSize=${models.pageSize}&order=${models.order}`
+        `/api/model?page=${models.page}&pageSize=${models.pageSize}&order=${models.order}`
       )
       const data: IModelCard[] = await response.json()
       setModels((prevModels) => ({
