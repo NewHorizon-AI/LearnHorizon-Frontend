@@ -1,5 +1,7 @@
+'use client'
+
 import React from 'react'
-import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 // Importando tipos
 import { IModelCard } from '@/interface/IBackend'
@@ -9,14 +11,18 @@ function ModelsDisplay({
 }: {
   models: IModelCard[]
 }): React.JSX.Element {
+  const router = useRouter()
+
+  const handleModel = (_id: string) => {
+    router.push(`/model/?id=${_id}`)
+  }
+
   return (
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 2xl:grid-cols-4 gap-4">
         {models.map((model) => (
-          <div key={model._id}>
-            <Link href={`/model/${model._id}`}>
-              <ModelCard model={model} />
-            </Link>
+          <div key={model._id} onClick={() => handleModel(model._id)}>
+            <ModelCard model={model} />
           </div>
         ))}
       </div>

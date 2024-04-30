@@ -2,10 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
 import { type IModelCard } from '@/interface/IBackend'
 
-export const GET = async (
-  req: NextApiRequest,
-  res: NextApiResponse
-): Promise<Response> => {
+export const GET = async (req: NextApiRequest): Promise<Response> => {
   try {
     if (req.url != null) {
       const url = new URL(req.url)

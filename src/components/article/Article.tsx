@@ -1,57 +1,67 @@
-'use client'
+import React from 'react'
 
-import React, { useState } from 'react'
+import Image from 'next/image'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { type IArticlePublication } from '@/interface/IBackend'
 
-export default function ModeloView(): React.ReactElement {
-  // Suponiendo que los datos vendrían de una API o un estado global
-  const [modelo] = useState({
-    imageUrl: 'https://via.placeholder.com/150/f9cee5', // Reemplaza con la URL de tu imagen
-    title: 'Nombre del modelo',
-    creator: 'Doctor A.',
-    description: 'Descripción detallada del modelo...',
-    tags: ['3D', 'modeling', 'art', 'design', 'CGI'], // Reemplazar con las etiquetas reales
-    comments: [
-      {
-        user: 'user1',
-        comment: '¡Gran trabajo!'
-      }
-    ]
-  })
-
+export default function Article({ model }: { model: IArticlePublication }) {
+  console.log(model)
   return (
-    <div className="flex flex-col items-center">
-      <img
-        src={modelo.imageUrl}
-        alt={modelo.title}
-        width={600}
-        height={600}
-        className="rounded-t-lg"
-      />
-      <h1 className="text-4xl font-bold mt-4 mb-2">{modelo.title}</h1>
-      <p className="text-md mb-2">Creado por {modelo.creator}</p>
-      <p className="text-md mb-4">{modelo.description}</p>
-      <div className="flex flex-wrap justify-center gap-2 mb-4">
-        {modelo.tags.map((tag, index) => (
-          <Button key={index} variant="outline">
-            {tag}
-          </Button>
-        ))}
+    <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+      <div className="px-4 py-5 sm:px-6">
+        <h2 className="text-lg leading-6 font-medium text-gray-900">
+          {model.title}
+        </h2>
+        <p className="mt-1 max-w-2xl text-sm text-gray-500">{model.subtitle}</p>
       </div>
-      <div className="w-full p-4">
-        <h2 className="text-2xl font-bold mb-2">Comentarios</h2>
-        <div className="mb-4">
-          {modelo.comments.map((comment, index) => (
-            <div key={index} className="mb-2">
-              <strong>{comment.user}</strong>
-              <p>{comment.comment}</p>
-            </div>
-          ))}
-        </div>
-        <Input placeholder="Escribe un comentario..." className="mb-2" />
-        <Button>Enviar</Button>
+      <div className="border-t border-gray-200">
+        <dl>
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">Publicado por</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {/* <div className="flex items-center">
+                <Image
+                  src={model.author.image}
+                  alt="Author"
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+                <span className="ml-4">{model?.author.name}</span>
+              </div> */}
+            </dd>
+          </div>
+          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">Descripción</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {model?.description}
+            </dd>
+          </div>
+          {/* <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">Categoría</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {model?.category}
+            </dd>
+          </div> */}
+          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">
+              Likes / Dislikes
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {model?.likes} likes / {model?.dislikes} dislikes
+            </dd>
+          </div>
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">
+              Fecha de publicación
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {model?.publicationDate
+                ? new Date(model.publicationDate).toLocaleDateString()
+                : ''}
+            </dd>
+          </div>
+        </dl>
       </div>
     </div>
   )
