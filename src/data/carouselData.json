@@ -3,18 +3,18 @@
     "id": 1,
     "title": "Lorem ipsum dolor sit amet, ",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum nec nulla quis placerat. In non maximus tellus. In ut lectus a lectus placerat rutrum. Pellentesque vel neque vitae quam porta euismod non ac risus. Ut elementum feugiat nunc at tempor. Nullam non tempus tortor,",
-    "image": "/carousel/3.jpg"
+    "image": "/carousel/1.jpg"
   },
   {
     "id": 2,
-    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum nec nulla quis placerat. In non maximus tellus. In ut lectus a lectus placerat rutrum. Pellentesque vel neque vitae quam porta euismod non ac risus. Ut elementum feugiat nunc at tempor. Nullam non tempus tortor,",
+    "title": "Biblioteca Virtual de Modelos Marinos en 3D",
+    "text": "Bienvenidos a la primera biblioteca virtual de modelado 3D, dedicada a la fauna y cultura marina. Aquí encontrarás una variedad de modelos para explorar y utilizar en tus proyectos educativos y de investigación. Sumérgete en este emocionante viaje por el conocimiento marino.",
     "image": "/carousel/2.jpg"
   },
   {
     "id": 3,
     "title": "Lorem consectetur adipiscing elit",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum nec nulla quis placerat. In non maximus tellus. In ut lectus a lectus placerat rutrum. Pellentesque vel neque vitae quam porta euismod non ac risus. Ut elementum feugiat nunc at tempor. Nullam non tempus tortor,",
-    "image": "/carousel/1.jpg"
+    "image": "/carousel/3.jpg"
   }
 ]

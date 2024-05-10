@@ -16,10 +16,13 @@ function NavBar(): React.JSX.Element {
       </Link>
       <div className="hidden sm:flex flex-1 mx-4">
         <Link className="mr-4" href="/ruta1">
-          Recientes
+          Tendencias
         </Link>
-        <Link href="/ruta2">Categorias</Link>
-        {/* Agrega tantos enlaces como necesites */}
+        <Link className="mr-4" href="/ruta2">
+          Categorias
+        </Link>
+
+        <Link href="/ruta2">Biblioteca</Link>
       </div>
       <SearchBar className="ml-4 sm:ml-0 flex-1 sm:max-w-[20%] mr-4" />
       <div className="flex items-center gap-4 ml-auto">

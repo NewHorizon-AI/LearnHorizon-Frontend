@@ -1,11 +1,13 @@
 import React from 'react'
 
 import Image from 'next/image'
+import { IArticle } from '@/interface/IArticle'
 
-import { type IArticlePublication } from '@/interface/IBackend'
-
-export default function Article({ model }: { model: IArticlePublication }) {
-  console.log(model)
+export default function ArticleView({
+  model
+}: {
+  model: IArticle
+}): React.JSX.Element {
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-lg">
       <div className="px-4 py-5 sm:px-6">
@@ -19,16 +21,18 @@ export default function Article({ model }: { model: IArticlePublication }) {
           <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt className="text-sm font-medium text-gray-500">Publicado por</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {/* <div className="flex items-center">
-                <Image
-                  src={model.author.image}
-                  alt="Author"
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-                <span className="ml-4">{model?.author.name}</span>
-              </div> */}
+              {model.author?.map((author) => (
+                <div key={author.name} className="flex items-center">
+                  <Image
+                    className="h-8 w-8 rounded-full"
+                    src={author.image || '/images/default-profile.png'}
+                    alt={author.name}
+                    width={32}
+                    height={32}
+                  />
+                  <span className="ml-2">{author.name}</span>
+                </div>
+              ))}
             </dd>
           </div>
           <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -37,18 +41,20 @@ export default function Article({ model }: { model: IArticlePublication }) {
               {model?.description}
             </dd>
           </div>
-          {/* <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt className="text-sm font-medium text-gray-500">Categoría</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {model?.category}
+              {model.category?.map((category) => (
+                <span key={category._id}>{category.title} </span>
+              ))}
             </dd>
-          </div> */}
+          </div>
           <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt className="text-sm font-medium text-gray-500">
               Likes / Dislikes
             </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {model?.likes} likes / {model?.dislikes} dislikes
+              {model.likes} likes / {model.dislikes} dislikes
             </dd>
           </div>
           <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

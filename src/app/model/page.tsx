@@ -1,10 +1,10 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { type IArticlePublication } from '@/interface/IBackend'
+import { type IArticle } from '@/interface/IArticle'
 import { useSearchParams } from 'next/navigation'
 
-import Article from '@/components/article/Article'
+import ArticlePage from '@/components/article/ArticlePage'
 
 export default function ModelDetailsPage({
   params
@@ -14,14 +14,13 @@ export default function ModelDetailsPage({
   const searchParams = useSearchParams()
   const id = searchParams.get('id')
 
-  const [model, setModel] = useState<IArticlePublication>(
-    {} as IArticlePublication
-  )
+  const [model, setModel] = useState<IArticle>({} as IArticle)
 
   useEffect(() => {
     const fetchModel = async () => {
       const response = await fetch(`/api/model/${id}`)
-      const data: IArticlePublication = await response.json()
+      const data: IArticle = await response.json()
+      console.log(data)
       setModel(data)
     }
 
@@ -32,5 +31,5 @@ export default function ModelDetailsPage({
     }
   }, [id])
 
-  return <Article model={model} />
+  return <ArticlePage model={model} />
 }

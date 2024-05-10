@@ -3,7 +3,7 @@
 import React from 'react'
 
 import NavBar from '@/components/navbar/NavBar'
-import Article from '@/components/article/Article'
+import Article from '@/components/article/ArticlePage'
 import Footer from '@/components/landingPage/landingContent/Footer'
 
 export default function Category(): React.JSX.Element {

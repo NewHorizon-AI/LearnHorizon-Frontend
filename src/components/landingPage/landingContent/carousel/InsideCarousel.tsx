@@ -9,7 +9,7 @@ interface CustomCarouselProps {
 
 const InsideCarousel: React.FC<CustomCarouselProps> = ({ carouselItem }) => {
   return (
-    <section style={{ position: 'relative', width: '100vw', height: '60vh' }}>
+    <section style={{ position: 'relative', width: '100vw', height: '40vh' }}>
       {/* Imagen del carrusel */}
       <div className="absolute w-full h-full">
         <Image
@@ -35,7 +35,7 @@ const InsideCarousel: React.FC<CustomCarouselProps> = ({ carouselItem }) => {
 
       {/* DESKTOP */}
       <div className="sm:flex hidden">
-        <div className="absolute bottom-0 left-0 w-1/2 p-2 ml-16 lg:ml-20 mb-8 md:py-4 lg:py-6 bg-black bg-opacity-40">
+        <div className="absolute bottom-0 left-0 w-1/2 p-2 ml-16 lg:ml-20 mb-8 md:py-4 lg:py-6 bg-black bg-opacity-50 border border-white ">
           <div className="text-left">
             <div className="text-white text-xl md:text-2xl font-bold">
               {carouselItem.title}
