@@ -30,25 +30,45 @@ import {
 
 export default function LandingPage({
   carousel,
+  loadingCarousel,
+  errorCarousel,
   models,
   setModels,
-  categories
+  categories,
+  loadingModels,
+  errorModels,
+  loadingCategories,
+  errorCategories
 }: {
   carousel: any
+  loadingCarousel: boolean
+  errorCarousel: string | null
   models: IModelCard[]
   setModels: React.Dispatch<React.SetStateAction<IFindModels>>
   categories: ICategory[]
+  loadingModels: boolean
+  errorModels: string | null
+  loadingCategories: boolean
+  errorCategories: string | null
 }): React.JSX.Element {
   return (
     <>
       <NavBar />
-      <MainCarousel carouselData={carousel} />
+      <MainCarousel
+        carouselData={carousel}
+        loadingCarousel={loadingCarousel}
+        errorCarousel={errorCarousel}
+      />
       <main className="container">
         <WelcomeSection />
         <ModelExplorer
           models={models}
           setModels={setModels}
           categories={categories}
+          loadingModels={loadingModels}
+          errorModels={errorModels}
+          loadingCategories={loadingCategories}
+          errorCategories={errorCategories}
         />
       </main>
       <Footer />

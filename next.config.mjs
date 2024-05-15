@@ -7,7 +7,8 @@ const nextConfig = {
       'i.ibb.co',
       'cloudflare-ipfs.com',
       'avatars.githubusercontent.com',
-      'loremflickr.com'
+      'loremflickr.com',
+      'picsum.photos'
     ]
   }
 }

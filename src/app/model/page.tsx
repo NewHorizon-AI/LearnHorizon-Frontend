@@ -14,22 +14,48 @@ export default function ModelDetailsPage({
   const searchParams = useSearchParams()
   const id = searchParams.get('id')
 
-  const [model, setModel] = useState<IArticle>({} as IArticle)
+  // Estado del modelo
+  const [model, setModel] = useState<IArticle | null>(null)
+
+  // Estados de carga y error6
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchModel = async () => {
-      const response = await fetch(`/api/model/${id}`)
-      const data: IArticle = await response.json()
-      console.log(data)
-      setModel(data)
+      try {
+        const response = await fetch(`/api/model/${id}`)
+        if (!response.ok) {
+          throw new Error('No se pudo cargar el modelo')
+        }
+        const data: IArticle = await response.json()
+        setModel(data)
+      } catch (error: any) {
+        console.error(error)
+        setError(error.message)
+      } finally {
+        setLoading(false)
+      }
     }
 
-    try {
+    if (id) {
       fetchModel()
-    } catch (error: any) {
-      console.error(error)
+    } else {
+      setLoading(false)
     }
   }, [id])
+
+  if (loading) {
+    return <div>Cargando...</div>
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>
+  }
+
+  if (!model) {
+    return <div>No se encontró el modelo</div>
+  }
 
   return <ArticlePage model={model} />
 }

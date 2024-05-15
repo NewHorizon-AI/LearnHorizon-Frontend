@@ -11,14 +11,8 @@ import {
 import Autoplay from 'embla-carousel-autoplay'
 
 import { type CarouselApi } from '@/components/ui/carousel'
-
 import { type CarouselItemInterface } from '@/interface/CarouselItem'
-
 import InsideCarousel from './InsideCarousel'
-
-interface MainCarouselProps {
-  carouselData: CarouselItemInterface[]
-}
 
 const useAutoplay = (api: CarouselApi | undefined, delay: number) => {
   const plugin = useRef(Autoplay({ delay, stopOnInteraction: false }))
@@ -53,8 +47,16 @@ const useAutoplay = (api: CarouselApi | undefined, delay: number) => {
   return { stopAutoplay, startAutoplay, plugin }
 }
 
-const MainCarousel: React.FC<MainCarouselProps> = ({ carouselData = [] }) => {
-  const [api, setApi] = useState<CarouselApi>()
+export default function MainCarousel({
+  carouselData,
+  loadingCarousel,
+  error
+}: {
+  carouselData: CarouselItemInterface[]
+  loadingCarousel: boolean
+  error: string | null
+}): React.JSX.Element {
+  const [api, setApi] = useState<CarouselApi | undefined>()
   const [current, setCurrent] = useState(0)
   const [count, setCount] = useState(0)
 
@@ -82,6 +84,16 @@ const MainCarousel: React.FC<MainCarouselProps> = ({ carouselData = [] }) => {
     [api, stopAutoplay, startAutoplay]
   )
 
+  if (loadingCarousel) {
+    return (
+      <div className="flex items-center justify-center h-64">Loading...</div>
+    )
+  }
+
+  if (error) {
+    return <div className="flex items-center justify-center h-64">{error}</div>
+  }
+
   return (
     <Carousel
       setApi={setApi}
@@ -91,9 +103,9 @@ const MainCarousel: React.FC<MainCarouselProps> = ({ carouselData = [] }) => {
         loop: true
       }}
     >
-      <CarouselContent className="w-full ">
+      <CarouselContent className="w-full m-0 p-0">
         {carouselData.map((item) => (
-          <CarouselItem key={item.id}>
+          <CarouselItem key={item.id} className="m-0 p-0">
             <InsideCarousel carouselItem={item} />
           </CarouselItem>
         ))}
@@ -115,5 +127,3 @@ const MainCarousel: React.FC<MainCarouselProps> = ({ carouselData = [] }) => {
     </Carousel>
   )
 }
-
-export default MainCarousel

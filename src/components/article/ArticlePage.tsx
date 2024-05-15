@@ -16,24 +16,9 @@ export default function ArticlePage({
     <>
       <NavBar />
       <main>
-        <div className="grid gap-6">
-          <Display modelData={model.photo} />
-          <ArticleContent model={model} />
-        </div>
-        {/* <ArticleView model={model} /> */}
+        <Display modelData={model.photo} />
+        <ArticleContent model={model} />
       </main>
     </>
   )
 }
-
-// import Link from 'next/link'
-
-// export default function Component() {
-//   return (
-//     <>
-//       <main className="">
-//
-//       </main>
-//     </>
-//   )
-// }

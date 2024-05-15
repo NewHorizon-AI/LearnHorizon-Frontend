@@ -27,51 +27,87 @@ import {
 } from '@/interface/IBackend'
 
 export default function Home(): React.JSX.Element {
-  const [models, setModels] = useState<IFindModels>({
+  const [models, setModels] = useState<IFindModels | null>({
     page: 0,
     pageSize: 10,
     order: 'descendant',
     modelsArray: []
   })
 
+  // Estados de carga y error para los modelos
+  const [loadingModels, setLoadingModels] = useState(true)
+  const [errorModels, setErrorModels] = useState<string | null>(null)
+
   const [categories, setCategories] = useState<ICategory[]>([])
+
+  // Estados de carga y error para las categorías
+  const [loadingCategories, setLoadingCategories] = useState(true)
+  const [errorCategories, setErrorCategories] = useState<string | null>(null)
 
   // Manejar el los datos del carrusel
   const [carousel] = useState(carouselData)
 
+  // Estados de carga y error para el carrusel
+  const [loadingCarousel, setLoadingCarousel] = useState(false)
+  const [errorCarousel, setErrorCarousel] = useState<string | null>(null)
+
   // Manejar el cambio de página
   useEffect(() => {
     const fetchModels = async () => {
-      const response = await fetch(
-        `/api/model?page=${models.page}&pageSize=${models.pageSize}&order=${models.order}`
-      )
-      const data: IModelCard[] = await response.json()
-      setModels((prevModels) => ({
-        ...prevModels,
-        modelsArray: data
-      }))
+      try {
+        const response = await fetch(
+          `/api/model?page=${models.page}&pageSize=${models.pageSize}&order=${models.order}`
+        )
+        if (!response.ok) {
+          throw new Error('Error fetching models')
+        }
+        const data: IModelCard[] = await response.json()
+        setModels((prevModels) => ({
+          ...prevModels,
+          modelsArray: data
+        }))
+      } catch (error: any) {
+        console.error(error)
+        setErrorModels(error.message)
+      } finally {
+        setLoadingModels(false)
+      }
     }
     fetchModels()
   }, [models.page, models.pageSize, models.order])
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const response = await fetch('/api/category')
-      const data: ICategory[] = await response.json()
-      setCategories(data)
+      try {
+        const response = await fetch('/api/category')
+        if (!response.ok) {
+          throw new Error('Error fetching categories')
+        }
+        const data: ICategory[] = await response.json()
+        setCategories(data)
+      } catch (error: any) {
+        console.error(error)
+        setErrorCategories(error.message)
+      } finally {
+        setLoadingCategories(false)
+      }
     }
 
     fetchCategories()
   }, [])
 
   return (
-    <>
-      <LandingPage
-        carousel={carousel}
-        models={models.modelsArray}
-        setModels={setModels}
-        categories={categories}
-      />
-    </>
+    <LandingPage
+      carousel={carousel}
+      loadingCarousel={loadingCarousel}
+      errorCarousel={errorCarousel}
+      models={models?.modelsArray || []}
+      setModels={setModels}
+      categories={categories}
+      loadingModels={loadingModels}
+      errorModels={errorModels}
+      loadingCategories={loadingCategories}
+      errorCategories={errorCategories}
+    />
   )
 }

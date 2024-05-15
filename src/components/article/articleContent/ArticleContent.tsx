@@ -15,7 +15,7 @@ export default function ArticleContent({
   model: IArticle
 }): React.JSX.Element {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-8 p-6">
+    <section className="grid grid-cols-1 md:grid-cols-[1fr_300px] gap-8 p-6">
       <div className="grid gap-4">
         <div className="flex items-center gap-4">
           <Avatar className="w-10 h-10">
@@ -68,9 +68,6 @@ export default function ArticleContent({
 
       <div className="grid gap-6">
         <Card>
-          <CardHeader>
-            <CardTitle>Videos recomendados</CardTitle>
-          </CardHeader>
           <CardContent>
             <div className="grid gap-4">
               <div className="flex items-start gap-4">
@@ -128,6 +125,6 @@ export default function ArticleContent({
           </CardContent>
         </Card>
       </div>
-    </div>
+    </section>
   )
 }
