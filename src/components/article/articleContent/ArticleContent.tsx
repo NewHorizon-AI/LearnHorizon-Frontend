@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
 
 import { Badge } from '@/components/ui/badge'
-import { CardTitle, CardHeader, CardContent, Card } from '@/components/ui/card'
+import { CardContent, Card } from '@/components/ui/card'
 import { FaThumbsUp, FaThumbsDown, FaShareAlt, FaSave } from 'react-icons/fa'
 
 import { type IArticle } from '@/interface/IArticle'
