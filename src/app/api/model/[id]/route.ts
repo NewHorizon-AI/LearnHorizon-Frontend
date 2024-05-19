@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { IArticlePublication } from '@/interface/IBackend'
+import { type IArticle } from '@/interface/IArticle'
 
 export const GET = async (
   req: any,
@@ -7,7 +7,7 @@ export const GET = async (
 ): Promise<Response> => {
   try {
     const { id } = params
-    const { data } = await axios.get<IArticlePublication>(
+    const { data } = await axios.get<IArticle>(
       `http://localhost:3001/publications/model/${id}`
     )
     return new Response(JSON.stringify(data), { status: 200 })

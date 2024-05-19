@@ -5,12 +5,12 @@ module.exports = {
     node: true
   },
   extends: [
+    'next',
+
     'standard-with-typescript',
-    'next/babel',
     'next/core-web-vitals',
     'plugin:react/recommended',
-    'prettier',
-    'next'
+    'prettier'
   ],
   overrides: [
     {
