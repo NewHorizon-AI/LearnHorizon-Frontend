@@ -1,7 +1,7 @@
 import React from 'react'
-import SidebarLeft from '@/components/test/SidebarLeft'
-import SidebarRight from '@/components/test/SidebarRight'
-import MainContent from '@/components/test/MainContent'
+import SidebarLeft from '@/components/article/articleContent/SidebarLeft'
+import SidebarRight from '@/components/article/articleContent/SidebarRight'
+import MainContent from '@/components/article/articleContent/MainContent'
 
 const AnatomyPage: React.FC = () => {
   return (
