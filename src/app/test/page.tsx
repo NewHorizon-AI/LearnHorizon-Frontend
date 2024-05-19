@@ -1,17 +1,16 @@
-import Link from 'next/link'
+import React from 'react'
+import SidebarLeft from '@/components/test/SidebarLeft'
+import SidebarRight from '@/components/test/SidebarRight'
+import MainContent from '@/components/test/MainContent'
 
-import Display from '@/components/article/modelDisplay/Display'
-import ArticleContent from '@/components/article/articleContent/ArticleContent'
-
-export default function Component() {
+const AnatomyPage: React.FC = () => {
   return (
-    <>
-      <main className="">
-        <div className="grid gap-6">
-          <Display />
-          <ArticleContent />
-        </div>
-      </main>
-    </>
+    <div className="bg-gray-900 text-white min-h-screen flex">
+      <SidebarLeft />
+      <MainContent />
+      <SidebarRight />
+    </div>
   )
 }
+
+export default AnatomyPage

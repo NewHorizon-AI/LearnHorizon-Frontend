@@ -7,14 +7,16 @@ export default function Display({
   modelData: string
 }): React.JSX.Element {
   return (
-    <section className="relative w-full h-[76vh] overflow-hidden">
-      <div className="absolute inset-0">
-        <Image
-          src={modelData}
-          alt="Video Thumbnail"
-          className="object-cover object-center"
-          layout="fill"
-        />
+    <section className="bg-black">
+      <div className="flex items-center justify-center">
+        <div className="relative w-full lg:max-w-[140vh]  aspect-video">
+          <Image
+            src={modelData}
+            alt="Video Thumbnail"
+            className="absolute inset-0 object-cover object-center"
+            fill
+          />
+        </div>
       </div>
     </section>
   )
