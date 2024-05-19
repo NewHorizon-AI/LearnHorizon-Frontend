@@ -8,18 +8,15 @@ const markdownContent = `
 - Obtuvimos los 24 cortes axiales del cerebro normal.
 - Los datos y las imágenes DICOM se archivaron en nuestro PACS (sistema de archivo y comunicación de imágenes) y se procesaron y exportaron como imágenes JPEG. Los...
 `
-
-const MainContent: React.FC = () => {
+export default function MainContent(): React.JSX.Element {
   return (
     <main className="flex-1 p-8">
       <div>
         <h1 className="text-3xl font-bold">
           Anatomía del encéfalo (IRM) en cortes axiales
         </h1>
-        <p className="mt-2 text-gray-400">
-          Antoine MICHEAU, MD , Denis HOA, MD
-        </p>
-        <p className="mt-1 text-gray-400">
+        <p className="mt-2 ">Antoine MICHEAU, MD , Denis HOA, MD</p>
+        <p className="mt-1 ">
           Fecha de publicación: 9 sept. 2009 | Última actualización: 4 oct. 2022
         </p>
         <a
@@ -28,7 +25,7 @@ const MainContent: React.FC = () => {
         >
           https://doi.org/10.37019/e-anatomy/49541.es
         </a>
-        <p className="mt-4 text-gray-300">
+        <p className="mt-4 ">
           Hemos creado un atlas cerebral que es una herramienta interactiva para
           estudiar la anatomía convencional del encéfalo normal, basado en un
           examen mediante imágenes de resonancia magnética del cerebro axial.
@@ -36,11 +33,9 @@ const MainContent: React.FC = () => {
           imágenes interactivas etiquetadas.
         </p>
       </div>
-      <ReactMarkdown className="prose prose-invert mt-8">
+      <ReactMarkdown className="prose prose-invert mt-8 text-black">
         {markdownContent}
       </ReactMarkdown>
     </main>
   )
 }
-
-export default MainContent

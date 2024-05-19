@@ -4,6 +4,9 @@ import NavBar from '@/components/navbar/NavBar'
 
 import Display from '@/components/article/modelDisplay/Display'
 import ArticleContent from '@/components/article/articleContent/ArticleContent'
+import SidebarLeft from '@/components/test/SidebarLeft'
+import SidebarRight from '@/components/test/SidebarRight'
+import MainContent from '@/components/test/MainContent'
 
 import { type IArticle } from '@/interface/IArticle'
 
@@ -17,7 +20,11 @@ export default function ArticlePage({
       <NavBar />
       <main>
         <Display modelData={model.photo} />
-        <ArticleContent model={model} />
+        <div className="min-h-screen flex pt-8">
+          <SidebarLeft />
+          <MainContent />
+          <SidebarRight />
+        </div>
       </main>
     </>
   )

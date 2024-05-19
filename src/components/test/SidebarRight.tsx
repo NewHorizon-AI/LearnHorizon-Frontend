@@ -1,10 +1,10 @@
 import React from 'react'
 
-const SidebarRight: React.FC = () => {
+export default function SidebarRight(): React.JSX.Element {
   return (
-    <aside className="w-1/5 bg-gray-800 p-4 overflow-y-auto">
+    <aside className="w-1/5 bg-gray-200 p-4 overflow-y-auto">
       <h2 className="text-lg font-semibold mb-4">Acceso Rápido</h2>
-      <div className="bg-black p-4 rounded-md">
+      <div className=" p-4 rounded-md">
         <img
           src="/path/to/image.png"
           alt="Figura del cuerpo humano"
@@ -16,5 +16,3 @@ const SidebarRight: React.FC = () => {
     </aside>
   )
 }
-
-export default SidebarRight

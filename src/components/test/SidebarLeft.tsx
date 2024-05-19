@@ -1,8 +1,8 @@
 import React from 'react'
 
-const SidebarLeft: React.FC = () => {
+export default function SidebarLeft(): React.JSX.Element {
   return (
-    <aside className="w-1/5 bg-gray-800 p-4 overflow-y-auto">
+    <aside className="w-1/5 bg-gray-200 p-4 overflow-y-auto">
       <h2 className="text-lg font-semibold mb-4">ESTRUCTURAS ANATÓMICAS</h2>
       <ul className="space-y-2">
         <li>Acueducto del mesencéfalo; Acueducto (Sylvius)</li>
@@ -18,5 +18,3 @@ const SidebarLeft: React.FC = () => {
     </aside>
   )
 }
-
-export default SidebarLeft
