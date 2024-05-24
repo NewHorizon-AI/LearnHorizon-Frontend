@@ -27,8 +27,8 @@ import {
 } from '@/interface/IBackend'
 
 export default function Home(): React.JSX.Element {
-  const [models, setModels] = useState<IFindModels | null>({
-    page: 0,
+  const [models, setModels] = useState<IFindModels>({
+    page: 1,
     pageSize: 10,
     order: 'descendant',
     modelsArray: []
@@ -44,16 +44,18 @@ export default function Home(): React.JSX.Element {
   const [loadingCategories, setLoadingCategories] = useState(true)
   const [errorCategories, setErrorCategories] = useState<string | null>(null)
 
-  // Manejar el los datos del carrusel
+  // Manejar los datos del carrusel
   const [carousel] = useState(carouselData)
 
   // Estados de carga y error para el carrusel
   const [loadingCarousel, setLoadingCarousel] = useState(false)
   const [errorCarousel, setErrorCarousel] = useState<string | null>(null)
 
-  // Manejar el cambio de página
+  // Fetch models when page, pageSize, or order changes
   useEffect(() => {
     const fetchModels = async () => {
+      setLoadingModels(true)
+      setErrorModels(null)
       try {
         const response = await fetch(
           `/api/model?page=${models.page}&pageSize=${models.pageSize}&order=${models.order}`
@@ -76,8 +78,11 @@ export default function Home(): React.JSX.Element {
     fetchModels()
   }, [models.page, models.pageSize, models.order])
 
+  // Fetch categories on initial render
   useEffect(() => {
     const fetchCategories = async () => {
+      setLoadingCategories(true)
+      setErrorCategories(null)
       try {
         const response = await fetch('/api/category')
         if (!response.ok) {
@@ -101,7 +106,7 @@ export default function Home(): React.JSX.Element {
       carousel={carousel}
       loadingCarousel={loadingCarousel}
       errorCarousel={errorCarousel}
-      models={models?.modelsArray || []}
+      models={models.modelsArray}
       setModels={setModels}
       categories={categories}
       loadingModels={loadingModels}
