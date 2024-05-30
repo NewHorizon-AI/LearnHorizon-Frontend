@@ -1,4 +1,4 @@
-import { IArticle } from '@/interface/IArticle'
+import { IArticle } from '@/interfaces/IArticle'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { FaPen } from 'react-icons/fa'

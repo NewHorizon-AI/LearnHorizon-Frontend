@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { type ICategory } from '@/interface/IBackend'
+import { type ICategory } from '@/interfaces/IBackend'
 
 export const GET = async (_req: Request): Promise<Response> => {
   try {

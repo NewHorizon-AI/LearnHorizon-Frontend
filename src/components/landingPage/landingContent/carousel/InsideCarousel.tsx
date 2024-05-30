@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-import { type CarouselItemInterface } from '@/interface/CarouselItem'
+import { type CarouselItemInterface } from '@/interfaces/CarouselItem'
 
 interface CustomCarouselProps {
   carouselItem: CarouselItemInterface

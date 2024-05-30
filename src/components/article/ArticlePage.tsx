@@ -8,7 +8,7 @@ import SidebarLeft from '@/components/article/articleContent/SidebarLeft'
 import SidebarRight from '@/components/article/articleContent/SidebarRight'
 import MainContent from '@/components/article/articleContent/MainContent'
 
-import { type IArticle } from '@/interface/IArticle'
+import { type IArticle } from '@/interfaces/IArticle'
 
 export default function ArticlePage({
   model

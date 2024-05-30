@@ -1,6 +1,6 @@
 import type { NextApiRequest } from 'next'
 import axios from 'axios'
-import { type IModelCard } from '@/interface/IBackend'
+import { type IModelCard } from '@/interfaces/IBackend'
 
 export const GET = async (req: NextApiRequest): Promise<Response> => {
   try {

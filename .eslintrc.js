@@ -6,7 +6,6 @@ module.exports = {
   },
   extends: [
     'next',
-
     'standard-with-typescript',
     'next/core-web-vitals',
     'plugin:react/recommended',
@@ -27,12 +26,16 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react'],
+  plugins: ['react', '@typescript-eslint'],
   rules: {
     '@typescript-eslint/space-before-function-parent': 'off',
+    '@typescript-eslint/space-before-function-paren': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
-      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_'
+      }
     ]
   }
 }

@@ -4,7 +4,7 @@ import React from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
 // Importando tipos
-import { IModelCard } from '@/interface/IBackend'
+import { IModelCard } from '@/interfaces/IBackend'
 
 function ModelsDisplay({
   models

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { type IArticle } from '@/interface/IArticle'
+import { type IArticle } from '@/interfaces/IArticle'
 
 export const GET = async (
   req: any,

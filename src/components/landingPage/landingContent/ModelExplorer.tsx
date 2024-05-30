@@ -6,7 +6,7 @@ import { ModelsDisplay } from '@/components/ui/modelsDisplay'
 import { SearchBar } from '@/components/ui/searchBar'
 
 // Importando tipos
-import { IModelCard, IFindModels, ICategory } from '@/interface/IBackend'
+import { IModelCard, IFindModels, ICategory } from '@/interfaces/IBackend'
 
 export default function ModelExplorer({
   models,

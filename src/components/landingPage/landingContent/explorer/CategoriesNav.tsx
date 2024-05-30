@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { IoMap as MapIcon } from 'react-icons/io5'
 import Link from 'next/link'
 
-import { type ICategory } from '@/interface/IBackend'
+import { type ICategory } from '@/interfaces/IBackend'
 
 export default function CategoriesNav({
   categories

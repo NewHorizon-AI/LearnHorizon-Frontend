@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { type IArticle } from '@/interface/IArticle'
+import { type IArticle } from '@/interfaces/IArticle'
 import { useSearchParams } from 'next/navigation'
 
 import ArticlePage from '@/components/article/ArticlePage'
 
 export default function ModelDetailsPage({
-  params
+  _params
 }: {
   params: { id: string }
 }): React.JSX.Element {

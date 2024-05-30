@@ -26,7 +26,7 @@ import {
   type IModelCard,
   type IFindModels,
   type ICategory
-} from '@/interface/IBackend'
+} from '@/interfaces/IBackend'
 
 export default function LandingPage({
   carousel,

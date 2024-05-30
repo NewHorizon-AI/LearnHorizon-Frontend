@@ -1,3 +1,4 @@
+import React from 'react'
 import { Button } from '@/components/ui/button'
 import { FaBell, FaBoxOpen, FaCog } from 'react-icons/fa'
 import { SearchBar } from '@/components/ui/searchBar'
@@ -29,6 +30,11 @@ function NavBar(): React.JSX.Element {
         <Button size="icon" variant="outline">
           <FaBell className="h-4 w-4" />
           <span className="sr-only">Notifications</span>
+        </Button>
+        <Button>
+          <Link href="/model/create" className="font-semibold">
+            Publicar
+          </Link>
         </Button>
 
         <div className="flex items-center gap-2">

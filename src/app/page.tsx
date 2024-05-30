@@ -24,7 +24,7 @@ import {
   type IFindModels,
   type IModelCard,
   type ICategory
-} from '@/interface/IBackend'
+} from '@/interfaces/IBackend'
 
 export default function Home(): React.JSX.Element {
   const [models, setModels] = useState<IFindModels>({

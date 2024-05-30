@@ -11,7 +11,7 @@ import {
 import Autoplay from 'embla-carousel-autoplay'
 
 import { type CarouselApi } from '@/components/ui/carousel'
-import { type CarouselItemInterface } from '@/interface/CarouselItem'
+import { type CarouselItemInterface } from '@/interfaces/CarouselItem'
 import InsideCarousel from './InsideCarousel'
 
 const useAutoplay = (api: CarouselApi | undefined, delay: number) => {
