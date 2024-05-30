@@ -1,5 +1,5 @@
 // Interfaz genérica para manejar estado y setter
-interface StateHandler<T> {
+export interface StateHandler<T> {
   value: T
   setValue: (value: T) => void
 }
