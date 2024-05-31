@@ -23,6 +23,53 @@ export default function Page(): React.JSX.Element {
   // Estado para el archivo 3D
   const file = useFormField<File | null>(null)
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    const payload = {
+      publication: {
+        title: title.value,
+        content: markdownContent.value,
+        subtitle: subtitle.value,
+        photo: photo.value,
+        description: description.value,
+        author: author.value,
+        category: category.value
+      },
+      object3D: {
+        name: objectName.value,
+        coordinates: coordinates.value,
+        rotationAngles: rotationAngles.value,
+        scale: scale.value
+      }
+    }
+
+    const formData = new FormData()
+    formData.append('payload', JSON.stringify(payload))
+    if (file.value) {
+      formData.append('file', file.value)
+    }
+
+    // // Imprimir el contenido de formData
+    // console.log('Datos a enviar:', payload)
+
+    try {
+      const response = await fetch('/api/model/new', {
+        method: 'POST',
+        body: formData
+      })
+
+      if (!response.ok) {
+        throw new Error('Error en el envío de datos')
+      }
+
+      const result = await response.json()
+      console.log('Datos enviados exitosamente:', result)
+    } catch (error) {
+      console.error('Error al enviar los datos:', error)
+    }
+  }
+
   return (
     <FormLayout
       {...{
@@ -39,6 +86,7 @@ export default function Page(): React.JSX.Element {
         scale,
         file
       }}
+      onSubmit={handleSubmit}
     />
   )
 }

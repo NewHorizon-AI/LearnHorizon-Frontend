@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { CardHeader, CardContent, Card } from '@/components/ui/card'
 import { type JSX, type SVGProps } from 'react'
 
-import { type ICategory } from '@/interfaces/IBackend'
+import { type ICategory } from '@/interface/IBackend'
 
 function CategoryList({}): React.JSX.Element {
   return (

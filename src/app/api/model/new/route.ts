@@ -1,17 +1,38 @@
 import axios from 'axios'
-import type { NextApiRequest } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-export const POST = async (req: NextApiRequest): Promise<Response> => {
+export const POST = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> => {
   try {
-    console.log(req)
+    if (req.method !== 'POST') {
+      res.setHeader('Allow', ['POST'])
+      res.status(405).end(`Method ${req.method} Not Allowed`)
+      return
+    }
+
+    console.log('Request body:', req.body)
 
     const response = await axios.post(
       'http://localhost:3001/publications',
       req.body
     )
 
-    return new Response(JSON.stringify(response.data), { status: 200 })
+    console.log('Response from backend:', response.data)
+
+    res.status(200).json(response.data)
   } catch (error) {
-    return new Response(JSON.stringify(error), { status: 500 })
+    console.error(
+      'Error:',
+      error.response ? error.response.data : error.message
+    )
+
+    res.status(500).json({
+      message: 'Internal Server Error',
+      error: error.response ? error.response.data : error.message
+    })
   }
 }
+
+export default POST

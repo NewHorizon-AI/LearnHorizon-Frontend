@@ -1,6 +1,7 @@
 import React from 'react'
 import Form from '@/components/publicationForm/Form'
 import Upload from '@/components/publicationForm/Upload'
+import Model3DInputs from './Model3DInputs'
 import {
   type IPublicationFormProps,
   type IUploadProps,
@@ -26,8 +27,14 @@ const FormLayout: React.FC<FormLayoutProps> = ({
   file,
   onSubmit
 }) => (
-  <div>
-    <form onSubmit={onSubmit}>
+  <div className="max-w-md mx-auto mt-8 space-y-6">
+    <div className="space-y-2">
+      <h2 className="text-2xl font-bold">Publicación</h2>
+      <p className="text-gray-500 dark:text-gray-400">
+        Llena el formulario a continuación para crear una nueva publicación.
+      </p>
+    </div>
+    <form onSubmit={onSubmit} className="space-y-4">
       <Form
         title={title}
         subtitle={subtitle}
@@ -38,63 +45,12 @@ const FormLayout: React.FC<FormLayoutProps> = ({
         category={category}
       />
       <Upload file={file} />
-      <div>
-        <label>Nombre del Modelo 3D:</label>
-        <input
-          type="text"
-          value={objectName.value}
-          onChange={(e) => {
-            objectName.setValue(e.target.value)
-          }}
-        />
-        <label>Coordenadas:</label>
-        {['X', 'Y', 'Z'].map((axis, index) => (
-          <input
-            key={axis}
-            type="number"
-            value={coordinates.value[index]}
-            onChange={(e) => {
-              const newValue = [...coordinates.value] as [
-                number,
-                number,
-                number
-              ]
-              newValue[index] = parseFloat(e.target.value)
-              coordinates.setValue(newValue)
-            }}
-          />
-        ))}
-        <label>Ángulos de Rotación:</label>
-        {['X', 'Y', 'Z'].map((axis, index) => (
-          <input
-            key={axis}
-            type="number"
-            value={rotationAngles.value[index]}
-            onChange={(e) => {
-              const newValue = [...rotationAngles.value] as [
-                number,
-                number,
-                number
-              ]
-              newValue[index] = parseFloat(e.target.value)
-              rotationAngles.setValue(newValue)
-            }}
-          />
-        ))}
-        <label>Escala:</label>
-        {['X', 'Y', 'Z'].map((axis, index) => (
-          <input
-            key={axis}
-            type="number"
-            value={scale.value[index]}
-            onChange={(e) => {
-              const newValue = [...scale.value] as [number, number, number]
-              newValue[index] = parseFloat(e.target.value)
-              scale.setValue(newValue)
-            }}
-          />
-        ))}
-      </div>
+      <Model3DInputs
+        objectName={objectName}
+        coordinates={coordinates}
+        rotationAngles={rotationAngles}
+        scale={scale}
+      />
       <button type="submit" className="mt-4 p-2 bg-blue-500 text-white rounded">
         Publicar
       </button>
