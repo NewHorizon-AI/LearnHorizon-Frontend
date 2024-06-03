@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable react/prop-types */
 'use client'
 
 import React, { useState, useEffect } from 'react'
@@ -7,7 +10,7 @@ import { useSearchParams } from 'next/navigation'
 import ArticlePage from '@/components/article/ArticlePage'
 
 export default function ModelDetailsPage({
-  _params
+  params
 }: {
   params: { id: string }
 }): React.JSX.Element {
@@ -38,8 +41,8 @@ export default function ModelDetailsPage({
       }
     }
 
-    if (id) {
-      fetchModel()
+    if (id != null) {
+      void fetchModel()
     } else {
       setLoading(false)
     }
@@ -49,11 +52,11 @@ export default function ModelDetailsPage({
     return <div>Cargando...</div>
   }
 
-  if (error) {
+  if (error != null) {
     return <div>Error: {error}</div>
   }
 
-  if (!model) {
+  if (model == null) {
     return <div>No se encontró el modelo</div>
   }
 

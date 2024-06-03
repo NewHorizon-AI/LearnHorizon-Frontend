@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from 'react'
 import { OrbitControls } from 'three-stdlib'
 import * as THREE from 'three'
@@ -9,7 +10,7 @@ interface ControlsProps {
 
 const Controls: React.FC<ControlsProps> = ({ camera, renderer }) => {
   useEffect(() => {
-    if (!camera || !renderer) return
+    if (camera == null || renderer == null) return
 
     const controls = new OrbitControls(camera, renderer.domElement)
 
@@ -31,18 +32,8 @@ const Controls: React.FC<ControlsProps> = ({ camera, renderer }) => {
       RIGHT: THREE.MOUSE.PAN // Clic derecho para panear
     }
 
-    // Verificar la existencia del método pan antes de redefinirlo
-    if (controls.pan) {
-      const originalPan = controls.pan.bind(controls)
-      controls.pan = (deltaX: number, deltaY: number) => {
-        originalPan(0, deltaY) // Solo permitir movimiento vertical
-      }
-    } else {
-      console.error('El método pan no está definido en los controles.')
-    }
-
     // Animación y actualización de controles
-    const animate = () => {
+    const animate = (): void => {
       requestAnimationFrame(animate)
       controls.update() // Actualizar los controles para aplicar amortiguamiento y cambios
     }

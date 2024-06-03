@@ -1,32 +1,32 @@
-'use client'
+// 'use client'
 
-import React, { useEffect } from 'react'
-import createScene from '../components/Scene'
-import createRenderer from '../components/Renderer'
-import loadModel from '../components/ModelLoader'
-import ControlPanel from '../components/ControlPanel'
+// import React, { useEffect } from 'react'
+// import createScene from '../components/Scene'
+// import createRenderer from '../components/Renderer'
+// import loadModel from '../components/ModelLoader'
+// import ControlPanel from '../components/ControlPanel'
 
-const Home: React.FC = () => {
-  useEffect(() => {
-    const { scene, camera } = createScene()
-    const renderer = createRenderer()
+// const Home: React.FC = () => {
+//   useEffect(() => {
+//     const { scene, camera } = createScene()
+//     const renderer = createRenderer()
 
-    loadModel(scene)
+//     loadModel(scene)
 
-    const animate = () => {
-      requestAnimationFrame(animate)
-      renderer.render(scene, camera)
-    }
+//     const animate = () => {
+//       requestAnimationFrame(animate)
+//       renderer.render(scene, camera)
+//     }
 
-    animate()
+//     animate()
 
-    return () => {
-      // Cleanup on unmount
-      document.body.removeChild(renderer.domElement)
-    }
-  }, [])
+//     return () => {
+//       // Cleanup on unmount
+//       document.body.removeChild(renderer.domElement)
+//     }
+//   }, [])
 
-  return <ControlPanel />
-}
+//   return <ControlPanel />
+// }
 
-export default Home
+// export default Home

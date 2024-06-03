@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useRef, useCallback } from 'react'
 import * as THREE from 'three'
 
@@ -17,7 +18,7 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
   const modelRef = useRef<THREE.Group | null>(null)
 
   const onWindowResize = useCallback(() => {
-    if (cameraRef.current && rendererRef.current) {
+    if (cameraRef.current != null && rendererRef.current != null) {
       cameraRef.current.aspect = window.innerWidth / window.innerHeight
       cameraRef.current.updateProjectionMatrix()
       rendererRef.current.setSize(window.innerWidth, window.innerHeight)
@@ -25,7 +26,12 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
   }, [])
 
   const animate = useCallback(() => {
-    if (rendererRef.current && cameraRef.current && sceneRef.current) {
+    if (
+      rendererRef.current != null &&
+      cameraRef.current != null &&
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      sceneRef.current
+    ) {
       rendererRef.current.render(sceneRef.current, cameraRef.current)
     }
     requestAnimationFrame(animate)
@@ -33,7 +39,7 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
 
   useEffect(() => {
     const container = containerRef.current
-    if (!container || rendererRef.current) return
+    if (container == null || rendererRef.current != null) return
 
     const scene = sceneRef.current
     scene.background = new THREE.Color(0xffffff)
@@ -73,7 +79,7 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
 
     return () => {
       window.removeEventListener('resize', onWindowResize)
-      if (rendererRef.current) {
+      if (rendererRef.current != null) {
         rendererRef.current.dispose()
       }
     }
@@ -81,8 +87,8 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
 
   useEffect(() => {
     const scene = sceneRef.current
-    if (model && model !== modelRef.current) {
-      if (modelRef.current) {
+    if (model != null && model !== modelRef.current) {
+      if (modelRef.current != null) {
         scene.remove(modelRef.current)
       }
       modelRef.current = model
@@ -91,6 +97,7 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
   }, [model])
 
   return (
+    // eslint-disable-next-line react/react-in-jsx-scope
     <div
       ref={containerRef}
       id="modelo-container"

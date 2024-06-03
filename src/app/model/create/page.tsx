@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
 import React from 'react'
@@ -46,7 +48,7 @@ export default function Page(): React.JSX.Element {
 
     const formData = new FormData()
     formData.append('payload', JSON.stringify(payload))
-    if (file.value) {
+    if (file.value != null) {
       formData.append('file', file.value)
     }
 

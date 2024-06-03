@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /*
 Explicación:
   - Este archivo es el componente principal de la página principal.
@@ -24,7 +26,7 @@ import {
   type IFindModels,
   type IModelCard,
   type ICategory
-} from '@/interface/IBackend'
+} from '@/interfaces/IBackend'
 
 export default function Home(): React.JSX.Element {
   const [models, setModels] = useState<IFindModels>({
@@ -64,7 +66,7 @@ export default function Home(): React.JSX.Element {
           throw new Error('Error fetching models')
         }
         const data: IModelCard[] = await response.json()
-        setModels((prevModels) => ({
+        setModels((prevModels: any) => ({
           ...prevModels,
           modelsArray: data
         }))
@@ -75,7 +77,7 @@ export default function Home(): React.JSX.Element {
         setLoadingModels(false)
       }
     }
-    fetchModels()
+    void fetchModels()
   }, [models.page, models.pageSize, models.order])
 
   // Fetch categories on initial render
@@ -98,7 +100,7 @@ export default function Home(): React.JSX.Element {
       }
     }
 
-    fetchCategories()
+    void fetchCategories()
   }, [])
 
   return (

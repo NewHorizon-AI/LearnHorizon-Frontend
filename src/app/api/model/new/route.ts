@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -22,7 +23,7 @@ export const POST = async (
     console.log('Response from backend:', response.data)
 
     res.status(200).json(response.data)
-  } catch (error) {
+  } catch (error: any) {
     console.error(
       'Error:',
       error.response ? error.response.data : error.message

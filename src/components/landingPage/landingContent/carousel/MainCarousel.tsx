@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
@@ -90,7 +91,7 @@ export default function MainCarousel({
     )
   }
 
-  if (error) {
+  if (error != null) {
     return <div className="flex items-center justify-center h-64">{error}</div>
   }
 

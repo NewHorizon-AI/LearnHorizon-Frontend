@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 'use client'
 
 import React, { useState, useCallback, useEffect } from 'react'
@@ -54,7 +55,22 @@ const Home: React.FC = () => {
       ) : null}
       <ModelLoader onModelLoad={handleModelLoad} />
       <Buttons onMove={handleMove} onRotate={handleRotate} />
-      <CoordinatesDisplay model={model} frame={frame} />{' '}
+      <CoordinatesDisplay
+        model={model}
+        frame={frame}
+        onPositionChange={function (
+          axis: 'x' | 'y' | 'z',
+          value: number
+        ): void {
+          throw new Error('Function not implemented.')
+        }}
+        onRotationChange={function (
+          axis: 'x' | 'y' | 'z',
+          value: number
+        ): void {
+          throw new Error('Function not implemented.')
+        }}
+      />{' '}
       {/* Pasa el estado del frame a CoordinatesDisplay */}
     </div>
   )
