@@ -3,7 +3,7 @@ import React from 'react'
 // Importando componentes
 import CategoriesNav from './explorer/CategoriesNav'
 import { ModelsDisplay } from '@/components/ui/modelsDisplay'
-import SearchBar from '../../ui/searchBar'
+import SearchBar from '../../ui/search'
 
 // Importando tipos
 import {
