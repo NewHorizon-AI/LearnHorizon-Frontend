@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { type IArticle } from '@/interfaces/IArticle'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'

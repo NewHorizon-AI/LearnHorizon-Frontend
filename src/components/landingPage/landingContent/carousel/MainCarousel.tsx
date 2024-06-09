@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
@@ -15,7 +14,14 @@ import { type CarouselApi } from '@/components/ui/carousel'
 import { type CarouselItemInterface } from '@/interfaces/CarouselItem'
 import InsideCarousel from './InsideCarousel'
 
-const useAutoplay = (api: CarouselApi | undefined, delay: number) => {
+const useAutoplay = (
+  api: CarouselApi | undefined,
+  delay: number
+): {
+  stopAutoplay: () => void
+  startAutoplay: () => void
+  plugin: React.MutableRefObject<any>
+} => {
   const plugin = useRef(Autoplay({ delay, stopOnInteraction: false }))
   const autoplayTimer = useRef<NodeJS.Timeout | null>(null)
 
@@ -51,11 +57,11 @@ const useAutoplay = (api: CarouselApi | undefined, delay: number) => {
 export default function MainCarousel({
   carouselData,
   loadingCarousel,
-  error
+  errorCarousel
 }: {
   carouselData: CarouselItemInterface[]
   loadingCarousel: boolean
-  error: string | null
+  errorCarousel: string | null
 }): React.JSX.Element {
   const [api, setApi] = useState<CarouselApi | undefined>()
   const [current, setCurrent] = useState(0)
@@ -91,8 +97,12 @@ export default function MainCarousel({
     )
   }
 
-  if (error != null) {
-    return <div className="flex items-center justify-center h-64">{error}</div>
+  if (errorCarousel != null) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        {errorCarousel}
+      </div>
+    )
   }
 
   return (

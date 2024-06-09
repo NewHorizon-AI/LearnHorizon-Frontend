@@ -55,7 +55,7 @@ export default function Home(): React.JSX.Element {
 
   // Fetch models when page, pageSize, or order changes
   useEffect(() => {
-    const fetchModels = async () => {
+    const fetchModels = async (): Promise<void> => {
       setLoadingModels(true)
       setErrorModels(null)
       try {
@@ -71,8 +71,13 @@ export default function Home(): React.JSX.Element {
           modelsArray: data
         }))
       } catch (error: any) {
-        console.error(error)
-        setErrorModels(error.message)
+        if (error instanceof Error) {
+          console.error(error)
+          setErrorModels(error.message)
+        } else {
+          console.error('Error desconocido')
+          setErrorModels('Error desconocido')
+        }
       } finally {
         setLoadingModels(false)
       }
@@ -82,7 +87,7 @@ export default function Home(): React.JSX.Element {
 
   // Fetch categories on initial render
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchCategories = async (): Promise<void> => {
       setLoadingCategories(true)
       setErrorCategories(null)
       try {
@@ -93,8 +98,13 @@ export default function Home(): React.JSX.Element {
         const data: ICategory[] = await response.json()
         setCategories(data)
       } catch (error: any) {
-        console.error(error)
-        setErrorCategories(error.message)
+        if (error instanceof Error) {
+          console.error(error)
+          setErrorCategories(error.message)
+        } else {
+          console.error('Error desconocido')
+          setErrorCategories('Error desconocido')
+        }
       } finally {
         setLoadingCategories(false)
       }

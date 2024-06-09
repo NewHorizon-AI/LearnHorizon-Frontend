@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { FaBell, FaBoxOpen, FaCog } from 'react-icons/fa'
-import { SearchBar } from '@/components/ui/searchBar'
+import SearchBar from '../ui/search'
 
 import Link from 'next/link'
 function NavBar(): React.JSX.Element {

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import { type JSX, type SVGProps } from 'react'

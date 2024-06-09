@@ -1,27 +1,22 @@
-import type { NextApiRequest } from 'next'
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+import { type NextRequest } from 'next/server'
 import axios from 'axios'
 import { type IModelCard } from '@/interfaces/IBackend'
 
-export const GET = async (req: NextApiRequest): Promise<Response> => {
+export const GET = async (req: NextRequest): Promise<Response> => {
   try {
-    if (req.url != null) {
-      const url = new URL(req.url)
-      const page = url.searchParams.get('page')
-      const pageSize = url.searchParams.get('pageSize')
-      const order = url.searchParams.get('order')
+    const { searchParams } = new URL(req.url || '')
+    const page = searchParams.get('page')
+    const pageSize = searchParams.get('pageSize')
+    const order = searchParams.get('order')
 
-      const { data } = await axios.get<IModelCard[]>(
-        `http://localhost:3001/publications/search?page=${page}&pageSize=${pageSize}&order=${order}`
-      )
+    const { data } = await axios.get<IModelCard[]>(
+      `http://localhost:3001/publications/search?page=${page}&pageSize=${pageSize}&order=${order}`
+    )
 
-      console.log(page, pageSize, order)
+    console.log(page, pageSize, order)
 
-      return new Response(JSON.stringify(data), { status: 200 })
-    } else {
-      return new Response(JSON.stringify({ message: 'Invalid request' }), {
-        status: 400
-      })
-    }
+    return new Response(JSON.stringify(data), { status: 200 })
   } catch (error: any) {
     return new Response(JSON.stringify({ message: error.message }), {
       status: 500
