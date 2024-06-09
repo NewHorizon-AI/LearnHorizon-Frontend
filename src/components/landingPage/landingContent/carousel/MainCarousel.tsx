@@ -57,11 +57,11 @@ const useAutoplay = (
 export default function MainCarousel({
   carouselData,
   loadingCarousel,
-  error
+  errorCarousel
 }: {
   carouselData: CarouselItemInterface[]
   loadingCarousel: boolean
-  error: string | null
+  errorCarousel: string | null
 }): React.JSX.Element {
   const [api, setApi] = useState<CarouselApi | undefined>()
   const [current, setCurrent] = useState(0)
@@ -97,8 +97,12 @@ export default function MainCarousel({
     )
   }
 
-  if (error != null) {
-    return <div className="flex items-center justify-center h-64">{error}</div>
+  if (errorCarousel != null) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        {errorCarousel}
+      </div>
+    )
   }
 
   return (
