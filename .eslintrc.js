@@ -6,7 +6,7 @@ module.exports = {
   },
   extends: [
     'next',
-    'standard-with-typescript',
+    'eslint-config-love',
     'next/core-web-vitals',
     'plugin:react/recommended',
     'prettier'
