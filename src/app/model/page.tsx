@@ -1,23 +1,16 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { type IArticle } from '@/interfaces/IArticle'
 import { useSearchParams } from 'next/navigation'
 
 import ArticlePage from '@/components/article/ArticlePage'
 
-export default function ModelDetailsPage({
-  params
-}: {
-  params: { id: string }
-}): React.JSX.Element {
-  const searchParams = useSearchParams()
-  const id = searchParams.get('id')
-
+function ModelDetails({ id }: { id: string | null }): React.JSX.Element {
   // Estado del modelo
   const [model, setModel] = useState<IArticle | null>(null)
 
-  // Estados de carga y error6
+  // Estados de carga y error
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -62,4 +55,19 @@ export default function ModelDetailsPage({
   }
 
   return <ArticlePage model={model} />
+}
+
+export default function ModelDetailsPage({
+  params
+}: {
+  params: { id: string }
+}): React.JSX.Element {
+  const searchParams = useSearchParams()
+  const id = searchParams.get('id')
+
+  return (
+    <Suspense fallback={<div>Cargando...</div>}>
+      <ModelDetails id={id} />
+    </Suspense>
+  )
 }
