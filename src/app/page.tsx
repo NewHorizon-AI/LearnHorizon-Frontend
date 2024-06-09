@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /*
 Explicación:
   - Este archivo es el componente principal de la página principal.
@@ -64,7 +66,7 @@ export default function Home(): React.JSX.Element {
           throw new Error('Error fetching models')
         }
         const data: IModelCard[] = await response.json()
-        setModels((prevModels) => ({
+        setModels((prevModels: any) => ({
           ...prevModels,
           modelsArray: data
         }))

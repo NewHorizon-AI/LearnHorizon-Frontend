@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 // Importando tipos
 import { type IModelCard } from '@/interfaces/IBackend'
