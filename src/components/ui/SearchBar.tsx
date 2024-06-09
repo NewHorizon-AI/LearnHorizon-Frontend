@@ -17,4 +17,4 @@ function SearchBar({ className }: { className?: string }): React.JSX.Element {
   )
 }
 
-export default SearchBar
+export { SearchBar }
