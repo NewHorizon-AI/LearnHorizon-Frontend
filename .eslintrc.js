@@ -5,11 +5,10 @@ module.exports = {
     node: true
   },
   extends: [
+    'standard-with-typescript',
     'next',
-    'eslint-config-love',
     'next/core-web-vitals',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
     'prettier'
   ],
   overrides: [
