@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button'
 import { CardHeader, CardContent, Card } from '@/components/ui/card'
 import { type JSX, type SVGProps } from 'react'
 
-import { type ICategory } from '@/interface/IBackend'
+import { type ICategory } from '@/interfaces/IBackend'
 
-function CategoryList({}): React.JSX.Element {
+function CategoryList(): React.JSX.Element {
   return (
     <Link
       className="flex items-center space-x-2 text-base font-medium rounded-md hover:translate-x-2 transition-colors hover:text-gray-900 dark:hover:text-gray-50"

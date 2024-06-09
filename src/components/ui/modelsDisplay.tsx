@@ -4,7 +4,7 @@ import React from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
 // Importando tipos
-import { IModelCard } from '@/interfaces/IBackend'
+import { type IModelCard } from '@/interfaces/IBackend'
 
 function ModelsDisplay({
   models
@@ -13,7 +13,7 @@ function ModelsDisplay({
 }): React.JSX.Element {
   const router = useRouter()
 
-  const handleModel = (_id: string) => {
+  const handleModel = (_id: string): void => {
     router.push(`/model/?id=${_id}`)
   }
 
@@ -21,7 +21,12 @@ function ModelsDisplay({
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 2xl:grid-cols-4 gap-4">
         {models.map((model) => (
-          <div key={model._id} onClick={() => handleModel(model._id)}>
+          <div
+            key={model._id}
+            onClick={() => {
+              handleModel(model._id)
+            }}
+          >
             <ModelCard model={model} />
           </div>
         ))}

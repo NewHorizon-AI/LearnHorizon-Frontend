@@ -22,8 +22,7 @@ export default function Page(): React.JSX.Element {
 
   // Estado para el archivo 3D
   const file = useFormField<File | null>(null)
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault()
 
     const payload = {
@@ -46,7 +45,7 @@ export default function Page(): React.JSX.Element {
 
     const formData = new FormData()
     formData.append('payload', JSON.stringify(payload))
-    if (file.value) {
+    if (file.value != null) {
       formData.append('file', file.value)
     }
 
@@ -70,6 +69,13 @@ export default function Page(): React.JSX.Element {
     }
   }
 
+  // Función contenedor que no retorna una Promise
+  const handleSubmitWrapper = (e: React.FormEvent): void => {
+    handleSubmit(e).catch((error) => {
+      console.error(error)
+    })
+  }
+
   return (
     <FormLayout
       {...{
@@ -86,7 +92,7 @@ export default function Page(): React.JSX.Element {
         scale,
         file
       }}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmitWrapper}
     />
   )
 }

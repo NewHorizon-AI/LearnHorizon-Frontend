@@ -1,4 +1,6 @@
-import { useEffect, useRef, useCallback } from 'react'
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+
+import React, { useEffect, useRef, useCallback } from 'react'
 import * as THREE from 'three'
 
 interface SceneProps {
@@ -17,7 +19,7 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
   const modelRef = useRef<THREE.Group | null>(null)
 
   const onWindowResize = useCallback(() => {
-    if (cameraRef.current && rendererRef.current) {
+    if (cameraRef.current != null && rendererRef.current != null) {
       cameraRef.current.aspect = window.innerWidth / window.innerHeight
       cameraRef.current.updateProjectionMatrix()
       rendererRef.current.setSize(window.innerWidth, window.innerHeight)
@@ -25,7 +27,11 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
   }, [])
 
   const animate = useCallback(() => {
-    if (rendererRef.current && cameraRef.current && sceneRef.current) {
+    if (
+      rendererRef.current != null &&
+      cameraRef.current != null &&
+      sceneRef.current
+    ) {
       rendererRef.current.render(sceneRef.current, cameraRef.current)
     }
     requestAnimationFrame(animate)

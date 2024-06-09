@@ -32,7 +32,9 @@ const Model3DInputs: React.FC<Model3DInputsProps> = ({
           id="objectName"
           type="text"
           value={objectName.value}
-          onChange={(e) => objectName.setValue(e.target.value)}
+          onChange={(e) => {
+            objectName.setValue(e.target.value)
+          }}
           placeholder="Nombre del Modelo 3D"
         />
       </div>

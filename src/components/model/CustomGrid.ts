@@ -1,5 +1,6 @@
 import * as THREE from 'three'
-import React, { useEffect } from 'react'
+import type React from 'react'
+import { useEffect } from 'react'
 
 interface CustomGridProps {
   size: number

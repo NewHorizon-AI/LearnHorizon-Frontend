@@ -42,7 +42,7 @@ export default function ModelExplorer({
         </div>
       )
     }
-    if (error) {
+    if (error != null) {
       return (
         <div className="flex items-center justify-center h-full">{error}</div>
       )

@@ -7,7 +7,7 @@ import { useSearchParams } from 'next/navigation'
 import ArticlePage from '@/components/article/ArticlePage'
 
 export default function ModelDetailsPage({
-  _params
+  params
 }: {
   params: { id: string }
 }): React.JSX.Element {
@@ -22,7 +22,7 @@ export default function ModelDetailsPage({
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchModel = async () => {
+    const fetchModel = async (): Promise<void> => {
       try {
         const response = await fetch(`/api/model/${id}`)
         if (!response.ok) {
@@ -32,14 +32,18 @@ export default function ModelDetailsPage({
         setModel(data)
       } catch (error: any) {
         console.error(error)
-        setError(error.message)
+        if (error instanceof Error) {
+          setError(error.message)
+        } else {
+          setError('Error desconocido')
+        }
       } finally {
         setLoading(false)
       }
     }
 
-    if (id) {
-      fetchModel()
+    if (id != null) {
+      void fetchModel()
     } else {
       setLoading(false)
     }
@@ -49,11 +53,11 @@ export default function ModelDetailsPage({
     return <div>Cargando...</div>
   }
 
-  if (error) {
+  if (error != null) {
     return <div>Error: {error}</div>
   }
 
-  if (!model) {
+  if (model == null) {
     return <div>No se encontró el modelo</div>
   }
 

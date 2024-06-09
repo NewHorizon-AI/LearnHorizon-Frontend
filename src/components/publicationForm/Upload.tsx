@@ -6,7 +6,7 @@ const Upload: React.FC<IFile> = ({ file }) => (
     <input
       type="file"
       onChange={(e) => {
-        if (e.target.files && e.target.files[0]) {
+        if (e.target.files?.[0] != null) {
           file.setValue(e.target.files[0])
         }
       }}

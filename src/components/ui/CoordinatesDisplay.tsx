@@ -15,7 +15,7 @@ const CoordinatesDisplay: React.FC<CoordinatesDisplayProps> = ({
   onPositionChange,
   onRotationChange
 }) => {
-  return model ? (
+  return model != null ? (
     <div className="absolute bottom-4 left-4 bg-white p-2 rounded shadow">
       <div>Position:</div>
       <div>
@@ -23,7 +23,9 @@ const CoordinatesDisplay: React.FC<CoordinatesDisplayProps> = ({
         <Input
           type="number"
           value={model.position.x.toFixed(2)}
-          onChange={(e) => onPositionChange('x', parseFloat(e.target.value))}
+          onChange={(e) => {
+            onPositionChange('x', parseFloat(e.target.value))
+          }}
         />
       </div>
       <div>
@@ -31,7 +33,9 @@ const CoordinatesDisplay: React.FC<CoordinatesDisplayProps> = ({
         <Input
           type="number"
           value={model.position.y.toFixed(2)}
-          onChange={(e) => onPositionChange('y', parseFloat(e.target.value))}
+          onChange={(e) => {
+            onPositionChange('y', parseFloat(e.target.value))
+          }}
         />
       </div>
       <div>
@@ -39,7 +43,9 @@ const CoordinatesDisplay: React.FC<CoordinatesDisplayProps> = ({
         <Input
           type="number"
           value={model.position.z.toFixed(2)}
-          onChange={(e) => onPositionChange('z', parseFloat(e.target.value))}
+          onChange={(e) => {
+            onPositionChange('z', parseFloat(e.target.value))
+          }}
         />
       </div>
       <div>Rotation:</div>
@@ -48,9 +54,9 @@ const CoordinatesDisplay: React.FC<CoordinatesDisplayProps> = ({
         <Input
           type="number"
           value={(model.rotation.x * (180 / Math.PI)).toFixed(2)}
-          onChange={(e) =>
+          onChange={(e) => {
             onRotationChange('x', parseFloat(e.target.value) * (Math.PI / 180))
-          }
+          }}
         />
       </div>
       <div>
@@ -58,9 +64,9 @@ const CoordinatesDisplay: React.FC<CoordinatesDisplayProps> = ({
         <Input
           type="number"
           value={(model.rotation.y * (180 / Math.PI)).toFixed(2)}
-          onChange={(e) =>
+          onChange={(e) => {
             onRotationChange('y', parseFloat(e.target.value) * (Math.PI / 180))
-          }
+          }}
         />
       </div>
       <div>
@@ -68,9 +74,9 @@ const CoordinatesDisplay: React.FC<CoordinatesDisplayProps> = ({
         <Input
           type="number"
           value={(model.rotation.z * (180 / Math.PI)).toFixed(2)}
-          onChange={(e) =>
+          onChange={(e) => {
             onRotationChange('z', parseFloat(e.target.value) * (Math.PI / 180))
-          }
+          }}
         />
       </div>
     </div>

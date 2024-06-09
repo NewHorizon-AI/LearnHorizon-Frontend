@@ -14,7 +14,14 @@ import { type CarouselApi } from '@/components/ui/carousel'
 import { type CarouselItemInterface } from '@/interfaces/CarouselItem'
 import InsideCarousel from './InsideCarousel'
 
-const useAutoplay = (api: CarouselApi | undefined, delay: number) => {
+const useAutoplay = (
+  api: CarouselApi | undefined,
+  delay: number
+): {
+  stopAutoplay: () => void
+  startAutoplay: () => void
+  plugin: React.MutableRefObject<any>
+} => {
   const plugin = useRef(Autoplay({ delay, stopOnInteraction: false }))
   const autoplayTimer = useRef<NodeJS.Timeout | null>(null)
 
@@ -90,7 +97,7 @@ export default function MainCarousel({
     )
   }
 
-  if (error) {
+  if (error != null) {
     return <div className="flex items-center justify-center h-64">{error}</div>
   }
 

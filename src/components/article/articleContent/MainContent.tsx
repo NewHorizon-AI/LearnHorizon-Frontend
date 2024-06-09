@@ -1,4 +1,4 @@
-import { IArticle } from '@/interfaces/IArticle'
+import { type IArticle } from '@/interfaces/IArticle'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { FaPen } from 'react-icons/fa'
@@ -9,9 +9,10 @@ export default function MainContent({
 }: {
   modelData: IArticle
 }): React.JSX.Element {
-  const publicationDate = modelData.publicationDate
-    ? formatDate(modelData.publicationDate)
-    : 'Fecha desconocida'
+  const publicationDate =
+    modelData.publicationDate.length > 0
+      ? formatDate(modelData.publicationDate)
+      : 'Fecha desconocida'
   // const updateDate = modelData.updateDate
   //   ? formatDate(modelData.updateDate)
   //   : 'Fecha desconocida'
