@@ -5,16 +5,16 @@ import { FaPen } from 'react-icons/fa'
 import { Separator } from '@/components/ui/separator'
 
 export default function MainContent({
-  modelData
+  articleData
 }: {
-  modelData: IArticle
+  articleData: IArticle
 }): React.JSX.Element {
   const publicationDate =
-    modelData.publicationDate.length > 0
-      ? formatDate(modelData.publicationDate)
+    articleData.publicationDate.length > 0
+      ? formatDate(articleData.publicationDate)
       : 'Fecha desconocida'
-  // const updateDate = modelData.updateDate
-  //   ? formatDate(modelData.updateDate)
+  // const updateDate = articleData.updateDate
+  //   ? formatDate(articleData.updateDate)
   //   : 'Fecha desconocida'
   // Función para formatear la fecha
   function formatDate(dateString: string): string {
@@ -31,12 +31,12 @@ export default function MainContent({
   return (
     <main className="flex-1 p-8">
       <div>
-        <h1 className="text-3xl font-bold">{modelData.title}</h1>
+        <h1 className="text-3xl font-bold">{articleData.title}</h1>
         {/* Mapéo de todos los autores */}
         <div className="flex items-center mt-2">
           <FaPen className="text-xl mr-2" />
           <div className="flex flex-wrap">
-            {modelData.author.map((author, index) => (
+            {articleData.author.map((author, index) => (
               <div key={index} className="flex items-center mr-4 mt-1">
                 <img
                   src={author.image}
@@ -55,12 +55,12 @@ export default function MainContent({
           <div>Última actualización: 4 oct. 2022</div>
         </div>
 
-        <p className="mt-4">{modelData.description}</p>
+        <p className="mt-4">{articleData.description}</p>
       </div>
       <Separator className="my-4" />
 
       <ReactMarkdown className="prose prose-invert mt-6 text-black min-w-full">
-        {modelData.markdownContent}
+        {articleData.markdownContent}
       </ReactMarkdown>
     </main>
   )

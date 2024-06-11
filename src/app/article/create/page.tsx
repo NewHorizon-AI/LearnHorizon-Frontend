@@ -3,7 +3,7 @@
 'use client'
 
 import React from 'react'
-import FormLayout from '@/components/publicationForm/FormLayout'
+import FormLayout from '@/components/article/create/FormLayout'
 import useFormField from '@/hooks/useFormField'
 
 export default function Page(): React.JSX.Element {
@@ -55,7 +55,7 @@ export default function Page(): React.JSX.Element {
     // console.log('Datos a enviar:', payload)
 
     try {
-      const response = await fetch('/api/model/new', {
+      const response = await fetch('/api/article/new', {
         method: 'POST',
         body: formData
       })

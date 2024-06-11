@@ -8,25 +8,25 @@ import { useSearchParams } from 'next/navigation'
 import { type IArticle } from '@/interfaces/IArticle'
 import ArticlePage from '@/components/article/ArticlePage'
 
-function ModelDetails(): React.JSX.Element {
+function ArticleDetails(): React.JSX.Element {
   const searchParams = useSearchParams()
   const id = searchParams.get('id')
 
-  // Estado del modelo
-  const [model, setModel] = useState<IArticle | null>(null)
+  // Estado del articleo
+  const [article, setArticle] = useState<IArticle | null>(null)
   // Estados de carga y error
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchModel = async (): Promise<void> => {
+    const fetchArticle = async (): Promise<void> => {
       try {
-        const response = await fetch(`/api/model/${id}`)
+        const response = await fetch(`/api/article/${id}`)
         if (!response.ok) {
-          throw new Error('No se pudo cargar el modelo')
+          throw new Error('No se pudo cargar el articleo')
         }
         const data: IArticle = await response.json()
-        setModel(data)
+        setArticle(data)
       } catch (error: any) {
         console.error(error)
         if (error instanceof Error) {
@@ -40,7 +40,7 @@ function ModelDetails(): React.JSX.Element {
     }
 
     if (id != null) {
-      void fetchModel()
+      void fetchArticle()
     } else {
       setLoading(false)
     }
@@ -54,17 +54,17 @@ function ModelDetails(): React.JSX.Element {
     return <div>Error: {error}</div>
   }
 
-  if (model == null) {
-    return <div>No se encontró el modelo</div>
+  if (article == null) {
+    return <div>No se encontró el articleo</div>
   }
 
-  return <ArticlePage model={model} />
+  return <ArticlePage article={article} />
 }
 
-export default function ModelDetailsPage(): React.JSX.Element {
+export default function ArticleDetailsPage(): React.JSX.Element {
   return (
     <Suspense fallback={<div>Cargando...</div>}>
-      <ModelDetails />
+      <ArticleDetails />
     </Suspense>
   )
 }

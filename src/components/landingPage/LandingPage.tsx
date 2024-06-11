@@ -18,13 +18,13 @@ import React from 'react'
 import NavBar from '@/components/navbar/NavBar'
 import MainCarousel from '@/components/landingPage/landingContent/carousel/MainCarousel'
 import WelcomeSection from '@/components/landingPage/landingContent/WelcomeSection'
-import ModelExplorer from '@/components/landingPage/landingContent/ModelExplorer'
+import ArticleExplorer from '@/components/landingPage/landingContent/ArticleExplorer'
 import Footer from '@/components/landingPage/landingContent/Footer'
 
 // Importing types
 import {
-  type IModelCard,
-  type IFindModels,
+  type IArticleCard,
+  type IFindArticles,
   type ICategory
 } from '@/interfaces/IBackend'
 
@@ -32,22 +32,22 @@ export default function LandingPage({
   carousel,
   loadingCarousel,
   errorCarousel,
-  models,
-  setModels,
+  articles,
+  setArticles,
   categories,
-  loadingModels,
-  errorModels,
+  loadingArticles,
+  errorArticles,
   loadingCategories,
   errorCategories
 }: {
   carousel: any
   loadingCarousel: boolean
   errorCarousel: string | null
-  models: IModelCard[]
-  setModels: React.Dispatch<React.SetStateAction<IFindModels>>
+  articles: IArticleCard[]
+  setArticles: React.Dispatch<React.SetStateAction<IFindArticles>>
   categories: ICategory[]
-  loadingModels: boolean
-  errorModels: string | null
+  loadingArticles: boolean
+  errorArticles: string | null
   loadingCategories: boolean
   errorCategories: string | null
 }): React.JSX.Element {
@@ -61,12 +61,12 @@ export default function LandingPage({
       />
       <main className="container">
         <WelcomeSection />
-        <ModelExplorer
-          models={models}
-          setModels={setModels}
+        <ArticleExplorer
+          articles={articles}
+          setArticles={setArticles}
           categories={categories}
-          loadingModels={loadingModels}
-          errorModels={errorModels}
+          loadingArticles={loadingArticles}
+          errorArticles={errorArticles}
           loadingCategories={loadingCategories}
           errorCategories={errorCategories}
         />

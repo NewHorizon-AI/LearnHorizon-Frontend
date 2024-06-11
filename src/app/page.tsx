@@ -3,12 +3,12 @@
 /*
 Explicación:
   - Este archivo es el componente principal de la página principal.
-  - Este componente se encarga de manejar el estado de los modelos y las categorías.
-  - Se encarga de hacer las peticiones al servidor para obtener los datos de los modelos y las categorías.
+  - Este componente se encarga de manejar el estado de los articleos y las categorías.
+  - Se encarga de hacer las peticiones al servidor para obtener los datos de los articleos y las categorías.
   - Se encarga de renderizar el componente LandingPage.
-  - Se encarga de pasarle los datos de los modelos, categorías y carrusel al componente LandingPage.
-  - Se encarga de manejar el cambio de página de los modelos.
-  - Se encarga de manejar el cambio de orden de los modelos.
+  - Se encarga de pasarle los datos de los articleos, categorías y carrusel al componente LandingPage.
+  - Se encarga de manejar el cambio de página de los articleos.
+  - Se encarga de manejar el cambio de orden de los articleos.
 */
 
 'use client'
@@ -23,22 +23,22 @@ import carouselData from '@/data/carouselData.json'
 
 // Importando tipos
 import {
-  type IFindModels,
-  type IModelCard,
+  type IFindArticles,
+  type IArticleCard,
   type ICategory
 } from '@/interfaces/IBackend'
 
 export default function Home(): React.JSX.Element {
-  const [models, setModels] = useState<IFindModels>({
+  const [articles, setArticles] = useState<IFindArticles>({
     page: 1,
     pageSize: 10,
     order: 'descendant',
-    modelsArray: []
+    articlesArray: []
   })
 
-  // Estados de carga y error para los modelos
-  const [loadingModels, setLoadingModels] = useState(true)
-  const [errorModels, setErrorModels] = useState<string | null>(null)
+  // Estados de carga y error para los articleos
+  const [loadingArticles, setLoadingArticles] = useState(true)
+  const [errorArticles, setErrorArticles] = useState<string | null>(null)
 
   const [categories, setCategories] = useState<ICategory[]>([])
 
@@ -53,37 +53,37 @@ export default function Home(): React.JSX.Element {
   const [loadingCarousel, setLoadingCarousel] = useState(false)
   const [errorCarousel, setErrorCarousel] = useState<string | null>(null)
 
-  // Fetch models when page, pageSize, or order changes
+  // Fetch articles when page, pageSize, or order changes
   useEffect(() => {
-    const fetchModels = async (): Promise<void> => {
-      setLoadingModels(true)
-      setErrorModels(null)
+    const fetchArticles = async (): Promise<void> => {
+      setLoadingArticles(true)
+      setErrorArticles(null)
       try {
         const response = await fetch(
-          `/api/model?page=${models.page}&pageSize=${models.pageSize}&order=${models.order}`
+          `/api/article?page=${articles.page}&pageSize=${articles.pageSize}&order=${articles.order}`
         )
         if (!response.ok) {
-          throw new Error('Error fetching models')
+          throw new Error('Error fetching articles')
         }
-        const data: IModelCard[] = await response.json()
-        setModels((prevModels: any) => ({
-          ...prevModels,
-          modelsArray: data
+        const data: IArticleCard[] = await response.json()
+        setArticles((prevArticles: any) => ({
+          ...prevArticles,
+          articlesArray: data
         }))
       } catch (error: any) {
         if (error instanceof Error) {
           console.error(error)
-          setErrorModels(error.message)
+          setErrorArticles(error.message)
         } else {
           console.error('Error desconocido')
-          setErrorModels('Error desconocido')
+          setErrorArticles('Error desconocido')
         }
       } finally {
-        setLoadingModels(false)
+        setLoadingArticles(false)
       }
     }
-    void fetchModels()
-  }, [models.page, models.pageSize, models.order])
+    void fetchArticles()
+  }, [articles.page, articles.pageSize, articles.order])
 
   // Fetch categories on initial render
   useEffect(() => {
@@ -118,11 +118,11 @@ export default function Home(): React.JSX.Element {
       carousel={carousel}
       loadingCarousel={loadingCarousel}
       errorCarousel={errorCarousel}
-      models={models.modelsArray}
-      setModels={setModels}
+      articles={articles.articlesArray}
+      setArticles={setArticles}
       categories={categories}
-      loadingModels={loadingModels}
-      errorModels={errorModels}
+      loadingArticles={loadingArticles}
+      errorArticles={errorArticles}
       loadingCategories={loadingCategories}
       errorCategories={errorCategories}
     />
