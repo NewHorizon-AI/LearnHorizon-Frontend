@@ -31,19 +31,22 @@ function NavBar(): React.JSX.Element {
           <span className="sr-only">Notifications</span>
         </Button>
 
-        <div className="flex items-center gap-2">
-          <img
-            alt="Avatar"
-            className="rounded-full"
-            height="32"
-            src="https://via.placeholder.com/150/771796"
-            style={{
-              aspectRatio: '32/32',
-              objectFit: 'cover'
-            }}
-            width="32"
-          />
-        </div>
+        <a href="../user/${userId}">
+          <div className="flex items-center gap-2">
+            <img
+              alt="Avatar"
+              className="rounded-full"
+              height="32"
+              src="https://via.placeholder.com/150/771796"
+              style={{
+                aspectRatio: '32/32',
+                objectFit: 'cover'
+              }}
+              width="32"
+            />
+          </div>
+        </a>
+
       </div>
     </nav>
   )

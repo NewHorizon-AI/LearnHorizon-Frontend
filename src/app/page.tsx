@@ -28,7 +28,7 @@ import {
 
 export default function Home(): React.JSX.Element {
   const [models, setModels] = useState<IFindModels | null>({
-    page: 0,
+    page: 1,
     pageSize: 10,
     order: 'descendant',
     modelsArray: []
