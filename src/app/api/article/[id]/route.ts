@@ -8,7 +8,7 @@ export const GET = async (
   try {
     const { id } = params
     const { data } = await axios.get<IArticle>(
-      `http://localhost:3001/publications/article/${id}`
+      `http://localhost:3001/publications/publication/${id}`
     )
     return new Response(JSON.stringify(data), { status: 200 })
   } catch (error: any) {
