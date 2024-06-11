@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { type NextRequest } from 'next/server'
 import axios from 'axios'
-import { type IModelCard } from '@/interfaces/IBackend'
+import { type IArticleCard } from '@/interfaces/IBackend'
 
 export const GET = async (req: NextRequest): Promise<Response> => {
   try {
@@ -10,7 +10,7 @@ export const GET = async (req: NextRequest): Promise<Response> => {
     const pageSize = searchParams.get('pageSize')
     const order = searchParams.get('order')
 
-    const { data } = await axios.get<IModelCard[]>(
+    const { data } = await axios.get<IArticleCard[]>(
       `http://localhost:3001/publications/search?page=${page}&pageSize=${pageSize}&order=${order}`
     )
 

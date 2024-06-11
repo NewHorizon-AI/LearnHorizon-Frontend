@@ -1,13 +1,13 @@
 import React from 'react'
-import Form from '@/components/publicationForm/Form'
-import Upload from '@/components/publicationForm/Upload'
+import Form from '@/components/article/create/Form'
+import Upload from '@/components/article/create/Upload'
 import Model3DInputs from './Model3DInputs'
 import {
   type IPublicationFormProps,
   type IUploadProps,
   type IFile
 } from '@/interfaces/formData/INewPublication'
-import NavBar from '../navbar/NavBar'
+import NavBar from '@/components/navbar/NavBar'
 import ReactMarkdown from 'react-markdown'
 
 interface FormLayoutProps extends IPublicationFormProps, IUploadProps, IFile {

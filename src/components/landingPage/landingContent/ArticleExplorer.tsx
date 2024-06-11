@@ -2,30 +2,30 @@ import React from 'react'
 
 // Importando componentes
 import CategoriesNav from './explorer/CategoriesNav'
-import { ModelsDisplay } from '@/components/ui/modelsDisplay'
+import { ArticlesDisplay } from '@/components/ui/articleDisplay'
 import SearchBar from '../../ui/search'
 
 // Importando tipos
 import {
-  type IModelCard,
-  type IFindModels,
+  type IArticleCard,
+  type IFindArticles,
   type ICategory
 } from '@/interfaces/IBackend'
 
-export default function ModelExplorer({
-  models,
-  setModels,
+export default function ArticleExplorer({
+  articles,
+  setArticles,
   categories,
-  loadingModels,
-  errorModels,
+  loadingArticles,
+  errorArticles,
   loadingCategories,
   errorCategories
 }: {
-  models: IModelCard[]
-  setModels: React.Dispatch<React.SetStateAction<IFindModels>>
+  articles: IArticleCard[]
+  setArticles: React.Dispatch<React.SetStateAction<IFindArticles>>
   categories: ICategory[]
-  loadingModels: boolean
-  errorModels: string | null
+  loadingArticles: boolean
+  errorArticles: string | null
   loadingCategories: boolean
   errorCategories: string | null
 }): React.JSX.Element {
@@ -62,9 +62,9 @@ export default function ModelExplorer({
       <div className="flex-grow sm:container">
         <SearchBar className="pb-4" />
         {renderContent(
-          loadingModels,
-          errorModels,
-          <ModelsDisplay models={models} />
+          loadingArticles,
+          errorArticles,
+          <ArticlesDisplay articles={articles} />
         )}
       </div>
     </section>

@@ -32,7 +32,7 @@ function NavBar(): React.JSX.Element {
           <span className="sr-only">Notifications</span>
         </Button>
         <Button>
-          <Link href="/model/create" className="font-semibold">
+          <Link href="/article/create" className="font-semibold">
             Publicar
           </Link>
         </Button>

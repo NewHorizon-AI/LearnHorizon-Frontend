@@ -4,30 +4,30 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 
 // Importando tipos
-import { type IModelCard } from '@/interfaces/IBackend'
+import { type IArticleCard } from '@/interfaces/IBackend'
 
-function ModelsDisplay({
-  models
+function ArticlesDisplay({
+  articles
 }: {
-  models: IModelCard[]
+  articles: IArticleCard[]
 }): React.JSX.Element {
   const router = useRouter()
 
-  const handleModel = (_id: string): void => {
-    router.push(`/model/?id=${_id}`)
+  const handleArticle = (_id: string): void => {
+    router.push(`/article/?id=${_id}`)
   }
 
   return (
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 2xl:grid-cols-4 gap-4">
-        {models.map((model) => (
+        {articles.map((article) => (
           <div
-            key={model._id}
+            key={article._id}
             onClick={() => {
-              handleModel(model._id)
+              handleArticle(article._id)
             }}
           >
-            <ModelCard model={model} />
+            <ArticleCard article={article} />
           </div>
         ))}
       </div>
@@ -35,8 +35,12 @@ function ModelsDisplay({
   )
 }
 
-function ModelCard({ model }: { model: IModelCard }): React.JSX.Element {
-  const { title, photo, description, authors, views, publicationDate } = model
+function ArticleCard({
+  article
+}: {
+  article: IArticleCard
+}): React.JSX.Element {
+  const { title, photo, description, authors, views, publicationDate } = article
   // Convertir la fecha de publicación a un objeto Date
   const date = new Date(publicationDate)
   // Formatear la fecha a un formato legible
@@ -65,4 +69,4 @@ function ModelCard({ model }: { model: IModelCard }): React.JSX.Element {
   )
 }
 
-export { ModelsDisplay }
+export { ArticlesDisplay }
