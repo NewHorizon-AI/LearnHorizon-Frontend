@@ -11,11 +11,7 @@ export const GET = async (req: NextApiRequest): Promise<Response> => {
       const order = url.searchParams.get('order')
 
       const { data } = await axios.get<IModelCard[]>(
-        `http://localhost:3001/publications/search?page=${page}&pageSize=${pageSize}&order=${order}`
-      )
-
-      console.log(page, pageSize, order)
-
+        `http://localhost:3001/publications/search?page=${page}&pageSize=${pageSize}&order=${order}`)
       return new Response(JSON.stringify(data), { status: 200 })
     } else {
       return new Response(JSON.stringify({ message: 'Invalid request' }), {

@@ -27,7 +27,7 @@ import {
 } from '@/interface/IBackend'
 
 export default function Home(): React.JSX.Element {
-  const [models, setModels] = useState<IFindModels>({
+  const [models, setModels] = useState<IFindModels | null>({
     page: 1,
     pageSize: 10,
     order: 'descendant',
