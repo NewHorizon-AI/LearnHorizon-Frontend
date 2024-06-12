@@ -1,45 +1,26 @@
 import React from 'react'
-import Form from '@/components/article/create/Form'
-import Upload from '@/components/article/create/Upload'
-import Model3DInputs from './Model3DInputs'
+
 import {
-  type IPublicationFormProps,
-  type IUploadProps,
-  type IFile
+  type IArticleDataProps,
+  type IArticleSubmitProps
 } from '@/interfaces/formData/INewPublication'
+
 import NavBar from '@/components/navbar/NavBar'
-import ReactMarkdown from 'react-markdown'
 
-interface FormLayoutProps extends IPublicationFormProps, IUploadProps, IFile {
-  onSubmit: (e: React.FormEvent) => void
-}
+import ArticleFormData from '@/components/article/create/elements/ArticleFormData'
+import Upload from '@/components/article/create/elements/ArticleUploadModel'
+import Model3DInputs from './elements/ArticleModel3DControls'
+import ArticleMarkdown from './elements/ArticleMarkdown'
 
-const markdownContent = `
-# Proyecto Ipsum
+type ManageArticlePageProps = IArticleDataProps & IArticleSubmitProps
 
-## Descripción
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-## Instalación
-
-1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-2. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-3. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-\`\`\`bash
-git clone https://github.com/usuario/proyecto-ipsum.git
-cd proyecto-ipsum
-npm install
-\`\`\`
-`
-
-const FormLayout: React.FC<FormLayoutProps> = ({
+const ManageArticlePage = ({
   title,
   subtitle,
   photo,
   description,
-  markdownContent: markdownContentProp,
+  markdownContent,
+  isPreview,
   author,
   category,
   objectName,
@@ -48,23 +29,18 @@ const FormLayout: React.FC<FormLayoutProps> = ({
   scale,
   file,
   onSubmit
-}) => (
+}: ManageArticlePageProps): React.JSX.Element => (
   <>
     <NavBar />
     <main className="flex flex-col items-center p-4 w-full overflow-hidden">
       <div className="flex w-full">
         {/* Columna izquierda: Formulario */}
         <div className="flex flex-col w-full md:w-1/5 p-4">
-          <h2>Publicación</h2>
-          <p>
-            Llena el formulario a continuación para crear una nueva publicación.
-          </p>
-          <Form
+          <ArticleFormData
             title={title}
             subtitle={subtitle}
             photo={photo}
             description={description}
-            markdownContent={markdownContentProp}
             author={author}
             category={category}
           />
@@ -91,9 +67,10 @@ const FormLayout: React.FC<FormLayoutProps> = ({
           {/* Contenido de Markdown */}
           <div className="flex flex-col w-full p-4">
             <h2 className="text-xl font-bold">Markdown Content</h2>
-            <ReactMarkdown className="prose prose-invert mt-6 text-black min-w-full">
-              {markdownContent}
-            </ReactMarkdown>
+            <ArticleMarkdown
+              markdownContent={markdownContent}
+              isPreview={isPreview}
+            />
           </div>
           {/* Botón Extra */}
           <div className="w-full flex justify-center mt-4">
@@ -107,4 +84,4 @@ const FormLayout: React.FC<FormLayoutProps> = ({
   </>
 )
 
-export default FormLayout
+export default ManageArticlePage

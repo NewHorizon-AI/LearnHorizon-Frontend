@@ -3,7 +3,7 @@
 'use client'
 
 import React from 'react'
-import FormLayout from '@/components/article/create/FormLayout'
+import FormLayout from '@/components/article/create/ManageArticlePage'
 import useFormField from '@/hooks/useFormField'
 
 export default function Page(): React.JSX.Element {
@@ -12,9 +12,12 @@ export default function Page(): React.JSX.Element {
   const subtitle = useFormField<string>('')
   const photo = useFormField<string>('')
   const description = useFormField<string>('')
-  const markdownContent = useFormField<string>('')
   const author = useFormField<string>('')
   const category = useFormField<string>('')
+
+  // Estados para el contenido en markdown
+  const markdownContent = useFormField<string>('')
+  const isPreview = useFormField<boolean>(false)
 
   // Estados para los datos del modelo 3D
   const objectName = useFormField<string>('')
@@ -24,6 +27,7 @@ export default function Page(): React.JSX.Element {
 
   // Estado para el archivo 3D
   const file = useFormField<File | null>(null)
+
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault()
 
@@ -86,6 +90,7 @@ export default function Page(): React.JSX.Element {
         photo,
         description,
         markdownContent,
+        isPreview,
         author,
         category,
         objectName,

@@ -9,9 +9,13 @@ export interface IPublicationFormProps {
   subtitle: StateHandler<string>
   photo: StateHandler<string>
   description: StateHandler<string>
-  markdownContent: StateHandler<string>
   author: StateHandler<string>
   category: StateHandler<string>
+}
+
+export interface IMarkdownFormProps {
+  markdownContent: StateHandler<string>
+  isPreview: StateHandler<boolean>
 }
 
 export interface IUploadProps {
@@ -23,4 +27,14 @@ export interface IUploadProps {
 
 export interface IFile {
   file: StateHandler<File | null>
+}
+
+export interface IArticleDataProps
+  extends IPublicationFormProps,
+    IMarkdownFormProps,
+    IUploadProps,
+    IFile {}
+
+export interface IArticleSubmitProps {
+  onSubmit: (e: React.FormEvent) => void
 }
