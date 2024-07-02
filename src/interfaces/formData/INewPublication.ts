@@ -9,8 +9,8 @@ export interface IPublicationFormProps {
   subtitle: StateHandler<string>
   photo: StateHandler<string>
   description: StateHandler<string>
-  author: StateHandler<string>
-  category: StateHandler<string>
+  author: StateHandler<string[]>
+  category: StateHandler<string[]>
 }
 
 export interface IMarkdownFormProps {

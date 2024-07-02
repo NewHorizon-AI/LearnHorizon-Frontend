@@ -2,18 +2,18 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormLayout from '@/components/article/create/ManageArticlePage'
 import useFormField from '@/hooks/useFormField'
 
 export default function Page(): React.JSX.Element {
   // Estados para los datos de la publicación
   const title = useFormField<string>('')
-  const subtitle = useFormField<string>('')
+  const subtitle = useFormField<string>('DELETE')
   const photo = useFormField<string>('')
   const description = useFormField<string>('')
-  const author = useFormField<string>('')
-  const category = useFormField<string>('')
+  const author = useFormField<string[]>([''])
+  const category = useFormField<string[]>([''])
 
   // Estados para el contenido en markdown
   const markdownContent = useFormField<string>('')
@@ -27,6 +27,36 @@ export default function Page(): React.JSX.Element {
 
   // Estado para el archivo 3D
   const file = useFormField<File | null>(null)
+
+  useEffect(() => {
+    console.log('title:', title.value)
+    console.log('subtitle:', subtitle.value)
+    console.log('photo:', photo.value)
+    console.log('description:', description.value)
+    console.log('author:', author.value)
+    console.log('category:', category.value)
+    console.log('markdownContent:', markdownContent.value)
+    console.log('isPreview:', isPreview.value)
+    console.log('objectName:', objectName.value)
+    console.log('coordinates:', coordinates.value)
+    console.log('rotationAngles:', rotationAngles.value)
+    console.log('scale:', scale.value)
+    console.log('file:', file.value)
+  }, [
+    title.value,
+    subtitle.value,
+    photo.value,
+    description.value,
+    author.value,
+    category.value,
+    markdownContent.value,
+    isPreview.value,
+    objectName.value,
+    coordinates.value,
+    rotationAngles.value,
+    scale.value,
+    file.value
+  ])
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault()

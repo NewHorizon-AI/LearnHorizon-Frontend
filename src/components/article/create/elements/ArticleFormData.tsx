@@ -4,6 +4,10 @@ import { type IPublicationFormProps } from '@/interfaces/formData/INewPublicatio
 
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { Textarea } from '@/components/ui/textarea'
+
+import DynamicInput from '../lib/DynamicInputProps'
 
 const ArticleFormData = ({
   title,
@@ -34,7 +38,7 @@ const ArticleFormData = ({
             placeholder="Título"
           />
         </div>
-        <div>
+        {/* <div>
           <Label htmlFor="subtitle">Subtítulo</Label>
           <Input
             id="subtitle"
@@ -45,7 +49,7 @@ const ArticleFormData = ({
             }}
             placeholder="Subtítulo"
           />
-        </div>
+        </div> */}
         <div>
           <Label htmlFor="photo">URL de la Foto</Label>
           <Input
@@ -60,37 +64,34 @@ const ArticleFormData = ({
         </div>
         <div>
           <Label htmlFor="description">Descripción</Label>
-          <Input
+          <Textarea
             id="description"
-            type="text"
             value={description.value}
             onChange={(e) => {
               description.setValue(e.target.value)
             }}
             placeholder="Descripción"
+            className="resize-none h-36"
+            maxLength={200}
           />
         </div>
         <div>
-          <Label htmlFor="author">Autor</Label>
-          <Input
-            id="author"
-            type="text"
-            value={author.value}
-            onChange={(e) => {
-              author.setValue(e.target.value)
+          <DynamicInput
+            values={author.value}
+            setValues={(newValues) => {
+              author.setValue(newValues)
             }}
+            label="Autores"
             placeholder="Autor"
           />
         </div>
         <div>
-          <Label htmlFor="category">Categoría</Label>
-          <Input
-            id="category"
-            type="text"
-            value={category.value}
-            onChange={(e) => {
-              category.setValue(e.target.value)
+          <DynamicInput
+            values={category.value}
+            setValues={(newValues) => {
+              category.setValue(newValues)
             }}
+            label="Categorías"
             placeholder="Categoría"
           />
         </div>
@@ -100,5 +101,3 @@ const ArticleFormData = ({
 }
 
 export default ArticleFormData
-
-// <DescriptionInput id="description" placeholder="Descripción" maxLength={200} />

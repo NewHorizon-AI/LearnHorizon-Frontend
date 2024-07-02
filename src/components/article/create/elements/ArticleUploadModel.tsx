@@ -1,16 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
+
 import { type IFile } from '@/interfaces/formData/INewPublication'
 
 const Upload: React.FC<IFile> = ({ file }) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const [progress, setProgress] = useState<number>(0)
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.target.files?.[0] != null) {
-      const file = e.target.files[0]
-      // Set the value of the file using the useState hook
-      // instead of trying to access a non-existent 'setValue' property on the File object
-      setSelectedFile(file)
+      file.setValue(e.target.files[0])
     }
   }
 
@@ -42,16 +37,9 @@ const Upload: React.FC<IFile> = ({ file }) => {
           Haz clic aquí para buscar el archivo
         </span>
       </label>
-      {selectedFile != null && (
+      {file.value != null && (
         <div className="mt-4 w-full">
-          <div className="text-sm text-gray-500">{selectedFile.name}</div>
-          <div className="relative w-full bg-gray-200 rounded">
-            <div
-              className="absolute top-0 h-2 bg-blue-500 rounded"
-              style={{ width: `${progress}%` }}
-            ></div>
-          </div>
-          <div className="text-right text-sm text-gray-500">{progress}%</div>
+          <div className="text-sm text-gray-500">{file.value.name}</div>
         </div>
       )}
     </div>
