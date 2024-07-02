@@ -1,10 +1,14 @@
 import React from 'react'
-import { Button } from '@/components/ui/button'
-import { FaBell, FaBoxOpen } from 'react-icons/fa'
-import SearchBar from '../ui/search'
-
 import Link from 'next/link'
-function NavBar(): React.JSX.Element {
+
+// Import components
+import { Button } from '@/components/ui/button'
+import SearchBar from '@/components/ui/search'
+
+// Import icons
+import { FaBell, FaBoxOpen } from 'react-icons/fa'
+
+const Header: React.FC = () => {
   return (
     <nav className="sticky top-0 left-0 right-0 z-50 bg-white border-b shadow flex items-center h-14 px-4">
       <Link href="/">
@@ -55,4 +59,4 @@ function NavBar(): React.JSX.Element {
   )
 }
 
-export default NavBar
+export default Header
