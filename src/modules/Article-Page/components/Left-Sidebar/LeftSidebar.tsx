@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SidebarLeft(): React.JSX.Element {
+function LeftSidebar(): React.JSX.Element {
   return (
     <aside className="hidden md:block w-1/6 bg-gray-200 p-6 my-8 overflow-y-auto">
       <h2 className="text-md font-semibold mb-4">Random List</h2>
@@ -18,3 +18,5 @@ export default function SidebarLeft(): React.JSX.Element {
     </aside>
   )
 }
+
+export default LeftSidebar

@@ -31,8 +31,8 @@ const ManageArticlePage = ({
   onSubmit
 }: ManageArticlePageProps): React.JSX.Element => {
   return (
-    <main className="flex flex-col items-center p-4 w-full overflow-hidden">
-      <div className="flex w-full">
+    <main className="flex flex-col items-center  w-full overflow-hidden ">
+      <div className="flex w-full p-4">
         {/* Columna izquierda: Formulario */}
         <div className="flex flex-col w-full md:w-1/5 pr-4">
           <ArticleFormData

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { type IArticle } from '@/interfaces/IArticle'
-import ArticlePage from '@/components/article/ArticlePage'
+import ArticlePage from '@/modules/Article-Page/ArticlePage'
 
 function ArticleDetails(): React.JSX.Element {
   const searchParams = useSearchParams()

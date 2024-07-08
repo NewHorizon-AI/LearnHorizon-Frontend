@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { FaPen } from 'react-icons/fa'
 import { Separator } from '@/components/ui/separator'
 
-export default function MainContent({
+function ArticleContent({
   articleData
 }: {
   articleData: IArticle
@@ -65,3 +65,5 @@ export default function MainContent({
     </main>
   )
 }
+
+export default ArticleContent

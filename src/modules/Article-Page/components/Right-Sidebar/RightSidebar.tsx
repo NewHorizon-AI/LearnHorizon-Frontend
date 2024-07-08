@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SidebarRight(): React.JSX.Element {
+function RightSidebar(): React.JSX.Element {
   return (
     <aside className="w-1/5 bg-gray-200  p-6 my-8 overflow-y-auto hidden md:block">
       <h2 className="text-lg font-semibold mb-4">Acceso Rápido</h2>
@@ -16,3 +16,5 @@ export default function SidebarRight(): React.JSX.Element {
     </aside>
   )
 }
+
+export default RightSidebar

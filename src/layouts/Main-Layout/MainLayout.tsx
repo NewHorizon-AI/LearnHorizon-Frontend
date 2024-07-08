@@ -1,6 +1,7 @@
 // src/layouts/MainLayout.jsx
 import React from 'react'
 import Header from './components/Header'
+import Footer from './components/Footer'
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -11,6 +12,7 @@ const MainLayout: React.FC<RootLayoutProps> = ({ children }) => {
     <>
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   )
 }

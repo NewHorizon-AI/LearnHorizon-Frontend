@@ -1,9 +1,9 @@
 import React from 'react'
 
 // Importando componentes
-import CategoriesNav from './explorer/CategoriesNav'
+import CategoriesNav from '../Left-Sidebar/CategoriesNav'
 import { ArticlesDisplay } from '@/components/ui/articleDisplay'
-import SearchBar from '../../ui/search'
+import SearchBar from '@/components/ui/search'
 
 // Importando tipos
 import {
@@ -52,7 +52,7 @@ export default function ArticleExplorer({
 
   return (
     <section className="min-h-screen flex flex-col lg:flex-row">
-      <div className="">
+      <div className="pl-8">
         {renderContent(
           loadingCategories,
           errorCategories,

@@ -18,7 +18,7 @@ const ArticleFormData = ({
   description
 }: IPublicationFormProps): React.JSX.Element => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 ">
       <div>
         <h4 className="text-xl font-semibold">Crear un articulo</h4>
         <p className="text-md">

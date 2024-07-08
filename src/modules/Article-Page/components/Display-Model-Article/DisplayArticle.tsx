@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-export default function Display({
+function DisplayArticle({
   articleData
 }: {
   articleData: string
@@ -21,3 +21,5 @@ export default function Display({
     </section>
   )
 }
+
+export default DisplayArticle

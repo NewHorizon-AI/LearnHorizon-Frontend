@@ -26,7 +26,7 @@ export interface IUploadProps {
 }
 
 export interface IFile {
-  file: StateHandler<File | null>
+  file: StateHandler<File | null | undefined>
 }
 
 export interface IArticleDataProps

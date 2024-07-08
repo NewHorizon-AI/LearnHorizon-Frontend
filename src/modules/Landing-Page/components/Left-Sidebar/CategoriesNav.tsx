@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { IoMap as MapIcon } from 'react-icons/io5'
 import Link from 'next/link'
 

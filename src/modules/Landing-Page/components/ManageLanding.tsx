@@ -15,11 +15,14 @@
 import React from 'react'
 
 // Importing components
-import NavBar from '@/components/navbar/NavBar'
-import MainCarousel from '@/components/landingPage/landingContent/carousel/MainCarousel'
-import WelcomeSection from '@/components/landingPage/landingContent/WelcomeSection'
-import ArticleExplorer from '@/components/landingPage/landingContent/ArticleExplorer'
-import Footer from '@/components/landingPage/landingContent/Footer'
+
+// import MainCarousel from '@/components/landingPage/landingContent/carousel/MainCarousel'
+// import WelcomeSection from '@/components/landingPage/landingContent/WelcomeSection'
+// import ArticleExplorer from '@/components/landingPage/landingContent/ArticleExplorer'
+
+import MainCarousel from './Carousel/MainCarousel'
+import WelcomeSection from './Welcome/WelcomeSection'
+import ArticleList from './Article-List/ArticleList'
 
 // Importing types
 import {
@@ -28,7 +31,7 @@ import {
   type ICategory
 } from '@/interfaces/IBackend'
 
-export default function LandingPage({
+function ManageLanding({
   carousel,
   loadingCarousel,
   errorCarousel,
@@ -52,26 +55,25 @@ export default function LandingPage({
   errorCategories: string | null
 }): React.JSX.Element {
   return (
-    <>
-      <NavBar />
+    <div>
       <MainCarousel
         carouselData={carousel}
         loadingCarousel={loadingCarousel}
         errorCarousel={errorCarousel}
       />
-      <main className="container">
-        <WelcomeSection />
-        <ArticleExplorer
-          articles={articles}
-          setArticles={setArticles}
-          categories={categories}
-          loadingArticles={loadingArticles}
-          errorArticles={errorArticles}
-          loadingCategories={loadingCategories}
-          errorCategories={errorCategories}
-        />
-      </main>
-      <Footer />
-    </>
+
+      <WelcomeSection />
+      <ArticleList
+        articles={articles}
+        setArticles={setArticles}
+        categories={categories}
+        loadingArticles={loadingArticles}
+        errorArticles={errorArticles}
+        loadingCategories={loadingCategories}
+        errorCategories={errorCategories}
+      />
+    </div>
   )
 }
+
+export default ManageLanding
