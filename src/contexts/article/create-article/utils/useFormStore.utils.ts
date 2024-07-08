@@ -1,4 +1,4 @@
-import { useFormStore } from '../Form.context'
+import { useFormStore } from '../useFormStore'
 import { sendArticleData } from '@/services/articles/create-article/create-article.service'
 
 export const handleSubmit = async (e: React.FormEvent): Promise<void> => {

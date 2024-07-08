@@ -1,27 +1,31 @@
-import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import { type IMarkdownFormProps } from '@/interfaces/formData/INewPublication'
+'use client'
 
-const ArticleMarkdown = ({
-  markdownContent,
-  isPreview
-}: IMarkdownFormProps): React.JSX.Element => {
+import React, { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+
+// Importacion del estado de creacion de un articulo
+import useFormStore from '@/contexts/article/create-article/useFormStore'
+
+const ArticleMarkdown: React.FC = () => {
+  const { markdownContent, setField } = useFormStore()
+  const [isPreview, setIsPreview] = useState(false)
+
   return (
     <div className="">
       <div className="border rounded-md shadow-sm">
         <div className="flex border-b">
           <button
-            className={`flex-1 text-center p-2 ${!isPreview.value ? 'bg-gray-200' : 'bg-white'} border-r`}
+            className={`flex-1 text-center p-2 ${!isPreview ? 'bg-gray-200' : 'bg-white'} border-r`}
             onClick={() => {
-              isPreview.setValue(false)
+              setIsPreview(false)
             }}
           >
             Write
           </button>
           <button
-            className={`flex-1 text-center p-2 ${isPreview.value ? 'bg-gray-200' : 'bg-white'}`}
+            className={`flex-1 text-center p-2 ${isPreview ? 'bg-gray-200' : 'bg-white'}`}
             onClick={() => {
-              isPreview.setValue(true)
+              setIsPreview(true)
             }}
           >
             Preview
@@ -29,18 +33,18 @@ const ArticleMarkdown = ({
         </div>
 
         <div className="p-4">
-          {!isPreview.value ? (
+          {!isPreview ? (
             <textarea
               className="w-full h-64 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={markdownContent.value}
+              value={markdownContent}
               onChange={(e) => {
-                markdownContent.setValue(e.target.value)
+                setField('markdownContent', e.target.value)
               }}
               placeholder="Write your markdown here..."
             />
           ) : (
             <div className="prose">
-              <ReactMarkdown>{markdownContent.value}</ReactMarkdown>
+              <ReactMarkdown>{markdownContent}</ReactMarkdown>
             </div>
           )}
         </div>

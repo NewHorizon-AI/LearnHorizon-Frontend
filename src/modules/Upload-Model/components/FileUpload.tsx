@@ -1,20 +1,23 @@
+'use client'
+
 import React from 'react'
-
-import { type IFile } from '@/interfaces/formData/INewPublication'
-
 import { UploadIcon } from '@radix-ui/react-icons'
-
 import parseFile from '../libs/parseFile'
 
-const FileUpload: React.FC<IFile> = ({ file, alert, setAlert }) => {
+// Importacion del estado de creacion de un articulo
+import useFormStore from '@/contexts/article/create-article/useFormStore'
+
+const FileUpload: React.FC = () => {
+  const { setField } = useFormStore()
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const fileExists = e.target.files?.[0]
     if (fileExists != null) {
       const result = parseFile(fileExists)
-      setAlert({ ...result.alert })
+      setField('alert', result.alert)
       console.log(result.alert)
       if (result.valid) {
-        file.setValue(fileExists)
+        setField('file', fileExists)
       }
     }
   }
@@ -39,4 +42,5 @@ const FileUpload: React.FC<IFile> = ({ file, alert, setAlert }) => {
     </div>
   )
 }
+
 export default FileUpload

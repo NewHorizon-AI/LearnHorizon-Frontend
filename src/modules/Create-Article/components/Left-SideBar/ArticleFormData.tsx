@@ -1,22 +1,22 @@
+'use client'
+
 import React from 'react'
 
-import { type IPublicationFormProps } from '@/interfaces/formData/INewPublication'
-
+// Importacion de los componentes de shad-cn
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 
-import DynamicInput from '../lib/DynamicInputProps'
+// Importacion de los hooks
+import DynamicInput from '../../lib/DynamicInputProps'
 
-const ArticleFormData = ({
-  title,
-  subtitle,
-  photo,
-  author,
-  category,
-  description
-}: IPublicationFormProps): React.JSX.Element => {
+// Importacion del estado de creacion de un articulo
+import useFormStore from '@/contexts/article/create-article/useFormStore'
+
+const ArticleFormData: React.FC = () => {
+  const { title, photo, description, author, category, setField } =
+    useFormStore()
+
   return (
     <div className="space-y-4 ">
       <div>
@@ -31,9 +31,9 @@ const ArticleFormData = ({
           <Input
             id="title"
             type="text"
-            value={title.value}
+            value={title}
             onChange={(e) => {
-              title.setValue(e.target.value)
+              setField('title', e.target.value)
             }}
             placeholder="Título"
           />
@@ -43,9 +43,9 @@ const ArticleFormData = ({
           <Input
             id="subtitle"
             type="text"
-            value={subtitle.value}
+            value={subtitle}
             onChange={(e) => {
-              subtitle.setValue(e.target.value)
+              setField('subtitle', e.target.value)
             }}
             placeholder="Subtítulo"
           />
@@ -55,9 +55,9 @@ const ArticleFormData = ({
           <Input
             id="photo"
             type="text"
-            value={photo.value}
+            value={photo}
             onChange={(e) => {
-              photo.setValue(e.target.value)
+              setField('photo', e.target.value)
             }}
             placeholder="URL de la Foto"
           />
@@ -66,9 +66,9 @@ const ArticleFormData = ({
           <Label htmlFor="description">Descripción</Label>
           <Textarea
             id="description"
-            value={description.value}
+            value={description}
             onChange={(e) => {
-              description.setValue(e.target.value)
+              setField('description', e.target.value)
             }}
             placeholder="Descripción"
             className="resize-none h-36"
@@ -77,9 +77,9 @@ const ArticleFormData = ({
         </div>
         <div>
           <DynamicInput
-            values={author.value}
+            values={author}
             setValues={(newValues) => {
-              author.setValue(newValues)
+              setField('author', newValues)
             }}
             label="Autores"
             placeholder="Autor"
@@ -87,9 +87,9 @@ const ArticleFormData = ({
         </div>
         <div>
           <DynamicInput
-            values={category.value}
+            values={category}
             setValues={(newValues) => {
-              category.setValue(newValues)
+              setField('category', newValues)
             }}
             label="Categorías"
             placeholder="Categoría"
