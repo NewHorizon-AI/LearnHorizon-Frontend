@@ -13,7 +13,7 @@ const ModelRender: React.FC<ModelRenderProps> = ({ file }) => {
 
   useEffect(() => {
     const mount = mountRef.current
-    if (!mount || !file) return
+    if (mount == null || file == null) return
 
     const width = mount.clientWidth
     const height = mount.clientHeight
@@ -31,8 +31,8 @@ const ModelRender: React.FC<ModelRenderProps> = ({ file }) => {
 
     reader.onload = function (event) {
       const contents = event.target?.result
-      if (contents) {
-        const arrayBuffer = contents as ArrayBuffer
+      if (contents instanceof ArrayBuffer) {
+        const arrayBuffer = contents
         loader.parse(
           arrayBuffer,
           '',
@@ -49,13 +49,13 @@ const ModelRender: React.FC<ModelRenderProps> = ({ file }) => {
 
     reader.readAsArrayBuffer(file)
 
-    const animate = () => {
+    const animate = (): void => {
       requestAnimationFrame(animate)
       renderer.render(scene, camera)
     }
     animate()
 
-    const handleResize = () => {
+    const handleResize = (): void => {
       const width = mount.clientWidth
       const height = mount.clientHeight
       renderer.setSize(width, height)
