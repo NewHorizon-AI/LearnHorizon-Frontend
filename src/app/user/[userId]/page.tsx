@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 interface User {
   _id: string;
@@ -24,10 +25,9 @@ const UsersPage: React.FC = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userId = '6660a2e92c66a9d2bbeb75a1'; // Reemplaza con la lógica para obtener el ID del usuario logueado
-        const response = await fetch(`http://localhost:3001/users/${userId}`);
-        const data = await response.json();
-        setUser(data);
+        const userId = '66686cd7c6b895b683eae568'; // Reemplaza con la lógica para obtener el ID del usuario logueado
+        const response = await axios.get(`/api/user/${userId}`);
+        setUser(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -45,18 +45,13 @@ const UsersPage: React.FC = () => {
   const handleSaveClick = async () => {
     setEditMode(false);
     setChangePasswordMode(false);
-    // Logic to save changes
     try {
-      const response = await fetch(`http://localhost:3001/users/${user?._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...user, password: newPassword }),
+      const response = await axios.put(`/api/user/${user?._id}`, {
+        ...user,
+        password: newPassword,
       });
-      if (response.ok) {
-        const updatedUser = await response.json();
-        setUser(updatedUser);
+      if (response.status === 200) {
+        setUser(response.data);
         alert('Perfil actualizado con éxito');
       } else {
         alert('Error al actualizar el perfil');
@@ -74,7 +69,7 @@ const UsersPage: React.FC = () => {
         if (event.target?.result && user) {
           setUser(prevState => ({
             ...prevState!,
-            image: event.target.result as string
+            image: event.target.result as string,
           }));
         }
       };
@@ -86,7 +81,7 @@ const UsersPage: React.FC = () => {
     const { name, value } = e.target;
     setUser(prevState => ({
       ...prevState!,
-      [name]: value
+      [name]: value,
     }));
   };
 

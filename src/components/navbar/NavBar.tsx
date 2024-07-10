@@ -37,7 +37,7 @@ function NavBar(): React.JSX.Element {
           </Link>
         </Button>
 
-        <a href="../user/${userId}">
+        <a href="../user/6660a2e92c66a9d2bbeb75a1">
           <div className="flex items-center gap-2">
             <img
               alt="Avatar"
