@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ArticleFormData from './Left-SideBar/ArticleFormData'
-// import Model3DInputs from './Above-content/_ArticleModel3DControls'
+import ModelControllers from './Above-content/ModelControllers'
 import ArticleMarkdown from './Below-Content/ArticleMarkdown'
 import UploadModel from '@/modules/Upload-Model/UploadModel'
 
@@ -21,10 +21,10 @@ const ManageArticlePage: React.FC = () => {
             <div className="aspect-video w-full h-full">
               <UploadModel />
             </div>
-            {/* Modelo 3D
+            {/* Modelo 3D */}
             <div className="hidden lg:flex w-1/2 p-4">
-              <Model3DInputs />
-            </div> */}
+              <ModelControllers />
+            </div>
           </div>
 
           {/* Contenido de Markdown */}

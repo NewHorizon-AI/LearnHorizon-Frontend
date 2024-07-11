@@ -7,6 +7,9 @@ import parseFile from '../libs/parseFile'
 // Importacion del estado de creacion de un articulo
 import useFormStore from '@/contexts/article/create-article/useFormStore'
 
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+
 const FileUpload: React.FC = () => {
   const { setField } = useFormStore()
 
@@ -23,22 +26,19 @@ const FileUpload: React.FC = () => {
   }
 
   return (
-    <div className="w-full h-full">
-      <input
+    <div className="w-full h-full border-dashed border-gray-300 rounded-lg bg-gray-100 border-2 relative">
+      <Input
         type="file"
-        className="hidden"
+        className="w-full h-full absolute top-0 left-0 opacity-0 cursor-pointer"
         id="file-upload"
         onChange={handleFileChange}
       />
-      <label
-        htmlFor="file-upload"
-        className="cursor-pointer flex flex-col items-center justify-center h-full w-full"
-      >
+      <div className="flex flex-col items-center justify-center h-full w-full pointer-events-none">
         <UploadIcon className="w-12 h-12 text-gray-600" />
         <span className="mt-2 text-gray-600">
           Haz clic aquí para buscar el archivo
         </span>
-      </label>
+      </div>
     </div>
   )
 }
