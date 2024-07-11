@@ -23,11 +23,11 @@ const Header: React.FC = () => {
         <Link className="mr-4" href="/ruta1">
           Tendencias
         </Link>
-        <Link className="mr-4" href="/ruta2">
+        <Link className="mr-4" href="/ShowCategories">
           Categorias
         </Link>
 
-        <Link href="/ruta2">Biblioteca</Link>
+        <Link href="/ShowCategories">Biblioteca</Link>
       </div>
       <SearchBar className="ml-4 sm:ml-0 flex-1 sm:max-w-[20%] mr-4" />
       <div className="flex items-center gap-4 ml-auto">
