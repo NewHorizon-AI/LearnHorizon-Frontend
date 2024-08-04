@@ -14,14 +14,20 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "next",
-        
+        "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/article/create/elements/ArticleModel3DControls.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/components/article/create/elements/ArticleModel3DControls.tsx",
+    "src/modules/Profile-page"
+  ],
   "exclude": ["node_modules"]
 }

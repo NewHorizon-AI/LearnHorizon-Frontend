@@ -1,5 +1,7 @@
 // ! Cambiar quien es el autor de un artículo, por el usuario que está logueado
 
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
 
