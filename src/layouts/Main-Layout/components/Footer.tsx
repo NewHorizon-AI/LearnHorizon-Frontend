@@ -9,7 +9,7 @@ import {
 
 function Footer(): React.JSX.Element {
   return (
-    <footer className="bg-gray-900 text-gray-200 p-8 mt-10">
+    <footer className="bg-gray-900 text-gray-200 p-8 ">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Columna de información de contacto */}
         <div>
