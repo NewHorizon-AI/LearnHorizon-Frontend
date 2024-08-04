@@ -17,13 +17,15 @@ export const sendArticleData = async (
     })
 
     if (!response.ok) {
-      throw new Error('Error en el envío de datos')
+      const errorMessage = await response.text()
+      throw new Error(
+        `Error en el envío de datos: ${response.status} ${response.statusText} - ${errorMessage}`
+      )
     }
 
     const result = await response.json()
     console.log('Datos enviados exitosamente:', result)
-  } catch (error) {
-    console.error('Error al enviar los datos:', error)
-    throw error
+  } catch (error: any) {
+    console.error(error)
   }
 }

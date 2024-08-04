@@ -1,25 +1,35 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { type NextRequest } from 'next/server'
-import axios from 'axios'
+import { NextResponse, type NextRequest } from 'next/server'
+
+import apiClient from '@/lib/axios/apiClient'
+
+// Importacion de las interfaces
 import { type IArticleCard } from '@/interfaces/IBackend'
 
-export const GET = async (req: NextRequest): Promise<Response> => {
+export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
-    const { searchParams } = new URL(req.url || '')
+    const { searchParams } = new URL(request.url)
     const page = searchParams.get('page')
     const pageSize = searchParams.get('pageSize')
     const order = searchParams.get('order')
 
-    const { data } = await axios.get<IArticleCard[]>(
-      `http://localhost:3001/publications/search?page=${page}&pageSize=${pageSize}&order=${order}`
+    const { data } = await apiClient.get<IArticleCard[]>(
+      `/publications/search`,
+      {
+        params: {
+          page,
+          pageSize,
+          order
+        }
+      }
     )
 
-    console.log(page, pageSize, order)
-
-    return new Response(JSON.stringify(data), { status: 200 })
+    return NextResponse.json(data, { status: 200 })
   } catch (error: any) {
-    return new Response(JSON.stringify({ message: error.message }), {
-      status: 500
-    })
+    console.error(error)
+
+    const errorMessage =
+      error?.response?.data?.message ?? error?.message ?? 'An error occurred'
+
+    return NextResponse.json({ message: errorMessage }, { status: 500 })
   }
 }

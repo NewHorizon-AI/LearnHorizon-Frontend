@@ -36,6 +36,7 @@ export const handleSubmit = async (e: React.FormEvent): Promise<void> => {
   }
 
   try {
+    console.log('payload', payload)
     await sendArticleData(payload, file)
   } catch (error) {
     console.error(error)

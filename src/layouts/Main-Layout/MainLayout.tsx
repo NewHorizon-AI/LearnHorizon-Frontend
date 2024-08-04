@@ -1,6 +1,6 @@
 // src/layouts/MainLayout.jsx
 import React from 'react'
-import Header from './components/Header'
+import Header from './components/header/index'
 import Footer from './components/Footer'
 
 interface RootLayoutProps {
