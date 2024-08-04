@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable react/prop-types */
 import { useEffect } from 'react'
 import { OrbitControls } from 'three-stdlib'
@@ -31,7 +32,6 @@ const Controls: React.FC<ControlsProps> = ({ camera, renderer }) => {
       MIDDLE: THREE.MOUSE.DOLLY, // Clic de la rueda del mouse para hacer zoom
       RIGHT: THREE.MOUSE.PAN // Clic derecho para panear
     }
-
     // Animación y actualización de controles
     const animate = (): void => {
       requestAnimationFrame(animate)

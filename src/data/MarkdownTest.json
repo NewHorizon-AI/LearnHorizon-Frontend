@@ -1,0 +1,3 @@
+{
+  "markdownContent": "# Proyecto Ipsum\n\n## Descripción\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n## Instalación\n\n1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n2. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n3. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\n```bash\ngit clone https://github.com/usuario/proyecto-ipsum.git\ncd proyecto-ipsum\nnpm install\n```\n"
+}

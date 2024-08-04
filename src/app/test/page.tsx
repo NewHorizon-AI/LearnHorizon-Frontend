@@ -40,7 +40,7 @@ const Home: React.FC = () => {
   }
 
   useEffect(() => {
-    const animate = () => {
+    const animate = (): void => {
       requestAnimationFrame(animate)
       setFrame((prev) => prev + 1) // Actualiza el estado en cada frame
     }

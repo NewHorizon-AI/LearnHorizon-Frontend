@@ -1,0 +1,36 @@
+{
+  "user": {
+    "name": "John Doe",
+    "username": "@johndoe",
+    "avatar": "/placeholder-user.jpg",
+    "location": "San Francisco, CA",
+    "joined": "Joined June 2021",
+    "website": "johndoe.com",
+    "followers": 100,
+    "following": 200,
+    "bookmarks": 50
+  },
+  "posts": [
+    {
+      "avatar": "/placeholder-user.jpg",
+      "author": "John Doe",
+      "username": "@johndoe",
+      "content": "Excited to share my latest blog post on the benefits of using a design system in your projects. Check it out and let me know what you think!",
+      "date": "2 days ago"
+    },
+    {
+      "avatar": "/placeholder-user.jpg",
+      "author": "John Doe",
+      "username": "@johndoe",
+      "content": "Just finished a new project using Tailwind CSS and the Shadcn UI library. It was a breeze to build and the results look great!",
+      "date": "5 days ago"
+    },
+    {
+      "avatar": "/placeholder-user.jpg",
+      "author": "John Doe",
+      "username": "@johndoe",
+      "content": "Just published a new video tutorial on my YouTube channel about building a responsive layout with Flexbox. Check it out and let me know what you think!",
+      "date": "1 week ago"
+    }
+  ]
+}
