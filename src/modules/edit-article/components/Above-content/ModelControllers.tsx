@@ -6,13 +6,12 @@ import { Input } from '@/components/ui/input'
 import useFormStore from '@/contexts/article/create-article/useFormStore'
 
 const ModelControllers: React.FC = () => {
-  const { objectName, coordinates, rotationAngles, scale, setField } =
-    useFormStore()
+  const { coordinates, rotationAngles, scale, setField } = useFormStore()
 
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 gap-4">
-        <div>
+        {/* <div>
           <Label htmlFor="objectName">Nombre del Modelo 3D</Label>
           <Input
             id="objectName"
@@ -23,7 +22,7 @@ const ModelControllers: React.FC = () => {
             }}
             placeholder="Nombre del Modelo 3D"
           />
-        </div>
+        </div> */}
         <div>
           <Label>Coordenadas</Label>
           <div className="flex space-x-4">

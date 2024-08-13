@@ -5,7 +5,7 @@ export const handleSubmit = async (e: React.FormEvent): Promise<void> => {
   e.preventDefault()
   const {
     title,
-    subtitle,
+
     photo,
     description,
     author,
@@ -21,7 +21,7 @@ export const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     publication: {
       title,
       markdownContent,
-      subtitle,
+
       photo,
       description,
       author,

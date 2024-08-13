@@ -10,12 +10,15 @@ import { Textarea } from '@/components/ui/textarea'
 // Importacion de los hooks
 import DynamicInput from '../../lib/DynamicInputProps'
 
-// Importacion del estado de creacion de un articulo
+// * Importar store de formulario
 import useFormStore from '@/contexts/article/create-article/useFormStore'
+import useArticleStore from '@/contexts/article/edit-article/useArticleStore'
 
 const ArticleFormData: React.FC = () => {
   const { title, photo, description, author, category, setField } =
     useFormStore()
+
+  const { article } = useArticleStore()
 
   return (
     <div className="space-y-4 ">
@@ -35,7 +38,7 @@ const ArticleFormData: React.FC = () => {
             onChange={(e) => {
               setField('title', e.target.value)
             }}
-            placeholder="Título"
+            placeholder={article?.article.title}
           />
         </div>
         {/* <div>

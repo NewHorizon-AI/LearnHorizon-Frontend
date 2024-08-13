@@ -1,6 +1,6 @@
 export interface IForm {
   title: string
-  subtitle: string
+
   photo: string
   description: string
   author: string[]

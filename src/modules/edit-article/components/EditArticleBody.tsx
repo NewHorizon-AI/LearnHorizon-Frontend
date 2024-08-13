@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react'
 
 import ArticleFormData from './Left-SideBar/ArticleFormData'
@@ -5,7 +6,7 @@ import ModelControllers from './Above-content/ModelControllers'
 import ArticleMarkdown from './Below-Content/ArticleMarkdown'
 import UploadModel from '@/modules/Upload-Model/UploadModel'
 
-const ManageArticlePage: React.FC = () => {
+const EditArticleBody: React.FC = () => {
   return (
     <main className="flex flex-col items-center  w-full overflow-hidden ">
       <div className="flex w-full p-4">
@@ -38,4 +39,4 @@ const ManageArticlePage: React.FC = () => {
   )
 }
 
-export default ManageArticlePage
+export default EditArticleBody

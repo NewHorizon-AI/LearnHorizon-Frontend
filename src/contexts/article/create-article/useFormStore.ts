@@ -4,7 +4,6 @@ import { handleSubmit } from './utils/useFormStore.utils'
 
 const useFormStore = create<IForm>((set) => ({
   title: '',
-  subtitle: 'DELETE',
   photo: '',
   description: '',
   author: [''],

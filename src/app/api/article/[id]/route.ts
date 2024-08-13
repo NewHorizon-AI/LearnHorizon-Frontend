@@ -1,19 +1,46 @@
-import axios from 'axios'
-import { type IArticle } from '@/interfaces/IArticle'
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { NextResponse, type NextRequest } from 'next/server'
+import apiClient from '@/lib/axios/apiClient'
 
-export const GET = async (
-  req: any,
-  { params }: { params: any }
-): Promise<Response> => {
+import { type IArticleComposite } from '@/interfaces/article/article.interface'
+
+interface Params {
+  id: string
+}
+
+export async function GET(
+  req: Request,
+  { params }: { params: Params }
+): Promise<NextResponse> {
+  /*
+   * Funcion que se encarga de obtener un articulo de la base de datos
+
+   */
+
+  console.log('AHGAUSGHKJASHGKJASDHGKHGJKASDFDHGSGGGGGG')
+  // console.log('request', request)
+
+  // const url = request.nextUrl
+
+  // const articleId = url.searchParams.get('articleId')
+
+  const articleId = params.id
+
+  if (articleId == null) {
+    return new NextResponse('No article ID provided', { status: 400 })
+  }
+
   try {
-    const { id } = params
-    const { data } = await axios.get<IArticle>(
-      `http://localhost:3001/publications/publication/${id}`
-    )
-    return new Response(JSON.stringify(data), { status: 200 })
+    const response = await apiClient.get(`/articles/details/${articleId}`)
+
+    // console.log('response', response)
+
+    const article: IArticleComposite = response.data
+
+    // console.log('article', article)
+
+    return new NextResponse(JSON.stringify(article))
   } catch (error: any) {
-    return new Response(JSON.stringify({ message: error.message }), {
-      status: 500
-    })
+    return new NextResponse(error)
   }
 }

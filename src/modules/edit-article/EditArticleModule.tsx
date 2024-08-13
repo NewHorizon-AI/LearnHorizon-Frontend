@@ -1,13 +1,13 @@
 import React from 'react'
-import ManageArticlePage from './components/ManageArticlePage'
+import EditArticleBody from './components/EditArticleBody'
 import CreateArticleLayout from '@/layouts/Create-Article-Layout/CreateArticleLayout'
 
-const CreateArticle: React.FC = () => {
+const EditArticleModule: React.FC = () => {
   return (
     <CreateArticleLayout>
-      <ManageArticlePage />
+      <EditArticleBody />
     </CreateArticleLayout>
   )
 }
 
-export default CreateArticle
+export default EditArticleModule
