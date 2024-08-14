@@ -8,7 +8,7 @@ import parseFile from '../libs/parseFile'
 import useFormStore from '@/contexts/article/create-article/useFormStore'
 
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+// import { Label } from '@/components/ui/label'
 
 const FileUpload: React.FC = () => {
   const { setField } = useFormStore()

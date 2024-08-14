@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
-import apiClient from '@/lib/axios/apiClient'
+import apiClient from '@/lib/apiClient/apiClient'
 
 // Importacion de las interfaces
 import { type IArticleCard } from '@/interfaces/IBackend'

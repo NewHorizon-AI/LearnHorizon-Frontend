@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 
 // * Importar estados globales
-import useArticleStore from '@/contexts/useArticleStore'
+import useArticleStore from '@/contexts/article/edit-article/useArticleStore'
 import { createDefaultArticle } from '../../utils/createDefaultArticle'
 
 interface ApiButtonProps {

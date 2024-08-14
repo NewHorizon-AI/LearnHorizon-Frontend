@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
-import apiClient from '@/lib/axios/apiClient'
+import apiClient from '@/lib/apiClient/apiClient'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {

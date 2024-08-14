@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { NextResponse, type NextRequest } from 'next/server'
-import apiClient from '@/lib/axios/apiClient'
+import { NextResponse } from 'next/server'
+import apiClient from '@/lib/apiClient/apiClient'
 
 import { type IArticleComposite } from '@/interfaces/article/article.interface'
 
@@ -14,15 +14,11 @@ export async function GET(
 ): Promise<NextResponse> {
   /*
    * Funcion que se encarga de obtener un articulo de la base de datos
+   * @param {Request} req - Request de la petición
+   * @param {Params} params - Parámetros de la petición
 
+    TODO: Mejorar la recepcion de parametros por la URL para evitar errores de tipo en tiempo de ejecución 
    */
-
-  console.log('AHGAUSGHKJASHGKJASDHGKHGJKASDFDHGSGGGGGG')
-  // console.log('request', request)
-
-  // const url = request.nextUrl
-
-  // const articleId = url.searchParams.get('articleId')
 
   const articleId = params.id
 
@@ -33,11 +29,7 @@ export async function GET(
   try {
     const response = await apiClient.get(`/articles/details/${articleId}`)
 
-    // console.log('response', response)
-
     const article: IArticleComposite = response.data
-
-    // console.log('article', article)
 
     return new NextResponse(JSON.stringify(article))
   } catch (error: any) {
