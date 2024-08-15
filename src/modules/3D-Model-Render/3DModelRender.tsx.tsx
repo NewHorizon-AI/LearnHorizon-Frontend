@@ -4,16 +4,16 @@ import React, { useRef, useEffect } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader, type GLTF } from 'three-stdlib'
 
-interface ModelRenderProps {
-  file: File | null
-}
+import useModelStore from '@/contexts/modelStore/edit-model/index'
 
-const ModelRender: React.FC<ModelRenderProps> = ({ file }) => {
+const ModelRender: React.FC = () => {
+  const { model } = useModelStore()
+
   const mountRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const mount = mountRef.current
-    if (mount == null || file == null) return
+    if (mount == null || model?.file == null) return
 
     const width = mount.clientWidth
     const height = mount.clientHeight
@@ -47,7 +47,7 @@ const ModelRender: React.FC<ModelRenderProps> = ({ file }) => {
       }
     }
 
-    reader.readAsArrayBuffer(file)
+    reader.readAsArrayBuffer(model.file)
 
     const animate = (): void => {
       requestAnimationFrame(animate)
@@ -69,7 +69,7 @@ const ModelRender: React.FC<ModelRenderProps> = ({ file }) => {
       window.removeEventListener('resize', handleResize)
       mount.removeChild(renderer.domElement)
     }
-  }, [file])
+  }, [model?.file])
 
   return <div ref={mountRef} className="w-full h-full" />
 }

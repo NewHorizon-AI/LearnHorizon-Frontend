@@ -11,8 +11,9 @@ export const createFileActions = (set: any): any => ({
   setFile: (model: IModel) => {
     // * Se setea el archivo en el store
 
-    set((state: any) => ({ ...state, model: { ...state.model, model } }))
+    set((state: any) => ({ ...state, model }))
   },
-  resetFile: () =>
-    set((state: any) => ({ ...state, model: { ...state.model, file: null } }))
+  resetFile: () => {
+    set((state: any) => ({ ...state.model, file: null }))
+  }
 })

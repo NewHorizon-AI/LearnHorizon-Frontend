@@ -14,7 +14,7 @@ export const fetchArticle = async (articleId: string): Promise<void> => {
 
     const model: IModel = {
       articleId,
-      file: fileData
+      file: fileData.file != null ? { file: fileData.file } : undefined
     }
 
     useModelStore.getState().setFile(model)

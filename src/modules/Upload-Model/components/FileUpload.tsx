@@ -4,23 +4,46 @@ import React from 'react'
 import { UploadIcon } from '@radix-ui/react-icons'
 import parseFile from '../libs/parseFile'
 
+import { type IModel } from '@/interfaces/model/model.interface'
+
 // Importacion del estado de creacion de un articulo
 import useFormStore from '@/contexts/article/create-article/useFormStore'
+import useModelStore from '@/contexts/modelStore/edit-model/index'
+import useArticleStore from '@/contexts/article/edit-article/useArticleStore'
 
 import { Input } from '@/components/ui/input'
-// import { Label } from '@/components/ui/label'
 
 const FileUpload: React.FC = () => {
+  /*
+  * Componente encargado de subir un archivo
+
+  TODO: Revisar la implementación de la función handleFileChange
+  TODO: Eliminar el uso de la función setField en useFormStore y en su lugar utilizar la función setFile en useModelStore
+  TODO: Separar la lógica de la función handleFileChange en una función independiente
+  
+  */
+
   const { setField } = useFormStore()
+  const { article } = useArticleStore()
+  const { setFile } = useModelStore()
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const fileExists = e.target.files?.[0]
     if (fileExists != null) {
       const result = parseFile(fileExists)
-      setField('alert', result.alert)
+      // setField('alert', result.alert)
       console.log(result.alert)
       if (result.valid) {
         setField('file', fileExists)
+
+        const createFile: IModel = {
+          articleId: article?.article._id?.toString() ?? '',
+          file: fileExists
+        }
+
+        // console.log('createFile', createFile)
+
+        setFile(createFile)
       }
     }
   }
