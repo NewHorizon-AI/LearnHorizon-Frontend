@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { NextResponse } from 'next/server'
 import apiClient from '@/lib/apiClient/apiClient'
 
@@ -33,6 +32,6 @@ export async function GET(
 
     return new NextResponse(JSON.stringify(article))
   } catch (error: any) {
-    return new NextResponse(error)
+    return new NextResponse('Error fetching article', { status: 500 })
   }
 }

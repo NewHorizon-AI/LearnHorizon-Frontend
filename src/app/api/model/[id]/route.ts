@@ -1,34 +1,36 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { NextResponse } from 'next/server'
+import { type NextApiRequest } from 'next'
 import apiClient from '@/lib/apiClient/apiClient'
 
-import { type IFileGltf } from '@/interfaces/model/file.interface'
+import { NextResponse } from 'next/server'
 
-interface Params {
-  id: string
-}
+export async function GET(req: NextApiRequest): Promise<NextResponse> {
+  console.log(
+    'AKJGHAKLJSGHKLAJSDKJASDFHGKLASDJHGAKLSDJFHGKSJADFGHADSKJLGHJAKFSDGJHKASDLGJ'
+  )
+  const id = req.url?.split('/').pop()
 
-export async function GET(
-  req: Request,
-  { params }: { params: Params }
-): Promise<NextResponse> {
-  /*
-   * Funcion que se encarga de obtener un modelo de la base de datos
-   */
-
-  const articleId = params.id
-
-  if (articleId == null) {
-    return new NextResponse('No article ID provided', { status: 400 })
-  }
+  const articleId = id
 
   try {
-    const response = await apiClient.get(`/model/${articleId}`)
+    const response = await apiClient.get(`/model/${articleId}`, {
+      responseType: 'blob'
+    })
 
-    const file: IFileGltf = response.data
+    const blob = await response.data
 
-    return new NextResponse(JSON.stringify(file))
+    const headers = new Headers({
+      'Content-Type': 'application/octet-stream',
+      'Content-Disposition': `attachment; filename="${articleId}.model"`
+    })
+
+
+    return new NextResponse(blob, { headers })
   } catch (error: any) {
-    return new NextResponse(error)
+    return new NextResponse(JSON.stringify({ message: error.message }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
   }
 }
