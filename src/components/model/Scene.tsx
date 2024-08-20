@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
-import { useEffect, useRef, useCallback } from 'react'
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+
+import React, { useEffect, useRef, useCallback } from 'react'
 import * as THREE from 'three'
 
 interface SceneProps {
@@ -29,7 +30,6 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
     if (
       rendererRef.current != null &&
       cameraRef.current != null &&
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       sceneRef.current
     ) {
       rendererRef.current.render(sceneRef.current, cameraRef.current)
@@ -39,7 +39,7 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
 
   useEffect(() => {
     const container = containerRef.current
-    if (container == null || rendererRef.current != null) return
+    if (!container || rendererRef.current) return
 
     const scene = sceneRef.current
     scene.background = new THREE.Color(0xffffff)
@@ -79,7 +79,7 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
 
     return () => {
       window.removeEventListener('resize', onWindowResize)
-      if (rendererRef.current != null) {
+      if (rendererRef.current) {
         rendererRef.current.dispose()
       }
     }
@@ -87,8 +87,8 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
 
   useEffect(() => {
     const scene = sceneRef.current
-    if (model != null && model !== modelRef.current) {
-      if (modelRef.current != null) {
+    if (model && model !== modelRef.current) {
+      if (modelRef.current) {
         scene.remove(modelRef.current)
       }
       modelRef.current = model
@@ -97,7 +97,6 @@ const Scene: React.FC<SceneProps> = ({ onSceneSetup, model }) => {
   }, [model])
 
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
     <div
       ref={containerRef}
       id="modelo-container"

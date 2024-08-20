@@ -5,8 +5,8 @@ module.exports = {
     node: true
   },
   extends: [
-    'next',
     'standard-with-typescript',
+    'next',
     'next/core-web-vitals',
     'plugin:react/recommended',
     'prettier'

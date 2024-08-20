@@ -51,7 +51,7 @@ export interface IUserCard {
   name: string
 }
 
-export interface IModelCard {
+export interface IArticleCard {
   _id: string
   title: string
   photo: string
@@ -62,9 +62,9 @@ export interface IModelCard {
   publicationDate: Date
 }
 
-export interface IFindModels {
+export interface IFindArticles {
   page: number
   pageSize: number
   order: 'ascendant' | 'descendant'
-  modelsArray: IModelCard[]
+  articlesArray: IArticleCard[]
 }
