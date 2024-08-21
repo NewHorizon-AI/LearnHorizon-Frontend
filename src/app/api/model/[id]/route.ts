@@ -1,12 +1,10 @@
-import { type NextApiRequest } from 'next'
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+
 import apiClient from '@/lib/apiClient/apiClient'
 
 import { NextResponse } from 'next/server'
 
-export async function GET(req: NextApiRequest): Promise<NextResponse> {
-  console.log(
-    'AKJGHAKLJSGHKLAJSDKJASDFHGKLASDJHGAKLSDJFHGKSJADFGHADSKJLGHJAKFSDGJHKASDLGJ'
-  )
+export async function GET(req: Request): Promise<NextResponse> {
   const id = req.url?.split('/').pop()
 
   const articleId = id
@@ -22,7 +20,6 @@ export async function GET(req: NextApiRequest): Promise<NextResponse> {
       'Content-Type': 'application/octet-stream',
       'Content-Disposition': `attachment; filename="${articleId}.model"`
     })
-
 
     return new NextResponse(blob, { headers })
   } catch (error: any) {

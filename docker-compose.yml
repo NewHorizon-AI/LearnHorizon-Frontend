@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  learn-horizon-frontend-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${NODE_ENV}
+    image: ixyz0/learn-horizon-frontend-app:latest
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
+    environment:
+      - PORT=${PORT}
+      - LEARN_HORIZON_BACKEND_URI_LOCAL=${LEARN_HORIZON_BACKEND_URI_LOCAL}
+      - LEARN_HORIZON_BACKEND_REMOTE=${LEARN_HORIZON_BACKEND_REMOTE}
+
+    volumes:
+      - .:/learn-horizon-frontend
+      - /learn-horizon-frontend/node_modules
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

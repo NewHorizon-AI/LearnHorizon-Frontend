@@ -8,7 +8,7 @@ export const createDefaultArticle = async (): Promise<IArticleComposite> => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        users: ['66aff0e5be741923832d6be6']
+        users: ['66be789bf03e3ebb2aa20c1f']
       })
     })
 
