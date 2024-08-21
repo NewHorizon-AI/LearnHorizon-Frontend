@@ -19,8 +19,8 @@ services:
       - .:/learn-horizon-frontend
       - /learn-horizon-frontend/node_modules
     networks:
-      - my-network
+      - learn-horizon-network
 
 networks:
-  my-network:
+  learn-horizon-network:
     driver: bridge

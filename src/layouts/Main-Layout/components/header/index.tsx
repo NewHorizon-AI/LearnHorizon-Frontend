@@ -3,7 +3,7 @@ import HeaderLogo from './HeaderLogo'
 import HeaderLinks from './HeaderLinks'
 import HeaderSearchBar from './HeaderSearchBar'
 import HeaderNotifications from './HeaderNotifications'
-import HeaderProfile from './HeaderProfile'
+import HeaderProfile from './profile/HeaderProfile'
 import Headerpublish from './Headerpublish'
 
 const Header: React.FC = () => {

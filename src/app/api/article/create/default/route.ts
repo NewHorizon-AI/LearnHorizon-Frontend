@@ -1,13 +1,15 @@
-import { NextResponse, type NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 import apiClient from '@/lib/apiClient/apiClient'
 
-export async function POST(request: NextRequest): Promise<NextResponse> {
+export async function POST(request: Request): Promise<NextResponse> {
   /*
     * Funcion que se encarga de manejar las peticiones POST
     @ Param request: NextRequest - Peticion que se recibe del cliente
   */
 
   try {
+    console.log('request', request)
+
     const body = await request.json()
 
     const response = await apiClient.post('/articles', body)
