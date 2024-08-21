@@ -3,4 +3,5 @@ export interface IUserState {
   user: IUser | null
   setUser: (model: IUser) => void
   resetUser: () => void
+  updateUser: (updates: Partial<IUser>) => void
 }

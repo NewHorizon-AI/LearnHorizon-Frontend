@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react'
 import EditArticleModule from '@/modules/edit-article/EditArticleModule'
 
-import { fetchArticle } from '@/lib/article/fetchArticle'
+import { fetchArticle } from '@/lib/apiArticle/fetchArticle'
 import { fetchModel } from '@/lib/apiModel/fetchModel'
 
 interface IParams {

@@ -4,16 +4,17 @@ import React from 'react'
 import MainLayout from '@/layouts/Main-Layout/MainLayout'
 
 // * Importar Componentes
-import SignUp from './components/SignUp'
+import SignUpForm from './components/SignUpForm'
 
 const SignUpModule: React.FC = () => {
   /*
-   * Implementar el módulo de registro
+   * Módulo de registro de un usuario
+   TODO: Implementar nextAuth para manejar el inicio de sesion en vez de zustand
    */
 
   return (
     <MainLayout>
-      <SignUp />
+      <SignUpForm />
     </MainLayout>
   )
 }

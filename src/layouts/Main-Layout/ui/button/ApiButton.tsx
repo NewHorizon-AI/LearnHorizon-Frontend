@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 
 // * Importar estados globales
 import useArticleStore from '@/contexts/article/edit-article/useArticleStore'
-import { createDefaultArticle } from '../../utils/createDefaultArticle'
+import { createDefaultArticle } from '../../../../lib/apiArticle/createDefaultArticle'
 
 interface ApiButtonProps {
   children: React.ReactNode

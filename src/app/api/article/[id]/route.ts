@@ -17,6 +17,15 @@ export async function GET(
    * @param {Params} params - Parámetros de la petición
 
     TODO: Mejorar la recepcion de parametros por la URL para evitar errores de tipo en tiempo de ejecución 
+
+
+      export async function GET(
+      request: Request,
+      { params }: { params: { slug: string } }
+    ) {
+      const slug = params.slug // 'a', 'b', or 'c'
+    }
+    }
    */
 
   const articleId = params.id
