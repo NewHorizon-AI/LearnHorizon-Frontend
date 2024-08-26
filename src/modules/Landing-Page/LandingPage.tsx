@@ -57,64 +57,60 @@ export default function Home(): React.JSX.Element {
   const [errorCarousel, setErrorCarousel] = useState<string | null>(null)
 
   // Fetch articles when page, pageSize, or order changes
-  useEffect(() => {
-    const fetchArticles = async (): Promise<void> => {
-      setLoadingArticles(true)
-      setErrorArticles(null)
-      try {
-        const response = await fetch(
-          `/api/article?page=${articles.page}&pageSize=${articles.pageSize}&order=${articles.order}`
-        )
-        if (!response.ok) {
-          throw new Error('Error fetching articles')
-        }
-        const data: IArticleCard[] = await response.json()
-        setArticles((prevArticles: any) => ({
-          ...prevArticles,
-          articlesArray: data
-        }))
-      } catch (error: any) {
-        if (error instanceof Error) {
-          console.error(error)
-          setErrorArticles(error.message)
-        } else {
-          console.error('Error desconocido')
-          setErrorArticles('Error desconocido')
-        }
-      } finally {
-        setLoadingArticles(false)
-      }
-    }
-    void fetchArticles()
-  }, [articles.page, articles.pageSize, articles.order])
+  // useEffect(() => {
+  //   const fetchArticles = async (): Promise<void> => {
+  //     setLoadingArticles(true)
+  //     setErrorArticles(null)
+  //     try {
+  //       const response = await fetch(
+  //         `/api/article?page=${articles.page}&pageSize=${articles.pageSize}&order=${articles.order}`
+  //       )
+  //       if (!response.ok) {
+  //         throw new Error('Error fetching articles')
+  //       }
+  //       const data: IArticleCard[] = await response.json()
+  //       setArticles((prevArticles: any) => ({
+  //         ...prevArticles,
+  //         articlesArray: data
+  //       }))
+  //     } catch (error: any) {
+  //       if (error instanceof Error) {
+  //         setErrorArticles(error.message)
+  //       } else {
+  //         setErrorArticles('Error desconocido')
+  //       }
+  //     } finally {
+  //       setLoadingArticles(false)
+  //     }
+  //   }
+  //   void fetchArticles()
+  // }, [articles.page, articles.pageSize, articles.order])
 
-  // Fetch categories on initial render
-  useEffect(() => {
-    const fetchCategories = async (): Promise<void> => {
-      setLoadingCategories(true)
-      setErrorCategories(null)
-      try {
-        const response = await fetch('/api/category')
-        if (!response.ok) {
-          throw new Error('Error fetching categories')
-        }
-        const data: ICategory[] = await response.json()
-        setCategories(data)
-      } catch (error: any) {
-        if (error instanceof Error) {
-          console.error(error)
-          setErrorCategories(error.message)
-        } else {
-          console.error('Error desconocido')
-          setErrorCategories('Error desconocido')
-        }
-      } finally {
-        setLoadingCategories(false)
-      }
-    }
+  // // Fetch categories on initial render
+  // useEffect(() => {
+  //   const fetchCategories = async (): Promise<void> => {
+  //     setLoadingCategories(true)
+  //     setErrorCategories(null)
+  //     try {
+  //       const response = await fetch('/api/category')
+  //       if (!response.ok) {
+  //         throw new Error('Error fetching categories')
+  //       }
+  //       const data: ICategory[] = await response.json()
+  //       setCategories(data)
+  //     } catch (error: any) {
+  //       if (error instanceof Error) {
+  //         setErrorCategories(error.message)
+  //       } else {
+  //         setErrorCategories('Error desconocido')
+  //       }
+  //     } finally {
+  //       setLoadingCategories(false)
+  //     }
+  //   }
 
-    void fetchCategories()
-  }, [])
+  //   void fetchCategories()
+  // }, [])
 
   return (
     <MainLayout>

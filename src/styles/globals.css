@@ -119,3 +119,11 @@ Typography
 .typography-blockquote {
   @apply mt-6 border-l-2 pl-6 italic
 }
+
+.IconButton {
+  display: none !important;
+}   
+
+div[data-radix-side-sheet-content] .IconButton {
+  display: none !important;
+}

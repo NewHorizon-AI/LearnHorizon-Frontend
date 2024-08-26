@@ -10,7 +10,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     const body = await request.json()
 
-    const response = await apiClient.post('/users', body)
+    const response = await apiClient.post('/auths/login', body)
 
     return NextResponse.json(response.data)
   } catch (error: any) {

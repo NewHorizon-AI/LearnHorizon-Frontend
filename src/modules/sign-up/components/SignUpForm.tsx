@@ -3,6 +3,7 @@
 'use client'
 
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 // * Importar componentes de UI (shadcn)
 import { Label } from '@/components/ui/label'
@@ -23,12 +24,18 @@ const SignUpForm: React.FC = () => {
   */
 
   const { handleChange } = useUserForm()
+  const router = useRouter()
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     event.preventDefault()
-    await createUser()
+    try {
+      await createUser()
+      router.push('/')
+    } catch (error) {
+      console.error('Error al crear usuario:', error)
+    }
   }
 
   return (
@@ -63,7 +70,7 @@ const SignUpForm: React.FC = () => {
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="password">Password</Label>
+          <Label htmlFor="password">Contraseña</Label>
           <Input
             id="password"
             name="password"

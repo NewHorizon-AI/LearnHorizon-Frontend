@@ -10,7 +10,7 @@ const HeaderProfile: React.FC = () => {
         <Link href="/login">Iniciar sesión</Link>
       </Button>
       <Button asChild>
-        <Link href="signup">Registrarme</Link>
+        <Link href="/signup">Registrarme</Link>
       </Button>
     </div>
   )

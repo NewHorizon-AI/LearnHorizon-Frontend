@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import useUserStore from '@/contexts/user-store'
 
-export const createUser = async (): Promise<void> => {
+export const loginUser = async (): Promise<void> => {
   const { user, setUser } = useUserStore.getState()
 
   try {
-    const response = await fetch('/api/user/create', {
+    const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

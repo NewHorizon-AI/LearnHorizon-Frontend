@@ -16,7 +16,7 @@ export const createFileActions = (set: any): any => ({
       user: { ...state.user, ...updates }
     }))
   },
-  resetFile: () => {
+  resetUser: () => {
     set((state: any) => ({ ...state.user, user: null, isLoggedIn: false }))
   }
 })
