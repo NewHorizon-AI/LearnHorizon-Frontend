@@ -30,7 +30,7 @@ const NavigationMenu: React.FC = () => {
 
   const links = [
     {
-      href: `/profile/${user?.username}`,
+      href: `/${user?.username}`,
       label: 'Perfil',
       icon: <User size={16} />
     },
