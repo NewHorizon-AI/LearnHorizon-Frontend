@@ -29,7 +29,11 @@ const NavigationMenu: React.FC = () => {
   const avatarUrl = 'https://via.placeholder.com/150'
 
   const links = [
-    { href: '/profile', label: 'Perfil', icon: <User size={16} /> },
+    {
+      href: `/profile/${user?.username}`,
+      label: 'Perfil',
+      icon: <User size={16} />
+    },
     { href: '/about', label: 'Mis artículos', icon: <FileText size={16} /> },
     { href: '/settings', label: 'Ajustes', icon: <Settings size={16} /> },
     {

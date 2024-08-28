@@ -1,6 +1,8 @@
 import { type IArticleComposite } from '@/interfaces/article/article.interface'
 
-export const createDefaultArticle = async (): Promise<IArticleComposite> => {
+export const createDefaultArticle = async (
+  _id?: string
+): Promise<IArticleComposite> => {
   try {
     const response = await fetch('/api/article/create/default', {
       method: 'POST',
@@ -8,7 +10,7 @@ export const createDefaultArticle = async (): Promise<IArticleComposite> => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        users: ['66be789bf03e3ebb2aa20c1f']
+        users: [_id]
       })
     })
 

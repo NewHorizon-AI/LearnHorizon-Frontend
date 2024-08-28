@@ -6,10 +6,11 @@ export interface ICategory {
 }
 
 export interface IUser {
+  _id: string
   image?: string
   name: string
   username: string
-  password: string
+  password?: string
   followers: number
   editPermissions: boolean
   biography: string

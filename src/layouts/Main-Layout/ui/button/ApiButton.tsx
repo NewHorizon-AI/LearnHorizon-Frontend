@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 // * Importar estados globales
 import useArticleStore from '@/contexts/article/edit-article/useArticleStore'
 import { createDefaultArticle } from '../../../../lib/apiArticle/createDefaultArticle'
+import useUser from '@/contexts/user-store/index'
 
 interface ApiButtonProps {
   children: React.ReactNode
@@ -26,12 +27,14 @@ const ApiButton: React.FC<ApiButtonProps> = ({ children }) => {
   // * Obtener el estado global de los artículos
   const setArticle = useArticleStore((state) => state.setArticle)
 
+  const { user } = useUser()
+
   const router = useRouter()
 
   // * Función para crear un nuevo artículo
   const handleCreateArticle = async (): Promise<void> => {
     try {
-      const composite = await createDefaultArticle()
+      const composite = await createDefaultArticle(user?._id)
 
       setArticle(composite)
 
