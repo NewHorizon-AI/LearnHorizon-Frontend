@@ -6,7 +6,7 @@ import React, { useEffect } from 'react'
 import MainLayout from '@/layouts/Main-Layout/MainLayout'
 
 import Sidebar from './components/sidebar/ProfileSidebar'
-import Content from './components/content/ArticleContent'
+import Content from './components/content/components'
 
 // * Importar fetcher
 import { fetchUserProfileData } from '@/lib/apiUser/getUser'
