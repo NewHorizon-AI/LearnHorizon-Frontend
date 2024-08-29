@@ -5,8 +5,8 @@ import React, { useEffect } from 'react'
 // * Importar Layout
 import MainLayout from '@/layouts/Main-Layout/MainLayout'
 
-import ProfileSidebar from './components/profile-sidebar/ProfileSidebar'
-import MainContent from './components/main-content/MainContent'
+import Sidebar from './components/sidebar/ProfileSidebar'
+import Content from './components/content/ArticleContent'
 
 // * Importar fetcher
 import { fetchUserProfileData } from '@/lib/apiUser/getUser'
@@ -23,8 +23,8 @@ const ProfileModule: React.FC<ProfileModuleProps> = ({ username }) => {
   return (
     <MainLayout>
       <div className="flex">
-        <ProfileSidebar />
-        <MainContent />
+        <Sidebar />
+        <Content />
       </div>
     </MainLayout>
   )

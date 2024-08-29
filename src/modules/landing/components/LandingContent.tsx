@@ -13,10 +13,7 @@ Explicación:
 
 'use client'
 
-import React, { useState, useEffect } from 'react'
-
-// Importando componentes
-import LandingPage from '@/modules/Landing-Page/LandingPage'
+import React, { useState } from 'react'
 
 import MainLayout from '@/layouts/Main-Layout/MainLayout'
 
@@ -24,12 +21,8 @@ import MainLayout from '@/layouts/Main-Layout/MainLayout'
 import carouselData from '@/data/carouselData.json'
 
 // Importando tipos
-import {
-  type IFindArticles,
-  type IArticleCard,
-  type ICategory
-} from '@/interfaces/IBackend'
-import ManageLanding from './components/ManageLanding'
+import { type IFindArticles, type ICategory } from '@/interfaces/IBackend'
+import ManageLanding from './ManageLanding'
 
 export default function Home(): React.JSX.Element {
   const [articles, setArticles] = useState<IFindArticles>({

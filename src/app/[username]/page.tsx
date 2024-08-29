@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ProfileModule from '@/modules/Profile-page/index'
+import ProfileModule from '@/modules/profile/index'
 
 interface ProfilePageProps {
   params: {
