@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 import { type IUserState } from './interfaces/user-store.interface'
 import { createFileActions } from './actions/user.actions'
 
@@ -14,7 +14,8 @@ const useUserStore = create<IUserState>()(
       }
     },
     {
-      name: 'get-user-storage' // Nombre de la clave en localStorage
+      name: 'get-user-storage',
+      storage: createJSONStorage(() => sessionStorage)
     }
   )
 )

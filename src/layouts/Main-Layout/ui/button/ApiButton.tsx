@@ -34,6 +34,8 @@ const ApiButton: React.FC<ApiButtonProps> = ({ children }) => {
   // * Función para crear un nuevo artículo
   const handleCreateArticle = async (): Promise<void> => {
     try {
+      console.log('user:', user)
+
       const composite = await createDefaultArticle(user?._id)
 
       setArticle(composite)

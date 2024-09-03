@@ -1,8 +1,8 @@
-import useUserGetStore from '@/contexts/api/get-user-store/index'
-
 import { type IUserWithoutPassword } from '@/interfaces/user/user.interface'
 
-export const fetchUserProfileData = async (username: string): Promise<void> => {
+export const fetchUserProfileData = async (
+  username: string
+): Promise<IUserWithoutPassword> => {
   try {
     const response = await fetch(`/api/user/get/${username}`)
 
@@ -12,7 +12,7 @@ export const fetchUserProfileData = async (username: string): Promise<void> => {
     const data = await response.json()
 
     const user: IUserWithoutPassword = data
-    useUserGetStore.getState().setUser(user)
+    return user
   } catch (error: any) {
     console.error('Error fetching User:', error.message)
     throw error

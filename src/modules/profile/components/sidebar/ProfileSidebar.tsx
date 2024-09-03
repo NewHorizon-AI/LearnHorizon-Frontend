@@ -14,7 +14,6 @@ import Link from 'next/link'
 import data from '@/data/profiledata/profilemeanwhiledata.json'
 
 // * Importar el estado global del usuario
-// import useUser from '@/contexts/user-store/index'
 import useUserGetStore from '@/contexts/api/get-user-store'
 
 const ProfileSidebar: React.FC = () => {

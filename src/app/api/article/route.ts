@@ -12,16 +12,16 @@
 //     const pageSize = searchParams.get('pageSize')
 //     const order = searchParams.get('order')
 
-//     const { data } = await apiClient.get<IArticleCard[]>(
-//       `/publications/search`,
-//       {
-//         params: {
-//           page,
-//           pageSize,
-//           order
-//         }
-//       }
-//     )
+// const { data } = await apiClient.get<IArticleCard[]>(
+//   `/publications/search`,
+//   {
+//     params: {
+//       page,
+//       pageSize,
+//       order
+//     }
+//   }
+// )
 
 //     return NextResponse.json(data, { status: 200 })
 //   } catch (error: any) {

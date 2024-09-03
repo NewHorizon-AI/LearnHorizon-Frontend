@@ -9,8 +9,6 @@ export const createFileActions = (set: any): any => ({
    */
 
   setUser: (user: IUserWithoutPassword) => {
-    // * Se setea el archivo en el store
-
     set((state: any) => ({ ...state, user, isLoggedIn: user !== null }))
   },
   resetUser: () => {

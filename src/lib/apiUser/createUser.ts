@@ -13,7 +13,7 @@ export const createUser = async (): Promise<void> => {
       body: JSON.stringify(user)
     })
     const data = await response.json()
-    console.log(data)
+
     if (!response.ok) {
       throw new Error('Error en la petición: ' + data.message)
     }
