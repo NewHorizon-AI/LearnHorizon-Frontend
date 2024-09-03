@@ -36,6 +36,12 @@ export interface IArticleComposite {
   transformation?: IArticleTransformation
 }
 
+// export interface IArticleComposite extends IArticle {
+//   data?: IArticleData
+//   markdown?: IArticleMarkdown
+//   transformation?: IArticleTransformation
+// }
+
 // * Interfaz para un articulo con datos
 export interface IArticleWithData extends IArticle {
   data: IArticleData

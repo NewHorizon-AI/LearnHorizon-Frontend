@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 
 // * Importar estados globales
-import useArticleStore from '@/contexts/article/edit-article/useArticleStore'
+import useArticleStore from '@/contexts/article/edit-article/useEditArticleStore'
 import { createDefaultArticle } from '../../../../lib/apiArticle/createDefaultArticle'
 import useUser from '@/contexts/user-store/index'
 

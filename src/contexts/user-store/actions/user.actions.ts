@@ -1,6 +1,6 @@
 import { type IUser } from '@/interfaces/IBackend'
 
-export const createFileActions = (set: any): any => ({
+export const actions = (set: any): any => ({
   /*
    * Funcion encargada de la manipulacion de los datos de un usuario
    @ Param user: IUser - Usuario a manipular

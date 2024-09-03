@@ -1,4 +1,4 @@
-import useArticleStore from '@/contexts/article/edit-article/useArticleStore'
+import useArticleStore from '@/contexts/article/edit-article/useEditArticleStore'
 import { type IArticleComposite } from '@/interfaces/article/article.interface'
 
 export const fetchArticle = async (articleId: string): Promise<void> => {

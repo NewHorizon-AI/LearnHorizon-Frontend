@@ -1,12 +1,12 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { type IUserState } from './interfaces/user-store.interface'
-import { createFileActions } from './actions/user.actions'
+import { actions } from './actions/user.actions'
 
 const useUserStore = create<IUserState>()(
   persist(
     (set) => {
-      const { setUser, resetUser, updateUser } = createFileActions(set)
+      const { setUser, resetUser, updateUser } = actions(set)
       return {
         user: null,
         isLoggedIn: false,
