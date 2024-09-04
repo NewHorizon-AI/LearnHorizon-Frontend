@@ -4,4 +4,5 @@ export interface IEditArticleState {
   article: IArticleComposite | null
   setArticle: (article: IArticleComposite) => void
   resetArticle: () => void
+  updateArticle: (updates: Partial<IArticleComposite>) => void
 }

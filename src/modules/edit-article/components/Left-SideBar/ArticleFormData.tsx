@@ -12,7 +12,7 @@ import DynamicInput from '../../lib/DynamicInputProps'
 
 // * Importar store de formulario
 import useFormStore from '@/contexts/article/create-article/useFormStore'
-import useArticleStore from '@/contexts/article/edit-article/useEditArticleStore'
+import useArticleStore from '@/contexts/article/edit/index'
 
 const ArticleFormData: React.FC = () => {
   const { title, photo, description, author, category, setField } =

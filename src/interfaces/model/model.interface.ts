@@ -1,4 +1,3 @@
 export interface IModel {
-  articleId: string
-  file?: File
+  file: File
 }

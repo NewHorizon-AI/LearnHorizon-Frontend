@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import useFormStore from '@/contexts/article/create-article/useFormStore'
 
-const ModelControllers: React.FC = () => {
+const ModelTransformation: React.FC = () => {
   const { coordinates, rotationAngles, scale, setField } = useFormStore()
 
   return (
@@ -91,4 +91,4 @@ const ModelControllers: React.FC = () => {
   )
 }
 
-export default ModelControllers
+export default ModelTransformation
