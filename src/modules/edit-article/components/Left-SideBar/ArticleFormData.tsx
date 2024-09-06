@@ -22,12 +22,6 @@ const ArticleFormData: React.FC = () => {
 
   return (
     <div className="space-y-4 ">
-      <div>
-        <h4 className="text-xl font-semibold">Crear un articulo</h4>
-        <p className="text-md">
-          Llena el formulario a continuación para crear una nueva publicación.
-        </p>
-      </div>
       <div className="grid grid-cols-1 gap-4">
         <div>
           <Label htmlFor="title">Título</Label>
