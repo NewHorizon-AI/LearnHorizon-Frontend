@@ -1,6 +1,4 @@
-import { type IModel } from '@/interfaces/model/model.interface'
-
-const getModel = async (articleId: string): Promise<IModel> => {
+const getModel = async (articleId: string): Promise<ArrayBuffer> => {
   const response = await fetch(`/api/model/get/e/${articleId}`)
   if (!response.ok)
     throw new Error(
@@ -9,7 +7,8 @@ const getModel = async (articleId: string): Promise<IModel> => {
 
   const gltfText: string = await response.text()
 
-  const model: IModel = JSON.parse(gltfText)
+  const model: ArrayBuffer = JSON.parse(gltfText)
+
   return model
 }
 

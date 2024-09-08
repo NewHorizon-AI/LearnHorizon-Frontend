@@ -7,7 +7,7 @@ import HeaderContent from './header-contet/HeaderContent'
 const ProfileContent: React.FC = () => {
   return (
     <div className="flex-1 p-6 ">
-      <HeaderContent />
+      {/* <HeaderContent /> */}
       <ArticleList />
     </div>
   )

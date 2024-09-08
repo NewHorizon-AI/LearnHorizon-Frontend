@@ -4,20 +4,42 @@ import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { UploadCloud } from 'lucide-react'
 
-// * Asegúrate de que el nombre de la importación y el path sean correctos
-import useModelStore from '@/contexts/model/index' // Asumiendo que el archivo de store se llama modelStore.js y está en el directorio contexts
+import { type IModel } from '@/interfaces/model/model.interface'
+import { postModel } from '@/lib/apiModel/post/postModel'
 
-const UploadModel: React.FC = () => {
-  const { setModel } = useModelStore()
-  const [fileName, setFileName] = useState('') // Declaración del estado para el nombre del archivo
+interface UploadModelProps {
+  articleId: string
+  setModel: (model: ArrayBuffer) => void
+  setIsLoading: (isLoading: boolean) => void
+}
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files ? event.target.files[0] : null
-    if (file) {
-      setModel(file) // Esto establecerá el modelo en la tienda Zustand
-      setFileName(file.name) // Actualiza el estado local con el nombre del archivo
-    } else {
-      setFileName('') // Reiniciar el nombre del archivo si no hay archivo
+const UploadModel: React.FC<UploadModelProps> = ({
+  articleId,
+  setModel,
+  setIsLoading
+}) => {
+  const [file, setFile] = useState<File | null>(null)
+
+  // Manejar el cambio del input de archivo y automáticamente subir el archivo
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const selectedFile = event.target.files ? event.target.files[0] : null
+    setFile(selectedFile)
+
+    if (selectedFile) {
+      setIsLoading(true)
+      try {
+        // Llamada al backend para subir el modelo
+        const responseModel = await postModel(articleId, selectedFile)
+
+        // Actualiza el estado con el modelo subido
+        setModel(responseModel)
+      } catch (error) {
+        console.error('Error al subir el archivo:', error)
+      } finally {
+        setIsLoading(false)
+      }
     }
   }
 
@@ -27,12 +49,12 @@ const UploadModel: React.FC = () => {
         type="file"
         className="w-full h-full absolute top-0 left-0 opacity-0 cursor-pointer"
         id="file-upload"
-        onChange={handleFileChange}
+        onChange={handleFileChange} // Se llama a handleFileChange automáticamente cuando el usuario selecciona un archivo
       />
       <div className="flex flex-col items-center justify-center h-full w-full pointer-events-none">
         <UploadCloud className="w-12 h-12 text-gray-600 transition-colors duration-300 ease-in-out hover:text-blue-500" />
         <span className="mt-2 text-gray-600 transition-colors duration-300 ease-in-out hover:text-blue-500">
-          {fileName || 'Haz clic aquí para buscar el archivo'}
+          Haz clic aquí para buscar el archivo
         </span>
       </div>
     </div>

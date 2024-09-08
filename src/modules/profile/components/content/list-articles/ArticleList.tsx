@@ -48,8 +48,6 @@ const ArticleList: React.FC = () => {
           <div className="text-center py-4">Cargando...</div>
         ) : (
           articles.map((article, index) => {
-            console.log(article)
-            console.log(index)
             return <ArticleCard key={index} article={article} />
           })
         )}

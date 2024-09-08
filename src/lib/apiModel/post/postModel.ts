@@ -1,30 +1,33 @@
-import { type IPostModel } from '@/interfaces/model/model.interface'
+import { type IModel } from '@/interfaces/model/model.interface'
 
 export const postModel = async (
-  userId: string,
+  articleId: string,
   file: File
-): Promise<IPostModel> => {
+): Promise<IModel> => {
   try {
     const formData = new FormData()
-    formData.append('users', userId)
-    formData.append('file', file)
+    formData.append('file', file) // El archivo
+    formData.append('id', articleId) // El ID asociado al archivo
 
     const response = await fetch('/api/model/post', {
       method: 'POST',
-      body: formData
+      body: formData,
+      headers: {
+        // Aquí no es necesario añadir Content-Type ya que fetch lo gestiona automáticamente para FormData
+      }
     })
 
     if (!response.ok) {
       throw new Error(`Error ${response.status}: ${response.statusText}`)
     }
 
-    const data: IPostModel = await response.json()
+    const data = await response.json()
     return data
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.error('Error uploading GLTF file:', error.message)
-      throw new Error(`Fetch error: ${error.message}`)
+      console.error('Error al subir el archivo:', error.message)
+      throw new Error(`Error al realizar la petición: ${error.message}`)
     }
-    throw new Error('Unknown error occurred during GLTF file upload')
+    throw new Error('Error desconocido al subir el archivo')
   }
 }

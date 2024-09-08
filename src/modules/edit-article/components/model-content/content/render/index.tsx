@@ -1,21 +1,26 @@
 'use client'
 
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { type IModel } from '@/interfaces/model/model.interface'
+import LoadingScreen from '@/components/loading/LoadingScreen'
 
 interface ThreeModelProps {
-  modelData: ArrayBuffer // Ahora pasamos el archivo como un ArrayBuffer
+  model: ArrayBuffer
 }
 
-const ThreeModel: React.FC<ThreeModelProps> = ({ modelData }) => {
+const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
   const mountRef = useRef<HTMLDivElement>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true) // Estado para manejar la pantalla de carga
 
   useEffect(() => {
-    if (!modelData || modelData.byteLength === 0) {
-      console.error('Error: modelData está vacío o es inválido.')
+    if (!model || model.byteLength === 0) {
+      console.error('Error: model está vacío o es inválido.')
+
+      setIsLoading(false)
       return
     }
 
@@ -31,9 +36,17 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ modelData }) => {
     )
     const renderer = new THREE.WebGLRenderer({ antialias: true })
 
+    if (mountRef.current) {
+      // Establecer el tamaño después de que el DOM esté completamente disponible
+      const width = mountRef.current.clientWidth
+      const height = mountRef.current.clientHeight
+      renderer.setSize(width, height)
+      renderer.setPixelRatio(window.devicePixelRatio)
+    }
+
     renderer.setSize(
-      mountRef.current?.clientWidth || window.innerWidth,
-      mountRef.current?.clientHeight || window.innerHeight
+      mountRef.current?.clientWidth ?? window.innerWidth,
+      mountRef.current?.clientHeight ?? window.innerHeight
     )
     renderer.setPixelRatio(window.devicePixelRatio) // Asegura que la resolución sea buena
 
@@ -55,12 +68,12 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ modelData }) => {
     // Configurar la cámara
     camera.position.z = 5
 
-    // Cargar el modelo GLTF desde el ArrayBuffer utilizando GLTFLoader.parse()
-    const loadModel = () => {
+    // Cargar el modelo GLTF desde el IModel | undefined utilizando GLTFLoader.parse()
+    const loadModel = (): void => {
       const loader = new GLTFLoader()
 
       loader.parse(
-        modelData, // El archivo binario (ArrayBuffer)
+        model,
         '', // La URL base (dejamos vacía porque ya tenemos el archivo)
         (gltf) => {
           const model = gltf.scene
@@ -76,9 +89,11 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ modelData }) => {
 
           scene.add(model) // Añadir el modelo a la escena
           animate() // Iniciar la animación
+          setIsLoading(false) // Deja de cargar cuando el modelo está listo
         },
         (error) => {
           console.error('Error al parsear el modelo:', error)
+          setIsLoading(false) // Deja de cargar si hay un error
         }
       )
     }
@@ -111,9 +126,20 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ modelData }) => {
         mountRef.current.removeChild(renderer.domElement)
       }
     }
-  }, [modelData]) // El useEffect dependerá de modelData para recargar el modelo si cambia
+  }, [model]) // El useEffect dependerá de model para recargar el modelo si cambia
 
-  return <div ref={mountRef} className="w-full h-full" /> // Tailwind CSS aplicado para ajustar el contenedor y fondo blanco
+  return (
+    <div ref={mountRef} className="w-full h-full">
+      {isLoading && (
+        <LoadingScreen
+          message="Cargando modelo 3D..."
+          spinnerSize="lg"
+          bgColor="bg-gray-100"
+          textColor="text-gray-800"
+        />
+      )}
+    </div>
+  )
 }
 
 export default ThreeModel

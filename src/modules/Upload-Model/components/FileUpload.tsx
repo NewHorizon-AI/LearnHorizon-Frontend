@@ -32,7 +32,7 @@ const FileUpload: React.FC = () => {
     if (fileExists != null) {
       const result = parseFile(fileExists)
       // setField('alert', result.alert)
-      console.log(result.alert)
+
       if (result.valid) {
         setField('file', fileExists)
 

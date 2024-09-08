@@ -12,7 +12,7 @@ const useRegisterUserForm = () => {
 
   const handleChange = (event: { target: { name: any; value: any } }): void => {
     const { name, value } = event.target
-    console.log(name, value)
+
     updateArticle({ [name]: value })
   }
 

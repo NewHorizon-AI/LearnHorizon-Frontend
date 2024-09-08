@@ -10,7 +10,7 @@ const useUserForm = () => {
 
   const handleChange = (event: { target: { name: any; value: any } }): void => {
     const { name, value } = event.target
-    console.log(name, value)
+
     updateUser({ [name]: value })
   }
 

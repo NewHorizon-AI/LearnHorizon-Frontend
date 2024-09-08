@@ -1,5 +1,5 @@
 export interface IModel {
-  file: File
+  file: ArrayBuffer
 }
 
 export interface IPostModel extends IModel {

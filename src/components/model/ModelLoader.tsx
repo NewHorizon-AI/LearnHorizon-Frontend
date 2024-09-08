@@ -20,11 +20,7 @@ const ModelLoader: React.FC<ModelLoaderProps> = ({ onModelLoad }) => {
       onModelLoad(model)
     }
 
-    const handleProgress = (xhr: ProgressEvent<EventTarget>): void => {
-      console.log(
-        `Modelo cargando: ${(xhr.loaded / xhr.total) * 100}% completado`
-      )
-    }
+    const handleProgress = (xhr: ProgressEvent<EventTarget>): void => {}
 
     const handleError = (error: ErrorEvent): void => {
       console.error('Error al cargar el modelo:', error)

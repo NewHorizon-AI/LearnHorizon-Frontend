@@ -11,7 +11,7 @@ const ModelContent: React.FC<ModelContentProps> = ({ articleId }) => {
   return (
     <div className="flex flex-row w-full">
       {/* Asigna un ancho de, por ejemplo, 2/3 para Content */}
-      <div className="w-3/4">
+      <div className="w-3/4 bg-black">
         <Content articleId={articleId} />
       </div>
       {/* Asigna el resto (1/3) para Transformation */}

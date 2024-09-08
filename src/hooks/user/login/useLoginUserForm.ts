@@ -6,7 +6,7 @@ const useLoginUserForm = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target
-    console.log(name, value) // Opcional, para depuración
+
     if (name === 'identifier') {
       // Decide si es email o username basado en la presencia de '@'
       const key = value.includes('@') ? 'email' : 'username'
