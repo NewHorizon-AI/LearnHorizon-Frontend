@@ -11,7 +11,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <>
       <Header />
-      {children}
+      <main className="min-h-screen">{children}</main>
       <Footer />
     </>
   )

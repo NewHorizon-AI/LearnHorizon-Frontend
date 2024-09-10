@@ -1,4 +1,5 @@
 import React from 'react'
+import ArticleModule from '@/modules/article/index'
 
 interface ArticlePageProps {
   params: {
@@ -7,7 +8,7 @@ interface ArticlePageProps {
 }
 
 const ArticlePage: React.FC<ArticlePageProps> = ({ params }) => {
-  return <div>{params.articleId}</div>
+  return <ArticleModule articleId={params.articleId} />
 }
 
 export default ArticlePage

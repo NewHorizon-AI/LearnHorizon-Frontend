@@ -13,6 +13,9 @@ import useUserGetStore from '@/contexts/api/get-user-store/index'
 // * Importar fetcher
 import { fetchUserProfileData } from '@/lib/apiUser/getUser'
 
+// * Importar vista de carga
+import LoadingScreen from '@/components/loading/LoadingScreen'
+
 interface ViewProfileProps {
   username: string
 }
@@ -43,7 +46,7 @@ const ViewProfile: React.FC<ViewProfileProps> = ({ username }) => {
     return (
       <MainLayout>
         <div className="flex justify-center items-center h-screen">
-          <p>Cargando...</p>
+          <LoadingScreen />
         </div>
       </MainLayout>
     )
@@ -52,7 +55,7 @@ const ViewProfile: React.FC<ViewProfileProps> = ({ username }) => {
   // Renderizar el contenido una vez que se hayan obtenido los datos
   return (
     <MainLayout>
-      <div className="flex">
+      <div className="flex min-h-screen">
         <Sidebar />
         <Content />
       </div>
