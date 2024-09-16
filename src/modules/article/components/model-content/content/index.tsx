@@ -3,7 +3,7 @@
 
 import React, { useEffect, useCallback, useState } from 'react'
 
-import UploadModel from './upload/UploadModel'
+// import UploadModel from './upload/UploadModel'
 import RenderModel from './render/index'
 import LoadingScreen from '@/components/loading/LoadingScreen'
 

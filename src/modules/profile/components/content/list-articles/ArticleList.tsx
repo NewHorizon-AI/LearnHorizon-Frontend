@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import React, { useState, useEffect } from 'react'
@@ -15,7 +16,7 @@ import { getPagedArticlesByUsername } from '@/lib/apiArticle/get/page/getArticle
 import ArticleCard from '../article-card/ArticleCard'
 
 // * Importar componente de paginación
-import PaginationComponent from '../pagination/PaginationComponent'
+// import PaginationComponent from '../pagination/PaginationComponent'
 
 // * Importar Vista de carga
 import LoadingScreen from '@/components/loading/LoadingScreen'

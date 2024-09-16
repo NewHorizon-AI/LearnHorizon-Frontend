@@ -1,9 +1,7 @@
-import { type IModel } from '@/interfaces/model/model.interface'
-
 export const postModel = async (
   articleId: string,
   file: File
-): Promise<IModel> => {
+): Promise<ArrayBuffer> => {
   try {
     const formData = new FormData()
     formData.append('file', file) // El archivo

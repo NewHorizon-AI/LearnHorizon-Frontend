@@ -14,7 +14,7 @@ import {
 
 export default function ArticleExplorer({
   articles,
-  setArticles,
+  // setArticles,
   categories,
   loadingArticles,
   errorArticles,

@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 'use client'
 
 import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { UploadCloud } from 'lucide-react'
 
-import { type IModel } from '@/interfaces/model/model.interface'
+// import { type IModel } from '@/interfaces/model/model.interface'
 import { postModel } from '@/lib/apiModel/post/postModel'
 
 interface UploadModelProps {

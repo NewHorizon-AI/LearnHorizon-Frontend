@@ -1,5 +1,5 @@
 import useFormStore from '../useFormStore'
-import { sendArticleData } from '@/services/articles/create-article/create-article.service'
+// import { sendArticleData } from '@/services/articles/create-article/create-article.service'
 
 export const handleSubmit = async (e: React.FormEvent): Promise<void> => {
   e.preventDefault()
@@ -14,8 +14,8 @@ export const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     objectName,
     coordinates,
     rotationAngles,
-    scale,
-    file
+    scale
+    // file
   } = useFormStore.getState()
   const payload = {
     publication: {

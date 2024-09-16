@@ -2,7 +2,7 @@ import React from 'react'
 
 // * Importar componentes necesarios
 import ArticleList from './list-articles/ArticleList'
-import HeaderContent from './header-contet/HeaderContent'
+// import HeaderContent from './header-contet/HeaderContent'
 
 const ProfileContent: React.FC = () => {
   return (

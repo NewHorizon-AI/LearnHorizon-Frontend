@@ -11,7 +11,7 @@ interface CoordinatesDisplayProps {
 
 const CoordinatesDisplay: React.FC<CoordinatesDisplayProps> = ({
   model,
-  frame,
+  // frame,
   onPositionChange,
   onRotationChange
 }) => {
