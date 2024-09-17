@@ -1,4 +1,4 @@
-import { type IUser } from '@/interfaces/IBackend'
+import { type IUser } from '@/interfaces/user/user.interface'
 
 export interface IUserState {
   user: IUser | null

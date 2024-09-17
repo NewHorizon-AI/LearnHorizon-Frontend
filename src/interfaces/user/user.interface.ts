@@ -2,10 +2,13 @@
 export interface IUser {
   _id: string
   username: string // Nombre de usuario
-  last_login?: Date // ? Fecha del último inicio de sesión
   email: string // Correo electrónico
+  last_login?: Date // ? Fecha del último inicio de sesión
   password: string // Contraseña
 }
+
+// * Interfaz para crear un usuario
+export interface IPostUser extends Omit<IUser, '_id' | 'last_login'> {}
 
 // * Interface para UserProfile
 export interface IUserProfile {

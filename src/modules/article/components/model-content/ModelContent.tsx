@@ -3,8 +3,11 @@
 
 import React, { useEffect, useCallback, useState } from 'react'
 
-// import UploadModel from './upload/UploadModel'
-import RenderModel from './render/index'
+import RenderModel from './model/ThreeModel'
+
+// * Importar nuevo render de modelo
+import { ThreeModel } from '@/modules/model'
+
 import LoadingScreen from '@/components/loading/LoadingScreen'
 
 // Petición para obtener un modelo
@@ -15,7 +18,6 @@ interface ModelHandlerProps {
 }
 
 const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
-  const [isModelLoaded, setIsModelLoaded] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(true) // Estado de carga
   const [model, setModel] = useState<ArrayBuffer>()
 
@@ -25,7 +27,6 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
       const response: ArrayBuffer = await getModel(articleId)
 
       setModel(response)
-      setIsModelLoaded(true)
     } catch (error) {
       console.error('No se encontro modelo')
     } finally {
@@ -47,10 +48,9 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
           bgColor="bg-gray-100"
           textColor="text-gray-800"
         />
-      ) : isModelLoaded ? (
-        <RenderModel model={model} />
       ) : (
-        <div>No se ha podido cargar correctamente</div>
+        // <RenderModel model={model} />
+        <ThreeModel model={model} />
       )}
     </div>
   )

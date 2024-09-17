@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Content from '../model-content/index'
+import Content from '../model-content/ModelContent'
 
 interface DisplayModelProps {
   articleId: string
