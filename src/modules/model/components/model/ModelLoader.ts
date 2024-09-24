@@ -1,7 +1,7 @@
 import type * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
-const loadModel = async (modelData: ArrayBuffer): Promise<THREE.Group> => {
+const LoadModel = async (modelData: ArrayBuffer): Promise<THREE.Group> => {
   return await new Promise((resolve, reject) => {
     const loader = new GLTFLoader()
     loader.parse(
@@ -20,4 +20,4 @@ const loadModel = async (modelData: ArrayBuffer): Promise<THREE.Group> => {
   })
 }
 
-export default loadModel
+export default LoadModel

@@ -8,12 +8,12 @@ import React, { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three'
 
 import {
-  createScene,
+  CreateScene,
   CreateCamera,
-  createRenderer,
-  createControls,
-  addLights,
-  loadModel,
+  CreateRenderer,
+  CreateControls,
+  AddLights,
+  LoadModel,
   ModelController,
   ControlPanel,
   CameraController
@@ -64,7 +64,7 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
 
       const height = mountRef.current.clientHeight
 
-      scene = createScene()
+      scene = CreateScene()
 
       // ! Crear la cámara, el renderizador y los controles.
       // TODO: Reemplazar por los datos de la cámara obtenidos de la API
@@ -72,18 +72,18 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
       cameraData.width = width
 
       camera = CreateCamera(cameraData)
-      renderer = createRenderer(width, height)
+      renderer = CreateRenderer(width, height)
       mountRef.current.appendChild(renderer.domElement)
 
-      addLights(scene)
-      controls = createControls(camera, renderer)
+      AddLights(scene)
+      controls = CreateControls(camera, renderer)
 
       // Asignar el cameraController a la referencia
       cameraControllerRef.current = new CameraController(camera)
       setCameraPosition(camera.position.clone())
 
       try {
-        const loadedModel = await loadModel(model)
+        const loadedModel = await LoadModel(model)
         scene.add(loadedModel)
 
         const helper = new THREE.BoxHelper(loadedModel, 0xff0000)
