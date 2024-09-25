@@ -7,17 +7,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three'
 
-import {
-  CreateScene,
-  CreateCamera,
-  CreateRenderer,
-  CreateControls,
-  AddLights,
-  LoadModel,
-  ModelController,
-  ControlPanel,
-  CameraController
-} from '../components/index'
+import * as COMPONENTS from '../components/index'
 
 import LoadingScreen from '@/components/loading/LoadingScreen'
 import { Button } from '@/components/ui/button'
@@ -41,8 +31,8 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
   )
 
   // Usar useRef para los controladores
-  const cameraControllerRef = useRef<CameraController | null>(null)
-  const modelControllerRef = useRef<ModelController | null>(null)
+  const cameraControllerRef = useRef<COMPONENTS.CameraController | null>(null)
+  const modelControllerRef = useRef<COMPONENTS.ModelController | null>(null)
 
   useEffect(() => {
     if (!model || model.byteLength === 0) {
@@ -64,33 +54,33 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
 
       const height = mountRef.current.clientHeight
 
-      scene = CreateScene()
+      scene = COMPONENTS.CreateScene()
 
       // ! Crear la cámara, el renderizador y los controles.
       // TODO: Reemplazar por los datos de la cámara obtenidos de la API
       cameraData.height = height
       cameraData.width = width
 
-      camera = CreateCamera(cameraData)
-      renderer = CreateRenderer(width, height)
+      camera = COMPONENTS.CreateCamera(cameraData)
+      renderer = COMPONENTS.CreateRenderer(width, height)
       mountRef.current.appendChild(renderer.domElement)
 
-      AddLights(scene)
-      controls = CreateControls(camera, renderer)
+      COMPONENTS.AddLights(scene)
+      controls = COMPONENTS.CreateControls(camera, renderer)
 
       // Asignar el cameraController a la referencia
-      cameraControllerRef.current = new CameraController(camera)
+      cameraControllerRef.current = new COMPONENTS.CameraController(camera)
       setCameraPosition(camera.position.clone())
 
       try {
-        const loadedModel = await LoadModel(model)
+        const loadedModel = await COMPONENTS.LoadModel(model)
         scene.add(loadedModel)
 
         const helper = new THREE.BoxHelper(loadedModel, 0xff0000)
         scene.add(helper)
 
         // Asignar el modelController a la referencia
-        modelControllerRef.current = new ModelController(loadedModel)
+        modelControllerRef.current = new COMPONENTS.ModelController(loadedModel)
         setModelPosition(loadedModel.position.clone())
 
         setIsLoading(false)
@@ -183,7 +173,7 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
       {/* Panel de control */}
       {showControlPanel && (
         <div className="w-64">
-          <ControlPanel
+          <COMPONENTS.ControlPanel
             cameraPosition={cameraPosition}
             modelPosition={modelPosition}
             onCameraChange={handleCameraChange}
