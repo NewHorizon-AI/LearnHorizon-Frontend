@@ -1,7 +1,7 @@
 import type * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-const CreateControls = (
+const CreateOrbitControl = (
   camera: THREE.Camera,
   renderer: THREE.WebGLRenderer
 ): OrbitControls => {
@@ -10,4 +10,4 @@ const CreateControls = (
   return controls
 }
 
-export default CreateControls
+export default CreateOrbitControl

@@ -1,4 +1,13 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
+
+/*
+TODO: Mejorar la implementacion de la subida de archivos
+* No cargar un modelo la primera vez que se entra
+* Mejorar implementacion de pantallas de carga
+* Mejorar la implementacion de la subida de modelos
+* Revisar manejo de estados y useEffect
+*/
+
 'use client'
 
 import React, { useEffect, useCallback, useState } from 'react'
@@ -31,7 +40,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
     } finally {
       setIsLoading(false)
     }
-  }, [articleId])
+  }, [articleId, isModelLoaded])
 
   // useEffect para cargar el modelo cuando el componente se monta
   useEffect(() => {
@@ -54,6 +63,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
           articleId={articleId}
           setModel={setModel}
           setIsLoading={setIsLoading}
+          setIsModelLoaded={setIsModelLoaded}
         />
       )}
     </div>

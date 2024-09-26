@@ -22,8 +22,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     nestFormData.append('id', articleId)
 
     const response = await apiClient.post('/upload/model', nestFormData)
+
     // Si el backend de NestJS responde con error, devolvemos el error
-    if (!response.ok) {
+    if (response.status < 200 || response.status >= 300) {
       const errorMessage = `Error en el backend: ${response.status} ${response.statusText}`
       console.error(errorMessage)
       return NextResponse.json(
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       )
     }
 
-    const responseData = await response.json()
+    const responseData = response.data
     return NextResponse.json(responseData)
   } catch (error: any) {
     console.error('Error en POST:', error.message)

@@ -15,14 +15,13 @@ interface UploadModelProps {
   articleId: string
   setModel: (model: ArrayBuffer) => void
   setIsLoading: (isLoading: boolean) => void
+  setIsModelLoaded: (isModelLoaded: boolean) => void
 }
 
-const UploadModel: React.FC<UploadModelProps> = ({
-  articleId,
-  setModel,
-  setIsLoading
-}) => {
+const UploadModel: React.FC<UploadModelProps> = (props) => {
   const [file, setFile] = useState<File | null>(null)
+
+  const { setIsModelLoaded, articleId, setModel, setIsLoading } = props
 
   // Manejar el cambio del input de archivo y automáticamente subir el archivo
   const handleFileChange = async (
@@ -32,17 +31,18 @@ const UploadModel: React.FC<UploadModelProps> = ({
     setFile(selectedFile)
 
     if (selectedFile) {
-      setIsLoading(true)
+      props.setIsLoading(true)
       try {
         // Llamada al backend para subir el modelo
-        const responseModel = await postModel(articleId, selectedFile)
+        const responseModel = await postModel(props.articleId, selectedFile)
 
         // Actualiza el estado con el modelo subido
-        setModel(responseModel)
+        props.setModel(responseModel)
       } catch (error) {
         console.error('Error al subir el archivo:', error)
       } finally {
-        setIsLoading(false)
+        props.setIsLoading(false)
+        props.setIsModelLoaded(true)
       }
     }
   }

@@ -1,2 +1,2 @@
 export { default as CameraController } from './CameraController'
-export { default as CameraComponent } from './CameraComponent'
+export { default as CreateCamera } from './CreateCamera'

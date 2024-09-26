@@ -3,7 +3,7 @@ import { type CameraProps } from '../interfaces/camera.interface'
 const defaultCameraProps: CameraProps = {
   width: 800,
   height: 600,
-  fov: 75,
+  fov: 60,
   near: 0.1,
   far: 1000,
   position: {
