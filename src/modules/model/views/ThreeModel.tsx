@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button'
 
 // * Importar datos de ejemplo para la camara
 import cameraData from '@/data/model/camera/camera.example.json'
+import trasnformationData from '@/data/model/transformation/transformation.example.json'
 
 interface ThreeModelProps {
   model: ArrayBuffer | undefined
@@ -51,7 +52,6 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
       if (!mountRef.current) return
 
       const width = mountRef.current.clientWidth
-
       const height = mountRef.current.clientHeight
 
       scene = COMPONENTS.CreateScene()
@@ -61,19 +61,28 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
       cameraData.height = height
       cameraData.width = width
 
-      camera = COMPONENTS.CreateCamera(cameraData)
       renderer = COMPONENTS.CreateRenderer(width, height)
+
+      const clock = new THREE.Clock()
+
+      camera = COMPONENTS.CreateCamera(cameraData)
+
       mountRef.current.appendChild(renderer.domElement)
 
+      controls = COMPONENTS.CreateOrbitControl(camera, renderer)
+
       COMPONENTS.AddLights(scene)
-      controls = COMPONENTS.CreateControls(camera, renderer)
 
       // Asignar el cameraController a la referencia
       cameraControllerRef.current = new COMPONENTS.CameraController(camera)
       setCameraPosition(camera.position.clone())
 
       try {
-        const loadedModel = await COMPONENTS.LoadModel(model)
+        const loadedModel = await COMPONENTS.LoadAndTransformModel(
+          model,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+          trasnformationData
+        )
         scene.add(loadedModel)
 
         const helper = new THREE.BoxHelper(loadedModel, 0xff0000)
@@ -87,7 +96,8 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
 
         const animate = () => {
           animationId = requestAnimationFrame(animate)
-          controls.update()
+          const delta = clock.getDelta()
+          controls.update(delta)
           renderer.render(scene, camera)
         }
         animate()
@@ -149,8 +159,8 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
   }
 
   return (
-    <div className="w-full h-full flex relative">
-      <div ref={mountRef} className="flex-1">
+    <div className="relative w-full h-full">
+      <div ref={mountRef} className="w-full h-full">
         {isLoading && (
           <LoadingScreen
             message="Cargando modelo 3D..."
@@ -161,7 +171,7 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
         )}
       </div>
       {/* Botón para mostrar/ocultar el panel */}
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-4 right-4 z-20">
         <Button
           onClick={() => {
             setShowControlPanel(!showControlPanel)
@@ -170,9 +180,9 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
           {showControlPanel ? 'Ocultar Controles' : 'Mostrar Controles'}
         </Button>
       </div>
-      {/* Panel de control */}
+      {/* Panel de control superpuesto */}
       {showControlPanel && (
-        <div className="w-64">
+        <div className="absolute top-0 right-0 w-64 h-full bg-white shadow-md z-10 p-4 overflow-auto">
           <COMPONENTS.ControlPanel
             cameraPosition={cameraPosition}
             modelPosition={modelPosition}

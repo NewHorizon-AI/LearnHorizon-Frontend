@@ -7,13 +7,10 @@ const CreateFlyControls = (
 ): FlyControls => {
   const controls = new FlyControls(camera, renderer.domElement)
 
-  // Configurar las propiedades del control según tus necesidades
-  controls.movementSpeed = 1 // Velocidad de movimiento
-  controls.rollSpeed = 0.005 // Velocidad de rotación
-  controls.dragToLook = false // Permite mirar alrededor arrastrando el mouse
-  controls.autoForward = false // Movimiento automático hacia adelante
-
-  controls.update()
+  // Configuración de controles
+  controls.movementSpeed = 10 // Aumentar la velocidad de movimiento para que sea más instantáneo
+  controls.rollSpeed = 1 // Ajustar la velocidad de rotación
+  controls.dragToLook = true // Permite mover la cámara con el mouse
 
   return controls
 }

@@ -1,2 +1,2 @@
 export { default as ModelController } from './ModelController'
-export { default as ModelLoader } from './ModelLoader'
+export { default as LoadAndTransformModel } from './LoadAndTransformModel'
