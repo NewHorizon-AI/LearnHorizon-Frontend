@@ -23,7 +23,6 @@ export async function GET(req: NextApiRequest): Promise<NextResponse> {
       'Content-Disposition': `attachment; filename="${articleId}.model"`
     })
 
-
     return new NextResponse(blob, { headers })
   } catch (error: any) {
     return new NextResponse(JSON.stringify({ message: error.message }), {
