@@ -2,7 +2,6 @@ export * from './camera'
 export * from './controls'
 export * from './model'
 
-// TODO: Actualizar las exportaciones con el formato de arriba
 export { default as CreateControls } from './controls/OrbitControl'
 export { default as AddLights } from './lights/LightsComponent'
 

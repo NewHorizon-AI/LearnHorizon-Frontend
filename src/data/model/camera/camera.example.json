@@ -1,6 +1,7 @@
 {
   "width": 800,
   "height": 600,
+
   "fov": 60,
   "near": 0.5,
   "far": 500,
@@ -8,5 +9,16 @@
     "x": 10,
     "y": 5,
     "z": 15
-  }
+  },
+  "lookAt": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "rotation": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "cameraType": "perspective"
 }

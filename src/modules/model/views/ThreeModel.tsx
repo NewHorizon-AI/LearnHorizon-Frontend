@@ -12,9 +12,10 @@ import * as COMPONENTS from '../components/index'
 import LoadingScreen from '@/components/loading/LoadingScreen'
 import { Button } from '@/components/ui/button'
 
-// * Importar datos de ejemplo para la camara
+// * Importar datos de ejemplo
 import cameraData from '@/data/model/camera/camera.example.json'
 import trasnformationData from '@/data/model/transformation/transformation.example.json'
+import SceneData from '@/data/model/scene/scene-grid-settings.example.json'
 
 interface ThreeModelProps {
   model: ArrayBuffer | undefined
@@ -54,7 +55,7 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
       const width = mountRef.current.clientWidth
       const height = mountRef.current.clientHeight
 
-      scene = COMPONENTS.CreateScene()
+      scene = COMPONENTS.CreateScene(SceneData)
 
       // ! Crear la cámara, el renderizador y los controles.
       // TODO: Reemplazar por los datos de la cámara obtenidos de la API

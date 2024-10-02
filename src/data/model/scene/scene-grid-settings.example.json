@@ -1,0 +1,27 @@
+{
+  "backgroundColor": "#ffffff",
+  "size": 20,
+  "divisions": 15,
+  "activarEjes": {
+    "X": true,
+    "Y": false,
+    "Z": true
+  },
+  "gridVisible": true,
+  "axisColors": {
+    "X": "#ff0000",
+    "Y": "#00ff00",
+    "Z": "#0000ff"
+  },
+  "gridPosition": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "gridRotation": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "gridOpacity": 1.0
+}
