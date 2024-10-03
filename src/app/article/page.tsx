@@ -1,3 +1,10 @@
+import React from 'react'
+
+const ArticlePage: React.FC = () => {
+  return <div>ArticlePage</div>
+}
+
+export default ArticlePage
 // 'use client'
 
 // import React, { useState, useEffect, Suspense } from 'react'

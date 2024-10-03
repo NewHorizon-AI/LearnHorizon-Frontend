@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import ModelRender from '@/modules/3D-Model-Render/3DModelRender.tsx'
+import ModelRender from '@/modules/model-render/3DModelRender.tsx'
 
 const FileView: React.FC = () => {
   return (

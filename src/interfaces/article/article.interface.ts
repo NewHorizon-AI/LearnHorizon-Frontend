@@ -3,7 +3,7 @@ export interface IArticle {
   _id: string
   title: string
   status: string
-  users: string[]
+  users: 'published' | 'draft' | 'deleted'
 }
 
 export interface IArticleData {
@@ -34,4 +34,15 @@ export interface IArticleComposite {
   data?: IArticleData
   markdown?: IArticleMarkdown
   transformation?: IArticleTransformation
+}
+
+// export interface IArticleComposite extends IArticle {
+//   data?: IArticleData
+//   markdown?: IArticleMarkdown
+//   transformation?: IArticleTransformation
+// }
+
+// * Interfaz para un articulo con datos
+export interface IArticleWithData extends IArticle {
+  data: IArticleData
 }

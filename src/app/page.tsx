@@ -1,9 +1,13 @@
 import React from 'react'
 
-import LandingPage from '@/modules/Landing-Page/LandingPage'
+import Landing from '@/modules/landing/index'
 
-const Landing: React.FC = () => {
-  return <LandingPage />
+const LandingPage: React.FC = () => {
+  /*
+   TODO: Refactorizar la estrucutra de carpeta y archivos
+   
+   */
+  return <Landing />
 }
 
-export default Landing
+export default LandingPage

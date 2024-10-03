@@ -9,7 +9,7 @@ import { type IModel } from '@/interfaces/model/model.interface'
 // Importacion del estado de creacion de un articulo
 import useFormStore from '@/contexts/article/create-article/useFormStore'
 import useModelStore from '@/contexts/modelStore/edit-model/index'
-import useArticleStore from '@/contexts/article/edit-article/useArticleStore'
+import useArticleStore from '@/contexts/article/edit-article/useEditArticleStore'
 
 import { Input } from '@/components/ui/input'
 
@@ -32,7 +32,7 @@ const FileUpload: React.FC = () => {
     if (fileExists != null) {
       const result = parseFile(fileExists)
       // setField('alert', result.alert)
-      console.log(result.alert)
+
       if (result.valid) {
         setField('file', fileExists)
 
