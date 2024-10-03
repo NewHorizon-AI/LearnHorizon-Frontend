@@ -28,14 +28,14 @@ Contiene todos los componentes y vistas relacionados con el perfil de usuario.
 Para usar la vista del perfil en una aplicación, puedes importar `ViewProfile` desde el módulo `profile` como se muestra a continuación:
 
 ```tsx
-import { ViewProfile } from './profile';
+import { ViewProfile } from './profile'
 
 function App() {
   return (
     <div>
       <ViewProfile />
     </div>
-  );
+  )
 }
 ```
 
@@ -44,15 +44,16 @@ function App() {
 Para mejorar el rendimiento, especialmente en aplicaciones grandes, puedes implementar lazy loading para la vista del perfil usando `React.lazy` y `Suspense` de React:
 
 ```tsx
-import React, { Suspense } from 'react';
-const ViewProfile = React.lazy(() => import('./profile/components/view-profile/ViewProfile'));
+import React, { Suspense } from 'react'
+const ViewProfile = React.lazy(
+  () => import('./profile/components/view-profile/ViewProfile')
+)
 
 function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <ViewProfile />
     </Suspense>
-  );
+  )
 }
 ```
-
