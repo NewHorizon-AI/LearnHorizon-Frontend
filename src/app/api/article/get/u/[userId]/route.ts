@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { NextResponse } from 'next/server'
 import apiClient from '@/lib/apiClient/apiClient'
 
@@ -44,7 +45,7 @@ export async function GET(
 
   try {
     const response = await apiClient.get<IArticleWithData[]>(
-      `/articles/u/${userId}`,
+      `/article/u/${userId}`,
       {
         params: {
           page,
@@ -58,6 +59,6 @@ export async function GET(
 
     return new NextResponse(JSON.stringify(data), { status: 200 })
   } catch (error: any) {
-    return new NextResponse('Error fetching user', { status: 500 })
+    return new NextResponse(error.message, { status: 500 })
   }
 }
