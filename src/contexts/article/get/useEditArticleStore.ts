@@ -25,18 +25,3 @@ const useEditArticleStore = create<IEditArticleState>()(
 )
 
 export default useEditArticleStore
-
-// ({
-//       article: null,
-//       setArticle: (article) => {
-//         set({ article })
-//       },
-//       resetArticle: () => {
-//         set({ article: null })
-//       }
-//     }),
-//     {
-//       name: 'article-storage', // nombre del item en el almacenamiento local
-//       getStorage: () => localStorage // especifica dónde se almacena el estado
-//     }
-//   )

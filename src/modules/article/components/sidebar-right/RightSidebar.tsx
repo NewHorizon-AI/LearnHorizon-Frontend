@@ -3,7 +3,7 @@ import React from 'react'
 
 function RightSidebar(): React.JSX.Element {
   return (
-    <aside className="w-full md:w-64 border-t md:border-l border-border p-4">
+    <aside className="w-full md:w-64 border-t md:border-l border-border p-4 hidden md:block">
       <div className="mb-6">
         <img
           src="/placeholder.svg?height=200&width=200"

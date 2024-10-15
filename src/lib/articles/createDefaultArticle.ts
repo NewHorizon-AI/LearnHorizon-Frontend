@@ -4,7 +4,7 @@ export const createDefaultArticle = async (
   _id?: string
 ): Promise<IArticleComposite> => {
   try {
-    const response = await fetch('/api/article/create/default', {
+    const response = await fetch('/api/articles/create/default', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

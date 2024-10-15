@@ -13,7 +13,9 @@ export const actions = (set: any): any => ({
   },
   updateUser: (updates: Partial<IUser>) => {
     set((state: any) => ({
-      user: { ...state.user, ...updates }
+      ...state,
+      user: { ...state.user, ...updates },
+      isLoggedIn: updates !== null
     }))
   },
   resetUser: () => {

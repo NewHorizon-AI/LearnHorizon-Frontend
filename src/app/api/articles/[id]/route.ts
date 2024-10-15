@@ -35,7 +35,7 @@ export async function GET(
   }
 
   try {
-    const response = await apiClient.get(`/articles/details/${articleId}`)
+    const response = await apiClient.get(`/articles/v2/${articleId}`)
 
     const article: IArticleComposite = response.data
 

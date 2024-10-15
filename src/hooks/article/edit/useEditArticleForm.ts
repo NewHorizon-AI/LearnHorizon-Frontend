@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 // import useUserStore from '@/contexts/user-store/useUserStore'
 
-import useEditArticleStore from '@/contexts/article/edit'
+import useEditArticleStore from '@/contexts/article/get'
 
 const useRegisterUserForm = () => {
   /*

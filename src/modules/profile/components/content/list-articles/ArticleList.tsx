@@ -4,13 +4,13 @@
 import React, { useState, useEffect } from 'react'
 
 // * Importar Interfaces
-import { type IArticleWithData } from '@/interfaces/article/article.interface'
+import { type IArticle } from '@/interfaces/article/article.interface'
 
 // * Importar estado global del usuario
 import useUserGetStore from '@/contexts/api/get-user-store/index'
 
 // * Importar getter de artículos paginados
-import { getPagedArticlesByUsername } from '@/lib/apiArticle/get/page/getArticleByUserAndPage'
+import { getArticlesByUser } from '@/lib/articles/getArticlesByUser'
 
 // * Importar componente de tarjeta de artículo
 import ArticleCard from '../article-card/ArticleCard'
@@ -24,7 +24,7 @@ import LoadingScreen from '@/components/loading/LoadingScreen'
 const ArticleList: React.FC = () => {
   // TODO: Implementar correctamente la pagina de articulos del usuario
 
-  const [articles, setArticles] = useState<IArticleWithData[]>([])
+  const [articles, setArticles] = useState<IArticle[]>([])
 
   const [currentPage, setCurrentPage] = useState(1)
   const [loading, setLoading] = useState(true)
@@ -37,11 +37,11 @@ const ArticleList: React.FC = () => {
       setLoading(true)
 
       try {
-        const data: IArticleWithData[] = await getPagedArticlesByUsername(
-          user?._id,
-          currentPage,
-          postsPerPage,
-          'ascendant'
+        const data: IArticle[] = await getArticlesByUser(
+          user?._id
+          // currentPage,
+          // postsPerPage,
+          // 'ascendant'
         )
 
         setArticles(data)

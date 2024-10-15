@@ -5,7 +5,7 @@ import React, { useEffect } from 'react'
 import { MarkdownContent, Sidebar, ModelContent } from '../components'
 
 import { getEditArticle } from '@/lib/apiArticle/get/edit/getEditArticle'
-import useEditArticleStore from '@/contexts/article/edit/index'
+import useEditArticleStore from '@/contexts/article/get/index'
 
 interface EditArticleProps {
   articleId: string

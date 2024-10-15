@@ -12,7 +12,7 @@ import DynamicInput from '../../lib/DynamicInputProps'
 
 // * Importar store de formulario
 import useFormStore from '@/contexts/article/create-article/useFormStore'
-import useArticleStore from '@/contexts/article/edit/index'
+import useArticleStore from '@/contexts/article/get/index'
 
 const ArticleFormData: React.FC = () => {
   const { title, photo, description, author, category, setField } =
@@ -32,7 +32,7 @@ const ArticleFormData: React.FC = () => {
             onChange={(e) => {
               setField('title', e.target.value)
             }}
-            placeholder={article?.article.title}
+            placeholder={article?.title}
           />
         </div>
         {/* <div>

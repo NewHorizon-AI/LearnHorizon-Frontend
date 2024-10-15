@@ -10,10 +10,13 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     const body = await request.json()
 
+    console.log(body)
+
     const response = await apiClient.post('/users', body)
 
     return NextResponse.json(response.data)
   } catch (error: any) {
+    console.error('Error creating user', error.message)
     return NextResponse.json({ message: error.message }, { status: 500 })
   }
 }
