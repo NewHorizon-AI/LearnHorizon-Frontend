@@ -8,7 +8,7 @@ import {
   LeftSidebar,
   RightSidebar
 } from '../components'
-import { fetchArticle } from '@/lib/articles/getArticleById'
+import { getArticleById } from '@/lib/articles/getArticleById'
 
 interface ArticleViewProps {
   articleId: string
@@ -17,7 +17,7 @@ interface ArticleViewProps {
 const ArticleView: React.FC<ArticleViewProps> = ({ articleId }) => {
   useEffect(() => {
     const fetchArticleData = async (): Promise<void> => {
-      await fetchArticle(articleId)
+      await getArticleById(articleId)
     }
 
     fetchArticleData().catch((error) => {

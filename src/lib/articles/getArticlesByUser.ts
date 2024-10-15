@@ -17,7 +17,7 @@ export const getArticlesByUser = async (
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ usersIds: userIdsArray }) // Enviamos el arreglo de userIds
+    body: JSON.stringify({ usersId: userIdsArray }) // Enviamos el arreglo de userIds
   })
 
   if (!response.ok) {

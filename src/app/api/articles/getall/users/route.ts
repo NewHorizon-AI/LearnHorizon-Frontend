@@ -6,20 +6,20 @@ import { type IArticle } from '@/interfaces/article/article.interface'
 
 export async function POST(req: Request): Promise<NextResponse> {
   // Obtener el cuerpo de la solicitud
-  const usersIds = await req.json() // Ahora esperamos un arreglo de userId
+  const usersId = await req.json() // Ahora esperamos un arreglo de userId
 
-  if (!usersIds || usersIds.length === 0) {
+  if (!usersId || usersId.length === 0) {
     return new NextResponse('No se ha proporcionado ningún ID de usuario', {
       status: 400
     })
   }
 
-  console.log(usersIds)
+  console.log(usersId)
 
   try {
     const response = await apiClient.post<IArticle[]>(
       '/articles/v2/users',
-      usersIds
+      usersId
     )
 
     console.log(response)
@@ -28,7 +28,8 @@ export async function POST(req: Request): Promise<NextResponse> {
 
     return new NextResponse(JSON.stringify(data), { status: 200 })
   } catch (error: any) {
-    return new NextResponse(error.message, { status: 500 })
+    // console.log(error)
+    return new NextResponse(error, { status: 500 })
   }
 }
 

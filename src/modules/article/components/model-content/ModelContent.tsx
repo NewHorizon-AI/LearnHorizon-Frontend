@@ -11,7 +11,7 @@ import { ThreeModel } from '@/modules/model'
 import LoadingScreen from '@/components/loading/LoadingScreen'
 
 // Petición para obtener un modelo
-import getModel from '@/lib/apiModel/get/getModel'
+import getModelByArticleId from '@/lib/models/getModelByArticleId'
 
 interface ModelHandlerProps {
   articleId: string
@@ -24,7 +24,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
   // Función para obtener el modelo
   const fetchModel = useCallback(async (): Promise<void> => {
     try {
-      const response: ArrayBuffer = await getModel(articleId)
+      const response: ArrayBuffer = await getModelByArticleId(articleId)
 
       setModel(response)
     } catch (error) {
