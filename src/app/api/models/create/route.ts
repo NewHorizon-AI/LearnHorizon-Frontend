@@ -1,19 +1,44 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { NextResponse, type NextRequest } from 'next/server'
 import apiClient from '@/lib/apiClient/apiClient'
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
-  /*
-    * Funcion que se encarga de manejar las peticiones POST
-    @ Param request: NextRequest - Peticion que se recibe del cliente
-  */
-
   try {
-    const body = await request.json()
+    // Usamos formData para obtener el archivo y el id del body de la solicitud
+    const formData = await request.formData()
+    const file = formData.get('file') as File
+    const articleId = formData.get('id') as string
 
-    const response = await apiClient.post('/articles', body)
+    if (!file || !articleId) {
+      return NextResponse.json(
+        { message: 'Faltan archivo o articleId' },
+        { status: 400 }
+      )
+    }
 
-    return NextResponse.json(response.data)
+    // Creamos un nuevo FormData para reenviar el archivo y el id al backend de NestJS
+    const nestFormData = new FormData()
+    nestFormData.append('file', file)
+
+    const response = await apiClient.post(
+      `/gltf-model-assets/upload/${articleId}`,
+      nestFormData
+    )
+
+    // Si el backend de NestJS responde con error, devolvemos el error
+    if (response.status < 200 || response.status >= 300) {
+      const errorMessage = `Error en el backend: ${response.status} ${response.statusText}`
+      console.error(errorMessage)
+      return NextResponse.json(
+        { message: errorMessage },
+        { status: response.status }
+      )
+    }
+
+    const responseData = response.data
+    return NextResponse.json(responseData)
   } catch (error: any) {
+    console.error('Error en POST:', error.message)
     return NextResponse.json({ message: error.message }, { status: 500 })
   }
 }
