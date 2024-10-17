@@ -13,6 +13,9 @@ TODO: Mejorar la implementacion de la subida de archivos
 import React, { useEffect, useCallback, useState } from 'react'
 
 import UploadModel from './upload/UploadModel'
+
+import ViewModel from '@/modules/model/'
+
 import RenderModel from './render/index'
 import LoadingScreen from '@/components/loading/LoadingScreen'
 
@@ -57,7 +60,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
           textColor="text-gray-800"
         />
       ) : isModelLoaded ? (
-        <RenderModel model={model} />
+        <ViewModel model={model} />
       ) : (
         <UploadModel
           articleId={articleId}

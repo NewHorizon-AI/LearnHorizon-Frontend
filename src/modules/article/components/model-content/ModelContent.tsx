@@ -3,10 +3,7 @@
 
 import React, { useEffect, useCallback, useState } from 'react'
 
-import RenderModel from './model/ThreeModel'
-
-// * Importar nuevo render de modelo
-import { ThreeModel } from '@/modules/model'
+import ViewModel from '@/modules/model/'
 
 import LoadingScreen from '@/components/loading/LoadingScreen'
 
@@ -50,7 +47,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
         />
       ) : (
         // <RenderModel model={model} />
-        <ThreeModel model={model} />
+        <ViewModel model={model} />
       )}
     </div>
   )

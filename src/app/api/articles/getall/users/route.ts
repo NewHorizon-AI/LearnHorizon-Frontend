@@ -14,15 +14,11 @@ export async function POST(req: Request): Promise<NextResponse> {
     })
   }
 
-  console.log(usersId)
-
   try {
     const response = await apiClient.post<IArticle[]>(
       '/articles/v2/users',
       usersId
     )
-
-    console.log(response)
 
     const data: IArticle[] = response.data
 

@@ -11,7 +11,7 @@ const DisplayModel: React.FC<DisplayModelProps> = ({ articleId }) => {
 
   return (
     <div className="w-full h-48 md:h-64 lg:h-[80vh] relative">
-      <div className="absolute inset-0 bg-black  flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center">
         <Content articleId={articleId} />
       </div>
     </div>

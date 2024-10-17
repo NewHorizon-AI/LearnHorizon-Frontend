@@ -5,8 +5,6 @@ export const createUser = async (): Promise<void> => {
   const { user, setUser } = useUserStore.getState()
 
   try {
-    console.log(user)
-
     const response = await fetch('/api/user/create', {
       method: 'POST',
       headers: {
