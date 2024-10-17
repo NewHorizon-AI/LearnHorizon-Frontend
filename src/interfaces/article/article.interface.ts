@@ -1,24 +1,24 @@
-// * Interfaz para definir la estructura de un artículo proveniente de la base de datos
+export enum IArticleStatus {
+  PUBLISHED = 'published',
+  DRAFT = 'draft',
+  DELETED = 'deleted'
+}
+
 export interface IArticle {
-  _id: string
-  title: string
-  status: string
-  users: 'published' | 'draft' | 'deleted'
+  _id: string // Identificador único del artículo
+  title: string // Título del artículo
+  users: string[] // Arreglo de IDs de autores del artículo (referencia a usuarios)
+  categories: string[] // Arreglo de IDs de categorías del artículo
+  photo: string // URL de la foto del artículo
+  description: string // Descripción del artículo
+  views: number // Número de vistas
+  likes: number // Número de "me gusta"
+  content: string // Contenido en formato Markdown
+  status: IArticleStatus // Estado del artículo ('published', 'draft', 'deleted', etc.)
+  createdAt: Date // Fecha de creación
+  updatedAt: Date // Fecha de última actualización
+  __v: number // Versión del documento en MongoDB
 }
-
-export interface IArticleData {
-  photo: string
-  description: number
-  views: number
-  likes: number
-  dislikes: number
-}
-
-export interface IArticleMarkdown {
-  content: string
-}
-
-// * Interfaz para definir la estructura de una transformacion para un modelo proveniente de la base de datos
 
 export interface IArticleTransformation {
   _id: string
@@ -26,23 +26,4 @@ export interface IArticleTransformation {
   position: number[]
   rotation: number[]
   scale: number[]
-}
-
-// * Interfaz compuesta que incluye IArticle y opcionalmente incluye IArticleTransformation
-export interface IArticleComposite {
-  article: IArticle
-  data?: IArticleData
-  markdown?: IArticleMarkdown
-  transformation?: IArticleTransformation
-}
-
-// export interface IArticleComposite extends IArticle {
-//   data?: IArticleData
-//   markdown?: IArticleMarkdown
-//   transformation?: IArticleTransformation
-// }
-
-// * Interfaz para un articulo con datos
-export interface IArticleWithData extends IArticle {
-  data: IArticleData
 }

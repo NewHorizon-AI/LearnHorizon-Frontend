@@ -13,11 +13,14 @@ TODO: Mejorar la implementacion de la subida de archivos
 import React, { useEffect, useCallback, useState } from 'react'
 
 import UploadModel from './upload/UploadModel'
+
+import ViewModel from '@/modules/model/'
+
 import RenderModel from './render/index'
 import LoadingScreen from '@/components/loading/LoadingScreen'
 
 // Petición para obtener un modelo
-import getModel from '@/lib/apiModel/get/getModel'
+import getModelByArticleId from '@/lib/models/getModelByArticleId'
 
 interface ModelHandlerProps {
   articleId: string
@@ -31,7 +34,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
   // Función para obtener el modelo
   const fetchModel = useCallback(async (): Promise<void> => {
     try {
-      const response: ArrayBuffer = await getModel(articleId)
+      const response: ArrayBuffer = await getModelByArticleId(articleId)
 
       setModel(response)
       setIsModelLoaded(true)
@@ -57,7 +60,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
           textColor="text-gray-800"
         />
       ) : isModelLoaded ? (
-        <RenderModel model={model} />
+        <ViewModel model={model} />
       ) : (
         <UploadModel
           articleId={articleId}

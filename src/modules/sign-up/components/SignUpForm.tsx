@@ -33,6 +33,8 @@ const SignUpForm: React.FC = () => {
     try {
       await createUser()
 
+      alert('Registro exitoso. Redirigiendo a la página de inicio...')
+
       router.push('/')
     } catch (error) {
       console.error('Error al crear usuario:', error)

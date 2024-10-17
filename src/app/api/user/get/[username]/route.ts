@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import apiClient from '@/lib/apiClient/apiClient'
 
-import { type IUserWithoutPassword } from '@/interfaces/user/user.interface'
+import { type IUser } from '@/interfaces/user/user.interface'
 
 interface Params {
   username: string
@@ -27,9 +27,9 @@ export async function GET(
   }
 
   try {
-    const response = await apiClient.get(`/get/u/${username}`)
+    const response = await apiClient.get(`/users/${username}`)
 
-    const user: IUserWithoutPassword = response.data
+    const user: IUser = response.data
 
     return new NextResponse(JSON.stringify(user))
   } catch (error: any) {

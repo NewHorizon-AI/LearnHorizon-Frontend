@@ -12,6 +12,7 @@ export const createUser = async (): Promise<void> => {
       },
       body: JSON.stringify(user)
     })
+
     const data = await response.json()
 
     if (!response.ok) {

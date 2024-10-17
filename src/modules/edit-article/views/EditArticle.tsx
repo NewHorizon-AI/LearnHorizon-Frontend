@@ -1,31 +1,27 @@
+/* eslint-disable @typescript-eslint/no-confusing-void-expression */
 'use client'
 
 import React, { useEffect } from 'react'
 
 import { MarkdownContent, Sidebar, ModelContent } from '../components'
 
-import { getEditArticle } from '@/lib/apiArticle/get/edit/getEditArticle'
-import useEditArticleStore from '@/contexts/article/edit/index'
+import { getArticleById } from '@/lib/articles/getArticleById'
 
 interface EditArticleProps {
   articleId: string
 }
 
 const EditArticle: React.FC<EditArticleProps> = ({ articleId }) => {
-  const { setArticle } = useEditArticleStore()
-
   useEffect(() => {
     // * Fetch del artículo
     const fetchArticle = async (): Promise<void> => {
-      const article = await getEditArticle(articleId)
-
-      setArticle(article)
+      await getArticleById(articleId)
     }
 
     fetchArticle().catch((error) => {
       console.error('Failed to fetch article:', error)
     })
-  }, [articleId, setArticle])
+  }, [articleId])
 
   return (
     <main className="flex flex-col items-center w-full overflow-hidden">

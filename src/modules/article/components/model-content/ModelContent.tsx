@@ -3,15 +3,12 @@
 
 import React, { useEffect, useCallback, useState } from 'react'
 
-import RenderModel from './model/ThreeModel'
-
-// * Importar nuevo render de modelo
-import { ThreeModel } from '@/modules/model'
+import ViewModel from '@/modules/model/'
 
 import LoadingScreen from '@/components/loading/LoadingScreen'
 
 // Petición para obtener un modelo
-import getModel from '@/lib/apiModel/get/getModel'
+import getModelByArticleId from '@/lib/models/getModelByArticleId'
 
 interface ModelHandlerProps {
   articleId: string
@@ -24,7 +21,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
   // Función para obtener el modelo
   const fetchModel = useCallback(async (): Promise<void> => {
     try {
-      const response: ArrayBuffer = await getModel(articleId)
+      const response: ArrayBuffer = await getModelByArticleId(articleId)
 
       setModel(response)
     } catch (error) {
@@ -50,7 +47,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
         />
       ) : (
         // <RenderModel model={model} />
-        <ThreeModel model={model} />
+        <ViewModel model={model} />
       )}
     </div>
   )

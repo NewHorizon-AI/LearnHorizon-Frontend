@@ -17,9 +17,7 @@ import cameraData from '@/data/model/camera/camera.example.json'
 import trasnformationData from '@/data/model/transformation/transformation.example.json'
 import SceneData from '@/data/model/scene/scene-grid-settings.example.json'
 
-interface ThreeModelProps {
-  model: ArrayBuffer | undefined
-}
+import { type ThreeModelProps } from '../interfaces/model.interface'
 
 const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
   const mountRef = useRef<HTMLDivElement>(null)

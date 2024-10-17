@@ -1,10 +1,14 @@
 // * Interfaz para User
 export interface IUser {
-  _id: string
+  _id: string // Identificador único del usuario
   username: string // Nombre de usuario
   email: string // Correo electrónico
-  last_login?: Date // ? Fecha del último inicio de sesión
-  password: string // Contraseña
+  password: string // Contraseña encriptada
+  role: string // Rol del usuario (por ejemplo, 'external')
+  createdAt: Date // Fecha de creación del usuario
+  updatedAt: Date // Fecha de última actualización del usuario
+  last_login?: Date // Fecha del último inicio de sesión (opcional)
+  __v: number // Versión del documento en MongoDB
 }
 
 // * Interfaz para crear un usuario

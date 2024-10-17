@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button'
 import { Share2, Pencil, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import getStatusColor from './getStatusColor'
-import { type IArticleWithData } from '@/interfaces/article/article.interface'
+import { type IArticle } from '@/interfaces/article/article.interface'
 
 interface ArticleCardProps {
-  article?: IArticleWithData // Haciendo article opcional para manejar casos donde pueda ser undefined
+  article?: IArticle // Haciendo article opcional para manejar casos donde pueda ser undefined
 }
 
 const ArticleCard = React.forwardRef<HTMLDivElement, ArticleCardProps>(
@@ -35,7 +35,7 @@ const ArticleCard = React.forwardRef<HTMLDivElement, ArticleCardProps>(
             </CardTitle>
             <div className="flex items-center space-x-2 mt-1">
               <span className="text-sm text-gray-500">
-                {article.data?.description}
+                {article.description}
               </span>
               <Badge className={getStatusColor(article.status)}>
                 {article.status}
@@ -60,7 +60,7 @@ const ArticleCard = React.forwardRef<HTMLDivElement, ArticleCardProps>(
           </div>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-600 mb-4">{article.data?.description}</p>
+          <p className="text-gray-600 mb-4">{article.description}</p>
           <div className="flex justify-end">
             <Button
               variant="outline"

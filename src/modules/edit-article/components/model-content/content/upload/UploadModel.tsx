@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { UploadCloud } from 'lucide-react'
 
 // import { type IModel } from '@/interfaces/model/model.interface'
-import { postModel } from '@/lib/apiModel/post/postModel'
+import { createModel } from '@/lib/models/createModel'
 
 interface UploadModelProps {
   articleId: string
@@ -34,7 +34,7 @@ const UploadModel: React.FC<UploadModelProps> = (props) => {
       props.setIsLoading(true)
       try {
         // Llamada al backend para subir el modelo
-        const responseModel = await postModel(props.articleId, selectedFile)
+        const responseModel = await createModel(props.articleId, selectedFile)
 
         // Actualiza el estado con el modelo subido
         props.setModel(responseModel)
