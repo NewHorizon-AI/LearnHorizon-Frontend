@@ -1,3 +1,5 @@
+import { type ISceneSettings } from '../scene-settings/scene-settings.interface'
+
 export enum IArticleStatus {
   PUBLISHED = 'published',
   DRAFT = 'draft',
@@ -18,6 +20,7 @@ export interface IArticle {
   createdAt: Date // Fecha de creación
   updatedAt: Date // Fecha de última actualización
   __v: number // Versión del documento en MongoDB
+  scene_settings: ISceneSettings // Configuración de la escena
 }
 
 export interface IArticleTransformation {

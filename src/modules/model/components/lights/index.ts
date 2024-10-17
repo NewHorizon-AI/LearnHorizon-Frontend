@@ -1,1 +1,1 @@
-export { default as LightsComponent } from './LightsComponent'
+export { default as SetupLights } from './SetupLights'

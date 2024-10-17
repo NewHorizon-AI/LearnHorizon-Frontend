@@ -1,4 +1,4 @@
-import { type ISceneSettings } from './scene-settings.interface'
+import { type ISceneSettings } from '@/interfaces/scene-settings/scene-settings.interface'
 
 export interface ISceneSettingsState {
   sceneSettings: ISceneSettings | null

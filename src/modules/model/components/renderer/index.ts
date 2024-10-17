@@ -1,1 +1,1 @@
-export { default as RendererComponent } from './RendererComponent'
+export { default as SetupRenderer } from './SetupRenderer'

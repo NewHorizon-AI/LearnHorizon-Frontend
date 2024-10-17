@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-const AddLights = (scene: THREE.Scene): void => {
+const SetupLights = (scene: THREE.Scene): void => {
   const ambientLight = new THREE.AmbientLight(0xffffff, 2)
   scene.add(ambientLight)
 
@@ -9,4 +9,4 @@ const AddLights = (scene: THREE.Scene): void => {
   scene.add(directionalLight)
 }
 
-export default AddLights
+export default SetupLights

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
 /*
@@ -16,7 +17,6 @@ import UploadModel from './upload/UploadModel'
 
 import ViewModel from '@/modules/model/'
 
-import RenderModel from './render/index'
 import LoadingScreen from '@/components/loading/LoadingScreen'
 
 // Petición para obtener un modelo

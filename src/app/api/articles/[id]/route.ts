@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import apiClient from '@/lib/apiClient/apiClient'
 
-import { type IArticleComposite } from '@/interfaces/article/article.interface'
+import { type IArticle } from '@/interfaces/article/article.interface'
 
 interface Params {
   id: string
@@ -37,7 +37,7 @@ export async function GET(
   try {
     const response = await apiClient.get(`/articles/v2/${articleId}`)
 
-    const article: IArticleComposite = response.data
+    const article: IArticle = response.data
 
     return new NextResponse(JSON.stringify(article))
   } catch (error: any) {

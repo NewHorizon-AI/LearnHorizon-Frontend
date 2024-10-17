@@ -6,22 +6,27 @@ import React, { useEffect } from 'react'
 import { MarkdownContent, Sidebar, ModelContent } from '../components'
 
 import { getArticleById } from '@/lib/articles/getArticleById'
+import useEditArticleStore from '@/contexts/article/get'
 
 interface EditArticleProps {
   articleId: string
 }
 
 const EditArticle: React.FC<EditArticleProps> = ({ articleId }) => {
+  const { setArticle } = useEditArticleStore.getState()
+
   useEffect(() => {
     // * Fetch del artículo
     const fetchArticle = async (): Promise<void> => {
-      await getArticleById(articleId)
+      const response = await getArticleById(articleId)
+
+      setArticle(response)
     }
 
     fetchArticle().catch((error) => {
       console.error('Failed to fetch article:', error)
     })
-  }, [articleId])
+  }, [articleId, setArticle])
 
   return (
     <main className="flex flex-col items-center w-full overflow-hidden">

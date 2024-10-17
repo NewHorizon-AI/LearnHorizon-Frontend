@@ -1,12 +1,12 @@
 import React from 'react'
 
 import ThreeModel from './views/ThreeModel'
-import { type ThreeModelProps } from './interfaces/model.interface'
+import { type ViewModelProps } from './interfaces/model.interface'
 
-const ViewModel: React.FC<ThreeModelProps> = ({ model }) => {
+const ViewModel: React.FC<ViewModelProps> = (props) => {
   return (
     <div className="h-full w-full">
-      <ThreeModel model={model} />
+      <ThreeModel model={props.model} />
     </div>
   )
 }

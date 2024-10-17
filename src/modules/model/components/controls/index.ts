@@ -1,3 +1,3 @@
-export { default as CreateArcballControls } from './ArcballControls'
-export { default as CreateOrbitControl } from './OrbitControl'
-export { default as CreateFlyControls } from './FlyControls'
+export { default as OrbitControlManager } from './orbit/OrbitControlManager'
+export { default as FlyControlsManager } from './fly/FlyControlsManager'
+export { default as ArcballControlsManager } from './arcball/ArcballControlsManager'

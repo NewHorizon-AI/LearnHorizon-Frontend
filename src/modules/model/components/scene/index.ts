@@ -1,1 +1,1 @@
-export { default as SceneComponent } from './CreateScene'
+export { default as SetupScene } from './SetupScene'

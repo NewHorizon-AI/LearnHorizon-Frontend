@@ -1,7 +1,7 @@
 import type * as THREE from 'three'
 import { FlyControls } from 'three/examples/jsm/controls/FlyControls.js'
 
-const CreateFlyControls = (
+const FlyControlsManager = (
   camera: THREE.Camera,
   renderer: THREE.WebGLRenderer
 ): FlyControls => {
@@ -15,4 +15,4 @@ const CreateFlyControls = (
   return controls
 }
 
-export default CreateFlyControls
+export default FlyControlsManager

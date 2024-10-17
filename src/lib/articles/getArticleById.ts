@@ -1,12 +1,9 @@
-import useEditArticleStore from '@/contexts/article/get'
 import { type IArticle } from '@/interfaces/article/article.interface'
 
-export const getArticleById = async (articleId: string): Promise<void> => {
-  const { setArticle } = useEditArticleStore.getState()
-
+export const getArticleById = async (articleId: string): Promise<IArticle> => {
   const response: IArticle = await (
     await fetch(`/api/articles/${articleId}`)
   ).json()
 
-  setArticle(response)
+  return response
 }

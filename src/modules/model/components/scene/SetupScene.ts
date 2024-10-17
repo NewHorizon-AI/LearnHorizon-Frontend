@@ -8,7 +8,7 @@ import CreateGrid from './CreateGrid'
 import { type CustomSceneConfigProps } from './interfaces/scene.interface'
 import { createSceneConfigProps } from './utils/createSceneProps'
 
-const CreateScene = (
+const SetupScene = (
   customProps: Partial<CustomSceneConfigProps>
 ): THREE.Scene => {
   // TODO: Este componente necesita recibir una estructura de datos que contenga los distintos parámetros de la escena.
@@ -24,4 +24,4 @@ const CreateScene = (
   return scene
 }
 
-export default CreateScene
+export default SetupScene

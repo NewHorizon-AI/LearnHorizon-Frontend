@@ -1,7 +1,7 @@
 import type * as THREE from 'three'
 import { ArcballControls } from 'three/examples/jsm/controls/ArcballControls.js'
 
-const CreateArcballControls = (
+const ArcballControlsManager = (
   camera: THREE.Camera,
   renderer: THREE.WebGLRenderer,
   scene: THREE.Scene
@@ -11,4 +11,4 @@ const CreateArcballControls = (
   return controls
 }
 
-export default CreateArcballControls
+export default ArcballControlsManager

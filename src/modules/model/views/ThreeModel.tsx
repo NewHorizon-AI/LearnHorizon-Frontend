@@ -7,8 +7,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three'
 
-import * as COMPONENTS from '../components/index'
-
 import LoadingScreen from '@/components/loading/LoadingScreen'
 import { Button } from '@/components/ui/button'
 
@@ -17,9 +15,16 @@ import cameraData from '@/data/model/camera/camera.example.json'
 import trasnformationData from '@/data/model/transformation/transformation.example.json'
 import SceneData from '@/data/model/scene/scene-grid-settings.example.json'
 
-import { type ThreeModelProps } from '../interfaces/model.interface'
+import { type ViewModelProps } from '../interfaces/model.interface'
 
-const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
+// * Importar componentes
+import { CreatePerspectiveCamera, CameraController } from '../components/camera'
+import { OrbitControlManager } from '../components/controls'
+import { ModelController, LoadAndTransformModel } from '../components/model'
+import { SetupScene } from '../components/scene'
+import { SetupRenderer } from '../components/renderer'
+
+const ThreeModel: React.FC<ViewModelProps> = ({ model }) => {
   const mountRef = useRef<HTMLDivElement>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [showControlPanel, setShowControlPanel] = useState<boolean>(false)
@@ -31,8 +36,8 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
   )
 
   // Usar useRef para los controladores
-  const cameraControllerRef = useRef<COMPONENTS.CameraController | null>(null)
-  const modelControllerRef = useRef<COMPONENTS.ModelController | null>(null)
+  const cameraControllerRef = useRef<CameraController | null>(null)
+  const modelControllerRef = useRef<ModelController | null>(null)
 
   useEffect(() => {
     if (!model || model.byteLength === 0) {
@@ -53,31 +58,31 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
       const width = mountRef.current.clientWidth
       const height = mountRef.current.clientHeight
 
-      scene = COMPONENTS.CreateScene(SceneData)
+      scene = SetupScene(SceneData)
 
       // ! Crear la cámara, el renderizador y los controles.
       // TODO: Reemplazar por los datos de la cámara obtenidos de la API
       cameraData.height = height
       cameraData.width = width
 
-      renderer = COMPONENTS.CreateRenderer(width, height)
+      renderer = SetupRenderer(width, height)
 
       const clock = new THREE.Clock()
 
-      camera = COMPONENTS.CreateCamera(cameraData)
+      camera = CreatePerspectiveCamera(cameraData)
 
       mountRef.current.appendChild(renderer.domElement)
 
-      controls = COMPONENTS.CreateOrbitControl(camera, renderer)
+      controls = OrbitControlManager(camera, renderer)
 
-      COMPONENTS.AddLights(scene)
+      // AddLights(scene)
 
       // Asignar el cameraController a la referencia
-      cameraControllerRef.current = new COMPONENTS.CameraController(camera)
+      cameraControllerRef.current = new CameraController(camera)
       setCameraPosition(camera.position.clone())
 
       try {
-        const loadedModel = await COMPONENTS.LoadAndTransformModel(
+        const loadedModel = await LoadAndTransformModel(
           model,
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           trasnformationData
@@ -88,14 +93,16 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
         scene.add(helper)
 
         // Asignar el modelController a la referencia
-        modelControllerRef.current = new COMPONENTS.ModelController(loadedModel)
+        modelControllerRef.current = new ModelController(loadedModel)
         setModelPosition(loadedModel.position.clone())
 
         setIsLoading(false)
 
         const animate = () => {
-          animationId = requestAnimationFrame(animate)
           const delta = clock.getDelta()
+
+          animationId = requestAnimationFrame(animate)
+
           controls.update(delta)
           renderer.render(scene, camera)
         }
@@ -180,16 +187,16 @@ const ThreeModel: React.FC<ThreeModelProps> = ({ model }) => {
         </Button>
       </div>
       {/* Panel de control superpuesto */}
-      {showControlPanel && (
+      {/* {showControlPanel && (
         <div className="absolute top-0 right-0 w-64 h-full bg-white shadow-md z-10 p-4 overflow-auto">
-          <COMPONENTS.ControlPanel
+          <ControlPanel
             cameraPosition={cameraPosition}
             modelPosition={modelPosition}
             onCameraChange={handleCameraChange}
             onModelChange={handleModelChange}
           />
         </div>
-      )}
+      )} */}
     </div>
   )
 }

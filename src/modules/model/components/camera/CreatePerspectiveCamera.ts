@@ -1,14 +1,12 @@
 import * as THREE from 'three'
-
-// * Encargado de crear la instancia de la cámara.
-
-import { type CustomCameraProps } from './interfaces/camera.interface'
+import { type CustomCameraProps } from './interfaces/CameraConfig.interface'
 import { createCameraProps } from './utils/createCameraProps'
 
-const CreateCamera = (
+// * Encargado de crear la instancia de la cámara.
+const CreatePerspectiveCamera = (
   customCameraProps: Partial<CustomCameraProps>
 ): THREE.PerspectiveCamera => {
-  const cameraProps = createCameraProps(customCameraProps)
+  const cameraProps = createCameraProps(customCameraProps) // Unir props por defecto y personalizados
 
   const { width, height, fov, near, far, position, rotation, lookAt } =
     cameraProps
@@ -16,10 +14,8 @@ const CreateCamera = (
   // * Variables de la cámara.
   const aspect = width / height // Relación de aspecto.
 
-  // * Instancia de la cámara.
+  // * Instancia de la cámara (Perspectiva por defecto, puedes adaptar para ortográfica si necesitas).
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
-
-  // const camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
 
   // * Posición de la cámara.
   camera.position.set(position.x, position.y, position.z)
@@ -30,9 +26,7 @@ const CreateCamera = (
   // * Orientación de la cámara.
   camera.lookAt(new THREE.Vector3(lookAt.x, lookAt.y, lookAt.z)) // Mirar al centro de la escena (u otra posición definida).
 
-  // perspectiveCamera.position.set(0, 0, 5); // x, y, z
-
   return camera
 }
 
-export default CreateCamera
+export default CreatePerspectiveCamera
