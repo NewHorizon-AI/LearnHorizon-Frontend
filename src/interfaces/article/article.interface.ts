@@ -20,7 +20,7 @@ export interface IArticle {
   createdAt: Date // Fecha de creación
   updatedAt: Date // Fecha de última actualización
   __v: number // Versión del documento en MongoDB
-  scene_settings: ISceneSettings // Configuración de la escena
+  sceneSettings: ISceneSettings // Configuración de la escena
 }
 
 export interface IArticleTransformation {

@@ -18,8 +18,6 @@ export async function GET(
     return new NextResponse('No article ID provided', { status: 400 })
   }
 
-  console.log(articleId)
-
   try {
     const response = await apiClient.get(
       `/gltf-model-assets/model/article/${articleId}`,

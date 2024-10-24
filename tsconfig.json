@@ -27,7 +27,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/article/create/elements/ArticleModel3DControls.tsx",
-    "src/modules/Profile-page"
+    "src/modules/Profile-page",
+    "src/modules/edit-article/components/left-sidebar/index.tsx",
+    "src/modules/model/components/ui/SceneSettingsUI.tsz"
   ],
   "exclude": ["node_modules"]
 }

@@ -11,23 +11,6 @@ export async function GET(
   req: Request,
   { params }: { params: Params }
 ): Promise<NextResponse> {
-  /*
-   * Funcion que se encarga de obtener un articulo de la base de datos
-   * @param {Request} req - Request de la petición
-   * @param {Params} params - Parámetros de la petición
-
-    TODO: Mejorar la recepcion de parametros por la URL para evitar errores de tipo en tiempo de ejecución 
-
-
-      export async function GET(
-      request: Request,
-      { params }: { params: { slug: string } }
-    ) {
-      const slug = params.slug // 'a', 'b', or 'c'
-    }
-    }
-   */
-
   const articleId = params.id
 
   if (articleId == null) {

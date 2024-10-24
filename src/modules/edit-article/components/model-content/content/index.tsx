@@ -24,9 +24,12 @@ import getModelByArticleId from '@/lib/models/getModelByArticleId'
 
 interface ModelHandlerProps {
   articleId: string
+  className?: string
 }
 
-const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
+const ModelHandler: React.FC<ModelHandlerProps> = (props) => {
+  const { articleId, className } = props
+
   const [isModelLoaded, setIsModelLoaded] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(true) // Estado de carga
   const [model, setModel] = useState<ArrayBuffer>()
@@ -51,7 +54,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
   }, [fetchModel, setModel])
 
   return (
-    <div className="flex-1 aspect-video  h-full">
+    <div className={`min-h-64 ${className}`}>
       {isLoading ? (
         <LoadingScreen
           message="Cargando datos..."
