@@ -32,7 +32,8 @@ const TransformationMenu: React.FC = () => {
   ): void => {
     const value = e.target.value
 
-    const isValidNumber = /^(\s*-?(\d+(\.\d+)?)?\s*)?$/.test(value)
+    // const isValidNumber = /^(\s*-?(\d+(\.\d+)?)?\s*)?$/.test(value)
+    const isValidNumber = /^(\s*-?\d+)?.?(\d+)?$/.test(value)
     const cleanedInput = value.trim().replace(/\s+/g, ' ')
 
     if (!isValidNumber) {

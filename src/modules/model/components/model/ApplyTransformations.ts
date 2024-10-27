@@ -8,9 +8,17 @@ const ApplyTransformations = (
   const { position, rotation, scale } = transformations
 
   // Aplicar la posición, rotación y escala usando los valores de los arrays
-  model.position.set(position[0], position[1], position[2])
-  model.rotation.set(rotation[0], rotation[1], rotation[2])
-  model.scale.set(scale[0], scale[1], scale[2])
+  model.position.set(
+    Number(position[0]),
+    Number(position[1]),
+    Number(position[2])
+  )
+  model.rotation.set(
+    Number(rotation[0]),
+    Number(rotation[1]),
+    Number(rotation[2])
+  )
+  model.scale.set(Number(scale[0]), Number(scale[1]), Number(scale[2]))
 }
 
 export default ApplyTransformations

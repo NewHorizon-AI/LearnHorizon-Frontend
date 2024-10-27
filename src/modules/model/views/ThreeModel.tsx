@@ -30,6 +30,8 @@ import { SetupRenderer } from '../components/renderer'
 
 import useEditArticleStore from '@/contexts/article/get'
 
+import centerPivot from '../components/model/utils/centerPivot'
+
 const ModelView: React.FC<ModelViewProps> = (props) => {
   const { model, sceneSettings } = props
   const { article } = useEditArticleStore()
@@ -105,6 +107,8 @@ const ModelView: React.FC<ModelViewProps> = (props) => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           article.sceneSettings.transformationsSettings
         )
+
+        centerPivot(loadedModel)
         scene.add(loadedModel)
 
         // const helper = new THREE.BoxHelper(loadedModel, 0xff0000)
