@@ -12,50 +12,51 @@ import DynamicInput from '../../lib/DynamicInputProps'
 
 // * Importar store de formulario
 import useFormStore from '@/contexts/article/create-article/useFormStore'
-import useArticleStore from '@/contexts/article/get/index'
+import useEditArticleStore from '@/contexts/article/get'
+import { updateArticleById } from '@/lib/articles/updateArticle'
 
 const ArticleFormData: React.FC = () => {
-  const { title, photo, description, author, category, setField } =
-    useFormStore()
+  const { article, updateArticle } = useEditArticleStore()
 
-  const { article } = useArticleStore()
+  const handleOnBlur = (): void => {
+    const updateSceneSettings = async (): Promise<void> => {
+      await updateArticleById(article?._id, article)
+    }
+
+    updateSceneSettings().catch((error) => {
+      console.error(error.message)
+    })
+
+    // Actualizamos el artículo completo en el store
+    updateArticle({
+      ...article
+    })
+  }
 
   return (
     <div className="space-y-4 ">
       <div className="grid grid-cols-1 gap-4">
         <div>
-          <Label htmlFor="title">Título</Label>
           <Input
-            id="title"
             type="text"
-            value={title}
+            value={article?.title}
             onChange={(e) => {
-              setField('title', e.target.value)
+              updateArticle({ title: e.target.value })
             }}
-            placeholder={article?.title}
+            onBlur={handleOnBlur}
+            placeholder="Título del Artículo"
           />
         </div>
-        {/* <div>
-          <Label htmlFor="subtitle">Subtítulo</Label>
-          <Input
-            id="subtitle"
-            type="text"
-            value={subtitle}
-            onChange={(e) => {
-              setField('subtitle', e.target.value)
-            }}
-            placeholder="Subtítulo"
-          />
-        </div> */}
         <div>
           <Label htmlFor="photo">URL de la Foto</Label>
           <Input
             id="photo"
             type="text"
-            value={photo}
+            value={article?.photo}
             onChange={(e) => {
-              setField('photo', e.target.value)
+              updateArticle({ photo: e.target.value })
             }}
+            onBlur={handleOnBlur}
             placeholder="URL de la Foto"
           />
         </div>
@@ -63,16 +64,16 @@ const ArticleFormData: React.FC = () => {
           <Label htmlFor="description">Descripción</Label>
           <Textarea
             id="description"
-            value={description}
+            value={article?.description}
             onChange={(e) => {
-              setField('description', e.target.value)
+              updateArticle({ description: e.target.value })
             }}
             placeholder="Descripción"
             className="resize-none h-36"
             maxLength={200}
           />
         </div>
-        <div>
+        {/* <div>
           <DynamicInput
             values={author}
             setValues={(newValues) => {
@@ -91,7 +92,7 @@ const ArticleFormData: React.FC = () => {
             label="Categorías"
             placeholder="Categoría"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   )

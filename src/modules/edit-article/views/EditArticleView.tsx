@@ -38,7 +38,6 @@ const EditArticleView: React.FC = () => {
           <ArticleFormData />
         </div>
         <div className="flex-1 pl-4">
-          <h2 className="text-xl font-bold mb-4">Markdown Content</h2>
           <ArticleMarkdown />
         </div>
       </div>

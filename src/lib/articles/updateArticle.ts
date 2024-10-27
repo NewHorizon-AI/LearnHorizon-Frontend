@@ -1,8 +1,8 @@
 import { type IArticle } from '@/interfaces/article/article.interface'
 
 export const updateArticleById = async (
-  articleId: string,
-  article: IArticle
+  articleId: string | undefined,
+  article: IArticle | null
 ): Promise<IArticle> => {
   try {
     const response = await fetch(`/api/articles/${articleId}/patch`, {

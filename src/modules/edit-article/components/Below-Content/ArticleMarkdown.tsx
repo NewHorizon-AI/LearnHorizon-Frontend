@@ -3,16 +3,33 @@
 import React, { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 
-// Importacion del estado de creacion de un articulo
-import useFormStore from '@/contexts/article/create-article/useFormStore'
+import useEditArticleStore from '@/contexts/article/get'
+import { updateArticleById } from '@/lib/articles/updateArticle'
 
 const ArticleMarkdown: React.FC = () => {
-  const { markdownContent, setField } = useFormStore()
+  const { article, updateArticle } = useEditArticleStore()
+
+  // const { markdownContent, setField } = useFormStore()
   const [isPreview, setIsPreview] = useState(false)
+
+  const handleOnBlur = (): void => {
+    const updateSceneSettings = async (): Promise<void> => {
+      await updateArticleById(article?._id, article)
+    }
+
+    updateSceneSettings().catch((error) => {
+      console.error(error.message)
+    })
+
+    // Actualizamos el artículo completo en el store
+    updateArticle({
+      ...article
+    })
+  }
 
   return (
     <div className="">
-      <div className="border rounded-md shadow-sm">
+      <div className="border rounded-md ">
         <div className="flex border-b">
           <button
             className={`flex-1 text-center p-2 ${!isPreview ? 'bg-gray-200' : 'bg-white'} border-r`}
@@ -36,15 +53,16 @@ const ArticleMarkdown: React.FC = () => {
           {!isPreview ? (
             <textarea
               className="w-full h-64 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={markdownContent}
+              value={article?.content}
               onChange={(e) => {
-                setField('markdownContent', e.target.value)
+                updateArticle({ content: e.target.value })
               }}
+              onBlur={handleOnBlur}
               placeholder="Write your markdown here..."
             />
           ) : (
             <div className="prose">
-              <ReactMarkdown>{markdownContent}</ReactMarkdown>
+              <ReactMarkdown>{article?.content}</ReactMarkdown>
             </div>
           )}
         </div>

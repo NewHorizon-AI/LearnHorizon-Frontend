@@ -3,7 +3,7 @@
 
 import React, { useEffect, useCallback, useState } from 'react'
 
-import ViewModel from '@/modules/model/'
+import { ModelViewModule } from '@/modules/model/'
 
 import LoadingScreen from '@/components/loading/LoadingScreen'
 
@@ -47,7 +47,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
         />
       ) : (
         // <RenderModel model={model} />
-        <ViewModel model={model} />
+        <ModelViewModule model={model} viewMode="view" />
       )}
     </div>
   )
