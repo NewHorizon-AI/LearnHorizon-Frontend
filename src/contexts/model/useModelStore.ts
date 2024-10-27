@@ -20,7 +20,7 @@ const useEditModelStore = create<IEditModelState>()(
       }
     },
     {
-      name: 'article-storage' // Nombre de la clave en localStorage
+      name: 'article-storage'
     }
   )
 )

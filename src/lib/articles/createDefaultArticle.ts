@@ -1,8 +1,6 @@
-import { type IArticleComposite } from '@/interfaces/article/article.interface'
+import { type IArticle } from '@/interfaces/article/article.interface'
 
-export const createDefaultArticle = async (
-  _id?: string
-): Promise<IArticleComposite> => {
+export const createDefaultArticle = async (_id?: string): Promise<IArticle> => {
   try {
     const response = await fetch('/api/articles/create/default', {
       method: 'POST',

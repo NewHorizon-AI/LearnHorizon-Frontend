@@ -1,16 +1,16 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import type * as THREE from 'three'
-import { type TransformationProps } from './interfaces/transformation.interface'
+import { type ITransformationsSettings } from '@/interfaces/scene-settings/scene-settings.interface'
 
 const ApplyTransformations = (
-  model: THREE.Group,
-  transformations: TransformationProps
-) => {
+  model: THREE.Object3D, // Cambiado a Object3D para mayor flexibilidad
+  transformations: ITransformationsSettings
+): void => {
   const { position, rotation, scale } = transformations
 
-  model.position.set(position.x, position.y, position.z)
-  model.rotation.set(rotation.x, rotation.y, rotation.z)
-  model.scale.set(scale.x, scale.y, scale.z)
+  // Aplicar la posición, rotación y escala usando los valores de los arrays
+  model.position.set(position[0], position[1], position[2])
+  model.rotation.set(rotation[0], rotation[1], rotation[2])
+  model.scale.set(scale[0], scale[1], scale[2])
 }
 
 export default ApplyTransformations

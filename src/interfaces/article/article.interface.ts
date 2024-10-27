@@ -22,11 +22,3 @@ export interface IArticle {
   __v: number // Versión del documento en MongoDB
   sceneSettings: ISceneSettings // Configuración de la escena
 }
-
-export interface IArticleTransformation {
-  _id: string
-  article_model_id: string
-  position: number[]
-  rotation: number[]
-  scale: number[]
-}

@@ -1,18 +1,6 @@
 {
-  "position": {
-    "x": 0,
-    "y": 1.6,
-    "z": 0
-  },
-  "rotation": {
-    "x": 0,
-    "y": 0,
-    "z": -180
-  },
-  "scale": {
-    "x": 0.5,
-    "y": 0.5,
-    "z": 0.5
-  },
-  "visible": true
+  "_id": "unique_id",
+  "position": [0, 1.6, 0],
+  "rotation": [0, 0, -180],
+  "scale": [0.5, 0.5, 0.5]
 }

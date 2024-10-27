@@ -93,6 +93,10 @@ class ModelController {
   public dispose(): void {
     this.cleanup()
   }
+
+  public getModel(): THREE.Object3D {
+    return this.model
+  }
 }
 
 export default ModelController

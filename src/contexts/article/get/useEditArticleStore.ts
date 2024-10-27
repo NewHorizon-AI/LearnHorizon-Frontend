@@ -19,7 +19,7 @@ const useEditArticleStore = create<IEditArticleState>()(
       }
     },
     {
-      name: 'article-storage' // Nombre de la clave en localStorage
+      name: 'article-storage'
     }
   )
 )

@@ -1,6 +1,6 @@
 export const createModel = async (
-  articleId: string,
-  file: File
+  file: File,
+  articleId: string
 ): Promise<ArrayBuffer> => {
   try {
     const formData = new FormData()

@@ -25,7 +25,7 @@ const NavigationMenu: React.FC = () => {
     setIsOpen(false) // Cierra el menú lateral
   }
 
-  const username = 'kxyzDev'
+  const username = 'ixyzDev'
   const fullName = 'Alejandro Diaz'
   const avatarUrl = 'https://via.placeholder.com/150'
 

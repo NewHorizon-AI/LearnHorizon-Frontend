@@ -1,5 +1,5 @@
 import React from 'react'
-import { EditArticleModule } from '@/modules/edit-article'
+import { EditArticleModule } from '@/modules/edit-article/index'
 
 interface EditArticlePageParams {
   params: {

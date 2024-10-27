@@ -1,11 +1,11 @@
-import { type IArticle } from '@/interfaces/article/article.interface'
+import { type ISceneSettings } from '@/interfaces/scene-settings/scene-settings.interface'
 
-export const updateArticleById = async (
+export const UpdateSceneByArticleId = async (
   articleId: string,
-  article: IArticle
-): Promise<IArticle> => {
+  article: ISceneSettings
+): Promise<void> => {
   try {
-    const response = await fetch(`/api/articles/${articleId}/patch`, {
+    const response = await fetch(`/api/sceneSettings/${articleId}/patch`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -16,10 +16,6 @@ export const updateArticleById = async (
     if (!response.ok) {
       throw new Error(response.statusText)
     }
-
-    const updatedArticle: IArticle = await response.json()
-
-    return updatedArticle
   } catch (error: any) {
     console.error(error.message)
     throw error

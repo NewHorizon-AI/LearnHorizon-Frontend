@@ -38,7 +38,7 @@ const ApiButton: React.FC<ApiButtonProps> = ({ children }) => {
 
       setArticle(composite)
 
-      const articleId = composite.article._id
+      const articleId = composite._id
 
       // await router.push(`/article/${articleId}/edit`)
 

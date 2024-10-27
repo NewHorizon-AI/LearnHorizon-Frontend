@@ -34,7 +34,7 @@ const UploadModel: React.FC<UploadModelProps> = (props) => {
       props.setIsLoading(true)
       try {
         // Llamada al backend para subir el modelo
-        const responseModel = await createModel(props.articleId, selectedFile)
+        const responseModel = await createModel(selectedFile, props.articleId)
 
         // Actualiza el estado con el modelo subido
         props.setModel(responseModel)

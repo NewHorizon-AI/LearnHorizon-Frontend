@@ -17,7 +17,7 @@ const ArticleContent: React.FC = () => {
   }
 
   return (
-    <main className="flex-1 w-full px-4 md:px-16 mt-8 mb-16">
+    <main className="flex-1 w-full  px-4 mt-8 mb-16">
       <div className="flex flex-col max-w-4xl mx-auto space-y-6">
         <h2 className="text-3xl font-bold text-gray-900">{article.title}</h2>
 

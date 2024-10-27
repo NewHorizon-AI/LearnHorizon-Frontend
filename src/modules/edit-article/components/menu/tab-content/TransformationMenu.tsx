@@ -1,57 +1,114 @@
-import React from 'react'
+/* eslint-disable react-hooks/rules-of-hooks */
+'use client'
+
+import React, { useState } from 'react'
 import { PrincipalInput } from '@/components/common/input'
+
+import { RotateCcw, Move, Maximize } from 'lucide-react'
+
+import useEditArticleStore from '@/contexts/article/get'
 import { type ITransformationsSettings } from '@/interfaces/scene-settings/scene-settings.interface'
-import { RotateCcw, Move, Maximize } from 'lucide-react' // Iconos de lucide-react
 
-interface TransformationsSettingsProps {
-  transformationsSettings?: ITransformationsSettings
-  onChange?: (field: string, axis: string, value: number) => void
-}
+import { UpdateSceneByArticleId } from '@/lib/sceneSettings/updateScene'
 
-const TransformationsSettings: React.FC<TransformationsSettingsProps> = ({
-  transformationsSettings,
-  onChange
-}) => {
-  const handleInputChange =
-    (field: string, axis: string) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = parseFloat(e.target.value)
-      if (onChange != null) {
-        onChange(field, axis, value)
-      }
+// TODO Hacer Responsivo
+
+const TransformationMenu: React.FC = () => {
+  // ! Utilizar strings para numeros negativos en formularios
+
+  const { article, updateArticle } = useEditArticleStore()
+
+  if (article == null) return null
+
+  const [transformationsSettings, setTransformationsSettings] =
+    useState<ITransformationsSettings>(
+      article?.sceneSettings.transformationsSettings
+    )
+
+  const handleInputChange = (
+    type: 'position' | 'rotation' | 'scale',
+    axis: number,
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const value = e.target.value
+
+    const isValidNumber = /^(\s*-?(\d+(\.\d+)?)?\s*)?$/.test(value)
+    const cleanedInput = value.trim().replace(/\s+/g, ' ')
+
+    if (!isValidNumber) {
+      alert('Por favor, ingrese un número válido')
+      return
     }
+
+    const updatedTransformations = {
+      ...transformationsSettings,
+      [type]: [...transformationsSettings[type]]
+    }
+
+    updatedTransformations[type][axis] = cleanedInput
+
+    setTransformationsSettings(updatedTransformations)
+  }
+
+  // Función handleOnBlur que será llamada cuando se deje de enfocar el input
+  const handleOnBlur = (): void => {
+    const updateSceneSettings = async (): Promise<void> => {
+      await UpdateSceneByArticleId(article._id, article.sceneSettings)
+    }
+
+    updateSceneSettings().catch((error) => {
+      console.error(error.message)
+    })
+
+    // Actualizamos el artículo completo en el store
+    updateArticle({
+      sceneSettings: {
+        ...article.sceneSettings,
+        transformationsSettings
+      }
+    })
+  }
 
   return (
     <section className="mb-6">
       {/* Position */}
       <div>
-        <label>Position:</label>
+        <label>Posición</label>
         <div className="flex space-x-4">
           <div className="flex items-center space-x-2">
             <span className="font-semibold">X</span>
             <PrincipalInput
-              value={transformationsSettings?.position[0] ?? 0}
-              onChange={handleInputChange('position', '0')}
-              placeholder="Position X"
+              value={transformationsSettings.position[0]}
+              placeholder="0"
               Icon={Move}
+              onChange={(e) => {
+                handleInputChange('position', 0, e)
+              }}
+              onBlur={handleOnBlur}
             />
           </div>
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Y</span>
             <PrincipalInput
-              value={transformationsSettings?.position[1] ?? 0}
-              onChange={handleInputChange('position', '1')}
-              placeholder="Position Y"
+              value={transformationsSettings.position[1]}
+              placeholder="0"
               Icon={Move}
+              onChange={(e) => {
+                handleInputChange('position', 1, e)
+              }}
+              onBlur={handleOnBlur}
             />
           </div>
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Z</span>
             <PrincipalInput
-              value={transformationsSettings?.position[2] ?? 0}
-              onChange={handleInputChange('position', '2')}
-              placeholder="Position Z"
+              value={transformationsSettings.position[2]}
+              placeholder="0"
               Icon={Move}
+              onChange={(e) => {
+                handleInputChange('position', 2, e)
+              }}
+              onBlur={handleOnBlur}
             />
           </div>
         </div>
@@ -59,33 +116,42 @@ const TransformationsSettings: React.FC<TransformationsSettingsProps> = ({
 
       {/* Rotation */}
       <div className="mt-4">
-        <label>Rotation:</label>
+        <label>Rotación</label>
         <div className="flex space-x-4">
           <div className="flex items-center space-x-2">
             <span className="font-semibold">X</span>
             <PrincipalInput
-              value={transformationsSettings?.rotation[0] ?? 0}
-              onChange={handleInputChange('rotation', '0')}
-              placeholder="Rotation X"
+              value={transformationsSettings.rotation[0]}
+              placeholder="0"
               Icon={RotateCcw}
+              onChange={(e) => {
+                handleInputChange('rotation', 0, e)
+              }}
+              onBlur={handleOnBlur}
             />
           </div>
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Y</span>
             <PrincipalInput
-              value={transformationsSettings?.rotation[1] ?? 0}
-              onChange={handleInputChange('rotation', '1')}
-              placeholder="Rotation Y"
+              value={transformationsSettings.rotation[1]}
+              placeholder="0"
               Icon={RotateCcw}
+              onChange={(e) => {
+                handleInputChange('rotation', 1, e)
+              }}
+              onBlur={handleOnBlur}
             />
           </div>
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Z</span>
             <PrincipalInput
-              value={transformationsSettings?.rotation[2] ?? 0}
-              onChange={handleInputChange('rotation', '2')}
-              placeholder="Rotation Z"
+              value={transformationsSettings.rotation[2]}
+              placeholder="0"
               Icon={RotateCcw}
+              onChange={(e) => {
+                handleInputChange('rotation', 2, e)
+              }}
+              onBlur={handleOnBlur}
             />
           </div>
         </div>
@@ -93,33 +159,42 @@ const TransformationsSettings: React.FC<TransformationsSettingsProps> = ({
 
       {/* Scale */}
       <div className="mt-4">
-        <label>Scale:</label>
+        <label>Escala</label>
         <div className="flex space-x-4">
           <div className="flex items-center space-x-2">
             <span className="font-semibold">X</span>
             <PrincipalInput
-              value={transformationsSettings?.scale[0] ?? 0}
-              onChange={handleInputChange('scale', '0')}
-              placeholder="Scale X"
+              value={transformationsSettings.scale[0]}
+              placeholder="0"
               Icon={Maximize}
+              onChange={(e) => {
+                handleInputChange('scale', 0, e)
+              }}
+              onBlur={handleOnBlur}
             />
           </div>
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Y</span>
             <PrincipalInput
-              value={transformationsSettings?.scale[1] ?? 0}
-              onChange={handleInputChange('scale', '1')}
-              placeholder="Scale Y"
+              value={transformationsSettings.scale[1]}
+              placeholder="0"
               Icon={Maximize}
+              onChange={(e) => {
+                handleInputChange('scale', 1, e)
+              }}
+              onBlur={handleOnBlur}
             />
           </div>
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Z</span>
             <PrincipalInput
-              value={transformationsSettings?.scale[2] ?? 0}
-              onChange={handleInputChange('scale', '2')}
-              placeholder="Scale Z"
+              value={transformationsSettings.scale[2]}
+              placeholder="0"
               Icon={Maximize}
+              onChange={(e) => {
+                handleInputChange('scale', 2, e)
+              }}
+              onBlur={handleOnBlur}
             />
           </div>
         </div>
@@ -128,4 +203,4 @@ const TransformationsSettings: React.FC<TransformationsSettingsProps> = ({
   )
 }
 
-export default TransformationsSettings
+export default TransformationMenu

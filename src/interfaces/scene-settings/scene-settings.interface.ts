@@ -1,21 +1,13 @@
-// Interfaz para la posición y rotación en tres dimensiones
-export interface IVector3 {
-  x: number
-  y: number
-  z: number
-}
-
 // Interfaz para las configuraciones de la cámara
 export interface ICameraSettings {
   _id: string
   fov: number
   near: number
   far: number
-  position: IVector3
-  lookAt: IVector3
-  rotation: IVector3
+  position: number[] // Cambiado a array de números
+  lookAt: number[] // Cambiado a array de números
+  rotation: number[] // Cambiado a array de números
   cameraType: string
-  __v: number
 }
 
 // Interfaz para las configuraciones de la cuadrícula
@@ -24,26 +16,22 @@ export interface IGridSettings {
   backgroundColor: string
   size: number
   divisions: number
-  activarEjes: string
   gridVisible: boolean
   gridOpacity: number
-  __v: number
 }
 
 // Interfaz para las configuraciones del modelo
 export interface IModelSettings {
   _id: string
   visible: boolean
-  __v: number
 }
 
 // Interfaz para las configuraciones de las transformaciones
 export interface ITransformationsSettings {
   _id: string
-  scale: number[]
-  rotation: number[]
-  position: number[]
-  __v: number
+  scale: string[] // Cambiado a array de números
+  rotation: string[] // Cambiado a array de números
+  position: string[] // Cambiado a array de números
 }
 
 // Interfaz principal para las configuraciones de la escena

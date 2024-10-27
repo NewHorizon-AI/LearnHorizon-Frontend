@@ -1,59 +1,107 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import { PrincipalInput } from '@/components/common/input'
 import { type IGridSettings } from '@/interfaces/scene-settings/scene-settings.interface'
 import { PaintBucket, Maximize, Grid } from 'lucide-react' // Importa los íconos de lucide-react
+import useEditArticleStore from '@/contexts/article/get'
 
-interface GridSettingsProps {
-  gridSettings: IGridSettings
-  onChange: (field: keyof IGridSettings, value: string | number) => void
-}
+import { UpdateSceneByArticleId } from '@/lib/sceneSettings/updateScene'
 
-const GridSettings: React.FC<GridSettingsProps> = ({
-  gridSettings,
-  onChange
-}) => {
-  const handleInputChange =
-    (field: keyof IGridSettings) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value =
-        e.target.type === 'number' ? parseFloat(e.target.value) : e.target.value
-      onChange(field, value)
+const GridSettings: React.FC = () => {
+  const { article, updateArticle } = useEditArticleStore()
+
+  if (article == null) return null
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [gridSettings, setGridSettings] = useState<IGridSettings>(
+    article.sceneSettings.gridSettings
+  )
+
+  const handleInputChange = (
+    field: keyof IGridSettings,
+    value: string | number
+  ): void => {
+    // Actualiza el estado local
+    setGridSettings((prevSettings) => ({
+      ...prevSettings,
+      [field]: value
+    }))
+
+    // Actualiza el artículo en el store
+    updateArticle({
+      ...article,
+      sceneSettings: {
+        ...article.sceneSettings,
+        gridSettings: {
+          ...gridSettings,
+          [field]: value
+        }
+      }
+    })
+  }
+
+  const handleOnBlur = (): void => {
+    const updateSceneSettings = async (): Promise<void> => {
+      await UpdateSceneByArticleId(article._id, article.sceneSettings)
     }
+
+    updateSceneSettings().catch((error) => {
+      console.error(error.message)
+    })
+  }
 
   return (
     <section>
       <div className="flex gap-4 flex-col">
         {/* Color del fondo */}
         <div>
-          <label>Background Color:</label>
+          <label className="block mb-2 text-sm font-medium text-gray-700">
+            Background Color:
+          </label>
           <PrincipalInput
-            type="string"
+            type="text"
             value={gridSettings.backgroundColor}
-            onChange={handleInputChange('backgroundColor')}
+            onChange={(e) => {
+              handleInputChange('backgroundColor', e.target.value)
+            }}
             placeholder="Background Color"
-            Icon={PaintBucket} // Usando el icono de cubeta de pintura para el color de fondo
+            Icon={PaintBucket}
+            onBlur={handleOnBlur}
           />
         </div>
 
         {/* Tamaño de la grilla */}
         <div>
-          <label>Size:</label>
+          <label className="block mb-2 text-sm font-medium text-gray-700">
+            Size:
+          </label>
           <PrincipalInput
+            type="number"
             value={gridSettings.size}
-            onChange={handleInputChange('size')}
+            onChange={(e) => {
+              handleInputChange('size', parseFloat(e.target.value))
+            }}
             placeholder="Grid Size"
-            Icon={Maximize} // Usando el icono de maximizar para el tamaño de la grilla
+            Icon={Maximize}
+            onBlur={handleOnBlur}
           />
         </div>
 
         {/* Divisiones de la grilla */}
         <div>
-          <label>Divisions:</label>
+          <label className="block mb-2 text-sm font-medium text-gray-700">
+            Divisions:
+          </label>
           <PrincipalInput
+            type="number"
             value={gridSettings.divisions}
-            onChange={handleInputChange('divisions')}
+            onChange={(e) => {
+              handleInputChange('divisions', parseFloat(e.target.value))
+            }}
             placeholder="Grid Divisions"
-            Icon={Grid} // Usando el icono de grilla para las divisiones
+            Icon={Grid}
+            onBlur={handleOnBlur}
           />
         </div>
       </div>

@@ -9,34 +9,34 @@ import {
   CameraMenu,
   GridMenu,
   ModelMenu,
-  TransformationMenu
+  TransformationMenu,
+  UnavailableMenu
 } from './tab-content'
 
-import { type ISceneSettings } from '@/interfaces/scene-settings/scene-settings.interface'
+import useEditArticleStore from '@/contexts/article/get'
 
 interface MenuProps {
-  sceneSettings?: ISceneSettings
   className?: string
 }
 
 const Menu: React.FC<MenuProps> = (props) => {
-  const { sceneSettings, className } = props
+  const { className } = props
+  const { article } = useEditArticleStore()
 
-  // Si sceneSettings no está definido, retornar null para evitar el renderizado
-  if (!sceneSettings) {
-    return null
+  if (article == null) {
+    return (
+      <div>
+        <h1>Article not found</h1>
+      </div>
+    )
   }
 
   // Definir tabContent solo si sceneSettings está disponible
   const tabContent: Record<string, JSX.Element> = {
-    Transformaciones: (
-      <TransformationMenu
-        transformationsSettings={sceneSettings.transformationsSettings}
-      />
-    ),
-    Camara: <CameraMenu cameraSettings={sceneSettings.cameraSettings} />,
-    Grid: <GridMenu gridSettings={sceneSettings.gridSettings} />,
-    Modelo: <ModelMenu modelSettings={sceneSettings.modelSettings} />
+    Transformaciones: <TransformationMenu />,
+    Camara: <CameraMenu />,
+    Grid: <GridMenu />,
+    Modelo: <ModelMenu />
   }
 
   const tabs = Object.keys(tabContent)
@@ -47,16 +47,8 @@ const Menu: React.FC<MenuProps> = (props) => {
     <section className={`w-full ${className} `}>
       <TabMenu tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <div className="mt-2 bg-white rounded-lg transition-opacity duration-300 ease-in-out text-gray-800">
-        {tabContent[activeTab] || (
-          <div>
-            <h2 className="text-lg font-semibold">Contenido no disponible</h2>
-            <p>
-              Selecciona una pestaña válida para ver el contenido
-              correspondiente.
-            </p>
-          </div>
-        )}
+      <div className="mt-2 transition-opacity duration-300 ease-in-out">
+        {tabContent[activeTab] || <UnavailableMenu />}
       </div>
     </section>
   )

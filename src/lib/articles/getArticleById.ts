@@ -1,9 +1,23 @@
 import { type IArticle } from '@/interfaces/article/article.interface'
 
-export const getArticleById = async (articleId: string): Promise<IArticle> => {
-  const response: IArticle = await (
-    await fetch(`/api/articles/${articleId}`)
-  ).json()
+// TODO Extender la capacidad de la función para trabajar del lado del servidor
 
-  return response
+export const getArticleById = async (articleId: string): Promise<IArticle> => {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_API_URL != null || 'http://localhost:3000'
+
+  try {
+    const response = await fetch(`${baseUrl}/api/articles/${articleId}`)
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch article')
+    }
+
+    const article: IArticle = await response.json()
+
+    return article
+  } catch (error) {
+    console.error('Error fetching article:', error)
+    throw error
+  }
 }

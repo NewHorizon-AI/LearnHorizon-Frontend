@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -8,7 +9,6 @@ import React, { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three'
 
 import LoadingScreen from '@/components/loading/LoadingScreen'
-import { Button } from '@/components/ui/button'
 
 // * Importar datos de ejemplo
 import cameraData from '@/data/model/camera/camera.example.json'
@@ -20,11 +20,27 @@ import { type ViewModelProps } from '../interfaces/model.interface'
 // * Importar componentes
 import { CreatePerspectiveCamera, CameraController } from '../components/camera'
 import { OrbitControlManager } from '../components/controls'
-import { ModelController, LoadAndTransformModel } from '../components/model'
+import {
+  ModelController,
+  LoadAndTransformModel,
+  ApplyTransformations
+} from '../components/model'
 import { SetupScene } from '../components/scene'
 import { SetupRenderer } from '../components/renderer'
 
+import useEditArticleStore from '@/contexts/article/get'
+
 const ThreeModel: React.FC<ViewModelProps> = ({ model }) => {
+  const { article } = useEditArticleStore()
+
+  if (article == null) {
+    return (
+      <div>
+        <h1>Article not found</h1>
+      </div>
+    )
+  }
+
   const mountRef = useRef<HTMLDivElement>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [showControlPanel, setShowControlPanel] = useState<boolean>(false)
@@ -38,6 +54,8 @@ const ThreeModel: React.FC<ViewModelProps> = ({ model }) => {
   // Usar useRef para los controladores
   const cameraControllerRef = useRef<CameraController | null>(null)
   const modelControllerRef = useRef<ModelController | null>(null)
+
+  const transformations = article.sceneSettings.transformationsSettings
 
   useEffect(() => {
     if (!model || model.byteLength === 0) {
@@ -89,12 +107,17 @@ const ThreeModel: React.FC<ViewModelProps> = ({ model }) => {
         )
         scene.add(loadedModel)
 
-        const helper = new THREE.BoxHelper(loadedModel, 0xff0000)
-        scene.add(helper)
+        // const helper = new THREE.BoxHelper(loadedModel, 0xff0000)
+        // scene.add(helper)
 
         // Asignar el modelController a la referencia
         modelControllerRef.current = new ModelController(loadedModel)
         setModelPosition(loadedModel.position.clone())
+
+        ApplyTransformations(
+          modelControllerRef.current.getModel(),
+          transformations
+        )
 
         setIsLoading(false)
 
@@ -146,23 +169,16 @@ const ThreeModel: React.FC<ViewModelProps> = ({ model }) => {
     }
   }, [model])
 
-  const handleCameraChange = (position: THREE.Vector3) => {
-    setCameraPosition(position)
-    if (cameraControllerRef.current) {
-      cameraControllerRef.current.setPosition(
-        position.x,
-        position.y,
-        position.z
+  // Efecto que se ejecuta cuando el artículo cambia, para aplicar transformaciones
+  useEffect(() => {
+    if (modelControllerRef.current && article) {
+      const transformations = article.sceneSettings.transformationsSettings
+      ApplyTransformations(
+        modelControllerRef.current.getModel(),
+        transformations
       )
     }
-  }
-
-  const handleModelChange = (position: THREE.Vector3) => {
-    setModelPosition(position)
-    if (modelControllerRef.current) {
-      modelControllerRef.current.setPosition(position.x, position.y, position.z)
-    }
-  }
+  }, [article, model]) // Escucha cambios en el artículo
 
   return (
     <div className="relative w-full h-full">
@@ -176,27 +192,6 @@ const ThreeModel: React.FC<ViewModelProps> = ({ model }) => {
           />
         )}
       </div>
-      {/* Botón para mostrar/ocultar el panel */}
-      <div className="absolute top-4 right-4 z-20">
-        <Button
-          onClick={() => {
-            setShowControlPanel(!showControlPanel)
-          }}
-        >
-          {showControlPanel ? 'Ocultar Controles' : 'Mostrar Controles'}
-        </Button>
-      </div>
-      {/* Panel de control superpuesto */}
-      {/* {showControlPanel && (
-        <div className="absolute top-0 right-0 w-64 h-full bg-white shadow-md z-10 p-4 overflow-auto">
-          <ControlPanel
-            cameraPosition={cameraPosition}
-            modelPosition={modelPosition}
-            onCameraChange={handleCameraChange}
-            onModelChange={handleModelChange}
-          />
-        </div>
-      )} */}
     </div>
   )
 }

@@ -1,18 +1,53 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
+
 import { type IModelSettings } from '@/interfaces/scene-settings/scene-settings.interface'
+
 import { Checkbox } from '@/components/ui/checkbox'
 
-interface ModelSettingsProps {
-  modelSettings: IModelSettings
-  onChange: (field: keyof IModelSettings, value: boolean) => void
-}
+import useEditArticleStore from '@/contexts/article/get'
 
-const ModelSettings: React.FC<ModelSettingsProps> = ({
-  modelSettings,
-  onChange
-}) => {
-  const handleCheckboxChange = (checked: boolean): void => {
-    onChange('visible', checked)
+import { UpdateSceneByArticleId } from '@/lib/sceneSettings/updateScene'
+
+const ModelSettings: React.FC = () => {
+  const { article, updateArticle } = useEditArticleStore()
+
+  if (article == null) return null
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [modelSettings, setModelSettings] = useState<IModelSettings>(
+    article.sceneSettings.modelSettings
+  )
+
+  const handleCheckboxChange = (checked: boolean | 'indeterminate'): void => {
+    // Actualiza el estado local
+    setModelSettings((prevSettings) => ({
+      ...prevSettings,
+      visible: checked === true // Maneja si está marcado o no
+    }))
+
+    // Actualiza el artículo en el store
+    updateArticle({
+      ...article,
+      sceneSettings: {
+        ...article.sceneSettings,
+        modelSettings: {
+          ...article.sceneSettings.modelSettings,
+          visible: checked === true
+        }
+      }
+    })
+  }
+
+  const handleOnBlur = (): void => {
+    const updateSceneSettings = async (): Promise<void> => {
+      await UpdateSceneByArticleId(article._id, article.sceneSettings)
+    }
+
+    updateSceneSettings().catch((error) => {
+      console.error(error.message)
+    })
   }
 
   return (
@@ -27,6 +62,7 @@ const ModelSettings: React.FC<ModelSettingsProps> = ({
         id="model-visible"
         checked={modelSettings.visible}
         onCheckedChange={handleCheckboxChange}
+        onBlur={handleOnBlur}
       />
     </section>
   )
