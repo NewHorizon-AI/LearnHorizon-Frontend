@@ -15,7 +15,7 @@ import cameraData from '@/data/model/camera/camera.example.json'
 import trasnformationData from '@/data/model/transformation/transformation.example.json'
 import SceneData from '@/data/model/scene/scene-grid-settings.example.json'
 
-import { type ViewModelProps } from '../interfaces/model.interface'
+import { type ModelViewProps } from '../interfaces/model.interface'
 
 // * Importar componentes
 import { CreatePerspectiveCamera, CameraController } from '../components/camera'
@@ -30,7 +30,8 @@ import { SetupRenderer } from '../components/renderer'
 
 import useEditArticleStore from '@/contexts/article/get'
 
-const ThreeModel: React.FC<ViewModelProps> = ({ model }) => {
+const ModelView: React.FC<ModelViewProps> = (props) => {
+  const { model, sceneSettings } = props
   const { article } = useEditArticleStore()
 
   if (article == null) {
@@ -43,7 +44,6 @@ const ThreeModel: React.FC<ViewModelProps> = ({ model }) => {
 
   const mountRef = useRef<HTMLDivElement>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [showControlPanel, setShowControlPanel] = useState<boolean>(false)
   const [cameraPosition, setCameraPosition] = useState<THREE.Vector3>(
     new THREE.Vector3()
   )
@@ -103,7 +103,7 @@ const ThreeModel: React.FC<ViewModelProps> = ({ model }) => {
         const loadedModel = await LoadAndTransformModel(
           model,
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-          trasnformationData
+          article.sceneSettings.transformationsSettings
         )
         scene.add(loadedModel)
 
@@ -196,4 +196,4 @@ const ThreeModel: React.FC<ViewModelProps> = ({ model }) => {
   )
 }
 
-export default ThreeModel
+export default ModelView

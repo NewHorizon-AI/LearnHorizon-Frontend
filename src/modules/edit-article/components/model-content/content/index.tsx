@@ -15,7 +15,7 @@ import React, { useEffect, useCallback, useState } from 'react'
 
 import UploadModel from './upload/UploadModel'
 
-import ViewModel from '@/modules/model/'
+import { ModelViewModule } from '@/modules/model/'
 
 import LoadingScreen from '@/components/loading/LoadingScreen'
 
@@ -34,7 +34,6 @@ const ModelHandler: React.FC<ModelHandlerProps> = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true) // Estado de carga
   const [model, setModel] = useState<ArrayBuffer>()
 
-  // Función para obtener el modelo
   const fetchModel = useCallback(async (): Promise<void> => {
     try {
       const response: ArrayBuffer = await getModelByArticleId(articleId)
@@ -48,7 +47,6 @@ const ModelHandler: React.FC<ModelHandlerProps> = (props) => {
     }
   }, [articleId, isModelLoaded])
 
-  // useEffect para cargar el modelo cuando el componente se monta
   useEffect(() => {
     void fetchModel()
   }, [fetchModel, setModel])
@@ -63,7 +61,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = (props) => {
           textColor="text-gray-800"
         />
       ) : isModelLoaded ? (
-        <ViewModel model={model} />
+        <ModelViewModule model={model} viewMode="edit" />
       ) : (
         <UploadModel
           articleId={articleId}
