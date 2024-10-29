@@ -12,7 +12,6 @@ import LoadingScreen from '@/components/loading/LoadingScreen'
 
 // * Importar datos de ejemplo
 import cameraData from '@/data/model/camera/camera.example.json'
-import trasnformationData from '@/data/model/transformation/transformation.example.json'
 import SceneData from '@/data/model/scene/scene-grid-settings.example.json'
 
 import { type ModelViewProps } from '../interfaces/model.interface'
@@ -57,7 +56,7 @@ const ModelView: React.FC<ModelViewProps> = (props) => {
   const cameraControllerRef = useRef<CameraController | null>(null)
   const modelControllerRef = useRef<ModelController | null>(null)
 
-  const transformations = article.sceneSettings.transformationsSettings
+  const transformations = article?.sceneSettings.transformationsSettings
 
   useEffect(() => {
     if (!model || model.byteLength === 0) {
