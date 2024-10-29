@@ -22,7 +22,7 @@ const TransformationMenu: React.FC = () => {
 
   const [transformationsSettings, setTransformationsSettings] =
     useState<ITransformationsSettings>(
-      article?.sceneSettings.transformationsSettings
+      article?.sceneSettings?.transformationsSettings
     )
 
   const handleInputChange = (
@@ -79,7 +79,7 @@ const TransformationMenu: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="font-semibold">X</span>
             <PrincipalInput
-              value={transformationsSettings.position[0]}
+              value={transformationsSettings?.position[0]}
               placeholder="0"
               Icon={Move}
               onChange={(e) => {
@@ -91,7 +91,7 @@ const TransformationMenu: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Y</span>
             <PrincipalInput
-              value={transformationsSettings.position[1]}
+              value={transformationsSettings?.position[1]}
               placeholder="0"
               Icon={Move}
               onChange={(e) => {
@@ -103,7 +103,7 @@ const TransformationMenu: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Z</span>
             <PrincipalInput
-              value={transformationsSettings.position[2]}
+              value={transformationsSettings?.position[2]}
               placeholder="0"
               Icon={Move}
               onChange={(e) => {
@@ -122,7 +122,7 @@ const TransformationMenu: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="font-semibold">X</span>
             <PrincipalInput
-              value={transformationsSettings.rotation[0]}
+              value={transformationsSettings?.rotation[0]}
               placeholder="0"
               Icon={RotateCcw}
               onChange={(e) => {
@@ -134,7 +134,7 @@ const TransformationMenu: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Y</span>
             <PrincipalInput
-              value={transformationsSettings.rotation[1]}
+              value={transformationsSettings?.rotation[1]}
               placeholder="0"
               Icon={RotateCcw}
               onChange={(e) => {
@@ -146,7 +146,7 @@ const TransformationMenu: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Z</span>
             <PrincipalInput
-              value={transformationsSettings.rotation[2]}
+              value={transformationsSettings?.rotation[2]}
               placeholder="0"
               Icon={RotateCcw}
               onChange={(e) => {
@@ -165,7 +165,7 @@ const TransformationMenu: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="font-semibold">X</span>
             <PrincipalInput
-              value={transformationsSettings.scale[0]}
+              value={transformationsSettings?.scale[0]}
               placeholder="0"
               Icon={Maximize}
               onChange={(e) => {
@@ -177,7 +177,7 @@ const TransformationMenu: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Y</span>
             <PrincipalInput
-              value={transformationsSettings.scale[1]}
+              value={transformationsSettings?.scale[1]}
               placeholder="0"
               Icon={Maximize}
               onChange={(e) => {
@@ -189,7 +189,7 @@ const TransformationMenu: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="font-semibold">Z</span>
             <PrincipalInput
-              value={transformationsSettings.scale[2]}
+              value={transformationsSettings?.scale[2]}
               placeholder="0"
               Icon={Maximize}
               onChange={(e) => {

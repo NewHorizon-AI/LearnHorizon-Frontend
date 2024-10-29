@@ -12,10 +12,13 @@ import getModelByArticleId from '@/lib/models/getModelByArticleId'
 
 interface ModelHandlerProps {
   articleId: string
+  className?: string
 }
 
-const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(true) // Estado de carga
+const ModelHandler: React.FC<ModelHandlerProps> = (props) => {
+  const { articleId, className } = props
+
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [model, setModel] = useState<ArrayBuffer>()
 
   // Función para obtener el modelo
@@ -46,8 +49,7 @@ const ModelHandler: React.FC<ModelHandlerProps> = ({ articleId }) => {
           textColor="text-gray-800"
         />
       ) : (
-        // <RenderModel model={model} />
-        <ModelViewModule model={model} viewMode="view" />
+        <ModelViewModule model={model} viewMode="edit" />
       )}
     </div>
   )

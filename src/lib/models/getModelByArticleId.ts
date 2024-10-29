@@ -1,14 +1,14 @@
 const getModelByArticleId = async (articleId: string): Promise<ArrayBuffer> => {
-  const response = await fetch(`/api/models/articles/${articleId}`)
-  if (!response.ok)
+  const response = await fetch(`/api/models/articles/${articleId}`, {
+    method: 'GET'
+  })
+  if (!response.ok) {
     throw new Error(
-      `Error en la peticion get hacia /api/model/get/e/${articleId}`
+      `Error en la petición get hacia /api/models/articles/${articleId}`
     )
+  }
 
-  const gltfText: string = await response.text()
-
-  const model: ArrayBuffer = JSON.parse(gltfText)
-
+  const model: ArrayBuffer = await response.arrayBuffer()
   return model
 }
 
