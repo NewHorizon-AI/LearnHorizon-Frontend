@@ -9,6 +9,7 @@ const getModelByArticleId = async (articleId: string): Promise<ArrayBuffer> => {
   }
 
   const model: ArrayBuffer = await response.arrayBuffer()
+
   return model
 }
 

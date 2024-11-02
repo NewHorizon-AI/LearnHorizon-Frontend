@@ -7,9 +7,7 @@ import { PrincipalInput } from '@/components/common/input'
 const Hola: React.FC = () => {
   const [value, setValue] = useState<string>('')
 
-  useEffect(() => {
-    console.log(value)
-  }, [value])
+  useEffect(() => {}, [value])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setValue(e.target.value)

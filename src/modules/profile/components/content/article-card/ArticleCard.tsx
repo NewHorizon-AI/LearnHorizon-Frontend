@@ -6,6 +6,7 @@ import { Share2, Pencil, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import getStatusColor from './getStatusColor'
 import { type IArticle } from '@/interfaces/article/article.interface'
+import { deleteArticleById } from '@/lib/articles/deleteArticleById'
 
 interface ArticleCardProps {
   article?: IArticle // Haciendo article opcional para manejar casos donde pueda ser undefined
@@ -55,7 +56,15 @@ const ArticleCard = React.forwardRef<HTMLDivElement, ArticleCardProps>(
               <Pencil className="h-5 w-5 text-blue-600" />
             </Button>
             <Button variant="ghost" size="icon" aria-label="Delete post">
-              <Trash2 className="h-5 w-5 text-red-600" />
+              <Trash2
+                className="h-5 w-5 text-red-600"
+                // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                onClick={async (e) => {
+                  e.stopPropagation()
+                  await deleteArticleById(article._id)
+                  window.location.reload()
+                }}
+              />
             </Button>
           </div>
         </CardHeader>
@@ -66,6 +75,18 @@ const ArticleCard = React.forwardRef<HTMLDivElement, ArticleCardProps>(
               variant="outline"
               size="sm"
               className="text-blue-600 border-blue-600 hover:bg-blue-50"
+              onClick={(e) => {
+                e.stopPropagation() // Detiene la propagación para que no se active el clic del Card
+                const textToCopy = `${window.location.origin}/article/${article._id}` // Genera la URL completa del artículo
+                navigator.clipboard
+                  .writeText(textToCopy)
+                  .then(() => {
+                    console.log('URL copiada al portapapeles')
+                  })
+                  .catch((error) => {
+                    console.error('Error al copiar la URL:', error)
+                  })
+              }}
             >
               <Share2 className="mr-2 h-4 w-4" />
               Share

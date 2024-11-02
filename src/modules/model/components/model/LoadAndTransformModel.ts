@@ -14,6 +14,7 @@ const LoadAndTransformModel = async (
   )
 
   const modelLoaded = await LoadGLTFModel(model)
+
   ApplyTransformations(modelLoaded, transformationProps)
   return modelLoaded
 }

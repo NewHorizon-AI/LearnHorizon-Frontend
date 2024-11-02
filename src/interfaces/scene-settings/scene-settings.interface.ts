@@ -28,7 +28,7 @@ export interface IModelSettings {
 
 // Interfaz para las configuraciones de las transformaciones
 export interface ITransformationsSettings {
-  _id: string
+  _id?: string
   scale: string[] // Cambiado a array de números
   rotation: string[] // Cambiado a array de números
   position: string[] // Cambiado a array de números
