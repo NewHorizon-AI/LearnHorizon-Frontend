@@ -20,7 +20,7 @@ const LoadGLTFModel = async (modelData: ArrayBuffer): Promise<THREE.Group> => {
           resolve(gltf.scene)
         },
         (error) => {
-          console.error('Error al cargar el modelo GLTF:', error)
+          console.error('Error al cargar el modelo GLTF:', error.message)
           reject(error)
         }
       )
