@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>): React.JSX.Element {
   return (
-    <html lang="en">
+    <html lang="es">
       <body
         className={cn('bg-background font-sans antialiased', fontSans.variable)}
       >

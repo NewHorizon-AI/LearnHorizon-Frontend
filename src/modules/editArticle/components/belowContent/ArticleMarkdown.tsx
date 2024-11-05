@@ -71,4 +71,4 @@ const ArticleMarkdown: React.FC = () => {
   )
 }
 
-export default ArticleMarkdown
+export { ArticleMarkdown }

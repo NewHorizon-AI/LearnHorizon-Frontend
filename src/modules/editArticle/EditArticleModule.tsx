@@ -36,4 +36,4 @@ const EditArticleModule: React.FC<EditArticleModuleProps> = (props) => {
   )
 }
 
-export default EditArticleModule
+export { EditArticleModule }
