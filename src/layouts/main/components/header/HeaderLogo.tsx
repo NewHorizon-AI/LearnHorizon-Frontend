@@ -2,12 +2,18 @@ import React from 'react'
 import Link from 'next/link'
 import { FaBoxOpen } from 'react-icons/fa'
 
-const HeaderLogo: React.FC = () => {
+interface HeaderLogoProps {
+  className?: string
+}
+
+const HeaderLogo: React.FC<HeaderLogoProps> = (props) => {
+  const { className } = props
+
   return (
-    <Link href="/">
-      <div className="flex items-center gap-2 cursor-pointer">
+    <Link href="/" className={`${className} flex `}>
+      <div className="flex items-center justify-center">
         <FaBoxOpen className="h-6 w-6" />
-        <h1 className="hidden sm:flex text-lg font-bold tracking-tighter">
+        <h1 className="pl-2 hidden sm:flex text-lg font-bold tracking-tighter">
           Learn Horizon
         </h1>
       </div>

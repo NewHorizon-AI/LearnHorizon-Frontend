@@ -4,9 +4,9 @@
 import React from 'react'
 
 // * Importacion de componentes
-import { ModelHandler } from '../components/model-content'
-import { ArticleFormData } from '../components/left-sidebar'
-import { ArticleMarkdown } from '../components/below-content'
+import { ModelHandler } from '../components/modelContent'
+import { ArticleFormData } from '../components/leftSidebar/ArticleFormData'
+import { ArticleMarkdown } from '../components/belowContent/ArticleMarkdown'
 import { Menu } from '../components/menu'
 
 import useEditArticleStore from '@/contexts/article/get'

@@ -2,12 +2,10 @@
 
 import React from 'react'
 
-// Importacion de los componentes de shad-cn
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 
-// Importacion de los hooks
 import DynamicInput from '../../lib/DynamicInputProps'
 
 // * Importar store de formulario
@@ -98,4 +96,4 @@ const ArticleFormData: React.FC = () => {
   )
 }
 
-export default ArticleFormData
+export { ArticleFormData }

@@ -7,10 +7,20 @@ import LoggedOutHeader from './logged-out'
 
 import useUser from '@/contexts/user-store/index'
 
-const Profile: React.FC = () => {
+interface ProfileProps {
+  className?: string
+}
+
+const Profile: React.FC<ProfileProps> = (props) => {
+  const { className } = props
+
   const { isLoggedIn } = useUser()
 
-  return isLoggedIn ? <LoggedInHeader /> : <LoggedOutHeader />
+  return (
+    <div className={`${className} flex items-center`}>
+      {isLoggedIn ? <LoggedInHeader /> : <LoggedOutHeader />}
+    </div>
+  )
 }
 
 export default Profile
