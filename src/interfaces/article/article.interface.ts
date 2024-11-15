@@ -1,4 +1,5 @@
 import { type ISceneSettings } from '../scene-settings/scene-settings.interface'
+import { type IArticleUser } from '../user/user.interface'
 
 export enum IArticleStatus {
   PUBLISHED = 'published',
@@ -9,7 +10,7 @@ export enum IArticleStatus {
 export interface IArticle {
   _id: string // Identificador único del artículo
   title: string // Título del artículo
-  users: string[] // Arreglo de IDs de autores del artículo (referencia a usuarios)
+  users: IArticleUser[] // Arreglo de IDs de autores del artículo (referencia a usuarios)
   categories: string[] // Arreglo de IDs de categorías del artículo
   photo: string // URL de la foto del artículo
   description: string // Descripción del artículo

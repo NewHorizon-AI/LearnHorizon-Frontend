@@ -40,7 +40,7 @@ const ArticleContent: React.FC = () => {
         </div>
 
         {/* Autores */}
-        <div className="flex items-center space-x-2">
+        {/* <div className="flex items-center space-x-2">
           <strong className="text-gray-800">Autores:</strong>{' '}
           {article.users.map((user, index) => (
             <div key={index} className="flex items-center ">
@@ -48,7 +48,7 @@ const ArticleContent: React.FC = () => {
               <div>{user}</div>
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Estado del artículo */}
         <div className="space-x-2">
@@ -68,7 +68,6 @@ const ArticleContent: React.FC = () => {
 
         {/* Contenido del artículo (Markdown en HTML) */}
         <div className="prose prose-gray">
-          <h3>Contenido del artículo:</h3>
           <div>{article.content}</div>
         </div>
 

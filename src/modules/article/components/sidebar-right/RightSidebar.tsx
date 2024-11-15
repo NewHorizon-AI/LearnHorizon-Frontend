@@ -1,19 +1,43 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
 
-function RightSidebar(): React.JSX.Element {
+'use client'
+
+import React from 'react'
+import useEditArticleStore from '@/contexts/article/get'
+
+interface RightSidebarProps {
+  className?: string
+}
+
+const RightSidebar: React.FC<RightSidebarProps> = (props) => {
+  const { className } = props
+  const { article } = useEditArticleStore()
+
   return (
-    <aside className="w-full md:w-64 border-b md:border-l border-border p-4 hidden md:block">
+    <aside
+      className={` ${className} w-full md:w-64 border-b md:border-l border-border p-4 hidden md:block`}
+    >
       <div className="mb-6">
         <img
           src="/placeholder.svg?height=200&width=200"
           alt="Imagen del artículo"
-          className="w-full h-48 object-cover rounded-md mb-4"
+          className="object-cover rounded-md"
         />
       </div>
       <div>
         <h3 className="text-lg font-semibold mb-4">Autores</h3>
-        <div className="space-y-4">{/* Autores */}</div>
+        <div className="flex-col">
+          {article?.users.map((user, index) => (
+            <div key={index} className="flex flex-col items-center space-x-2">
+              <img
+                src="/placeholder.svg?height=40&width=40"
+                alt="Avatar"
+                className="rounded-full"
+              />
+              <div>{user.username}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </aside>
   )

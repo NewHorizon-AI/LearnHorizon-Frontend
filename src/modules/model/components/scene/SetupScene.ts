@@ -17,7 +17,7 @@ const SetupScene = (
 
   const scene = new THREE.Scene()
 
-  CreateBackground(scene, sceneProps.backgroundColor)
+  CreateBackground(scene, '#272e3f') // sceneProps.backgroundColor
   CreateCartesianGrid(scene) // Añadir la grilla cartesiana
   CreateGrid(scene, sceneProps) // Añadir la grilla
 

@@ -3,21 +3,32 @@ import { type ITransformationsSettings } from '@/interfaces/scene-settings/scene
 
 const ApplyTransformations = (
   model: THREE.Object3D, // Cambiado a Object3D para mayor flexibilidad
-  transformations: ITransformationsSettings
+  transformations: ITransformationsSettings = {
+    position: ['0', '0', '0'],
+    rotation: ['0', '0', '0'],
+    scale: ['0', '0', '0']
+  }
 ): void => {
-  const { position, rotation, scale } = transformations
+  const {
+    position = [0, 0, 0],
+    rotation = [0, 0, 0],
+    scale = [0, 0, 0]
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  } = transformations || {}
 
-  // Aplicar la posición, rotación y escala usando los valores de los arrays
+  // Aplicar la posición, rotación y escala usando los valores de los arrays, con valores predeterminados de 0
   model.position.set(
     Number(position[0]),
     Number(position[1]),
     Number(position[2])
   )
+
   model.rotation.set(
     Number(rotation[0]),
     Number(rotation[1]),
     Number(rotation[2])
   )
+
   model.scale.set(Number(scale[0]), Number(scale[1]), Number(scale[2]))
 }
 

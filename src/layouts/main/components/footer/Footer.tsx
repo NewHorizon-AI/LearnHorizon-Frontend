@@ -71,4 +71,4 @@ function Footer(): React.JSX.Element {
   )
 }
 
-export default Footer
+export { Footer }
