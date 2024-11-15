@@ -16,7 +16,7 @@ Explicación:
 
 import React, { useState } from 'react'
 
-import MainLayout from '@/layouts/main/index'
+import MainLayout from '@/layouts/main/MainLayout'
 
 // Importando datos de prueba
 import carouselData from '@/data/carouselData.json'
