@@ -2,8 +2,8 @@ import React from 'react'
 
 import LandingContent from './components/LandingContent'
 
-const Landing: React.FC = () => {
+const LandingModule: React.FC = () => {
   return <LandingContent />
 }
 
-export default Landing
+export { LandingModule }

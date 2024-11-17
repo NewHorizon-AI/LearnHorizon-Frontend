@@ -1,24 +1,4 @@
-/*
-  Explicacion:
-  - Página de inicio que se muestra al usuario cuando no ha iniciado sesión.
-  
-  - Muestra un carrusel con imágenes de modelos.
-  - Muestra un mensaje de bienvenida.
-  - Muestra una sección para explorar los modelos.
-  - Muestra el footer.
-
-  - Recibe los datos del carrusel, los modelos y las categorías.
-  - Recibe una función para cambiar los modelos.
-  - Recibe las categorías.
-*/
-
 import React from 'react'
-
-// Importing components
-
-// import MainCarousel from '@/components/landingPage/landingContent/carousel/MainCarousel'
-// import WelcomeSection from '@/components/landingPage/landingContent/WelcomeSection'
-// import ArticleExplorer from '@/components/landingPage/landingContent/ArticleExplorer'
 
 import MainCarousel from './Carousel/MainCarousel'
 import WelcomeSection from './Welcome/WelcomeSection'
