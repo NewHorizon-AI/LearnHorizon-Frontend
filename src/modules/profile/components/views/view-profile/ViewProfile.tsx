@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 
 // * Importar Layout
-import MainLayout from '@/layouts/main/MainLayout'
+import { MainLayout } from '@/layouts/main/MainLayout'
 
 import Sidebar from '@/modules/profile/components/sidebar/index'
 import Content from '@/modules/profile/components/content/index'

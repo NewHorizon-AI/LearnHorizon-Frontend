@@ -1,9 +1,9 @@
 import React from 'react'
 
-import LandingContent from './components/LandingContent'
+import LandingView from './views/LandingView'
 
 const LandingModule: React.FC = () => {
-  return <LandingContent />
+  return <LandingView />
 }
 
 export { LandingModule }
