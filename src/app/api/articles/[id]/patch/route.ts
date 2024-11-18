@@ -22,6 +22,9 @@ export async function PATCH(
 
     return NextResponse.json(response.data)
   } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 })
+    return NextResponse.json(
+      { message: error.message },
+      { status: error.status }
+    )
   }
 }

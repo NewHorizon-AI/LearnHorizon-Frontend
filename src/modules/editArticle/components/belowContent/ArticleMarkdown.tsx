@@ -29,7 +29,7 @@ const ArticleMarkdown: React.FC = () => {
 
   return (
     <div className="">
-      <div className="border rounded-md ">
+      <div className="border rounded-md min-h-screen">
         <div className="flex border-b">
           <button
             className={`flex-1 text-center p-2 ${!isPreview ? 'bg-gray-200' : 'bg-white'} border-r`}

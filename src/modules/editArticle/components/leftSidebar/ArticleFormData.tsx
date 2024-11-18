@@ -6,10 +6,6 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 
-import DynamicInput from '../../lib/DynamicInputProps'
-
-// * Importar store de formulario
-import useFormStore from '@/contexts/article/create-article/useFormStore'
 import useEditArticleStore from '@/contexts/article/get'
 import { updateArticleById } from '@/lib/articles/updateArticle'
 
@@ -25,7 +21,6 @@ const ArticleFormData: React.FC = () => {
       console.error(error.message)
     })
 
-    // Actualizamos el artículo completo en el store
     updateArticle({
       ...article
     })
