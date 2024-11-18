@@ -24,7 +24,7 @@ export async function PATCH(
   } catch (error: any) {
     return NextResponse.json(
       { message: error.message },
-      { status: error.status }
+      { status: error.response?.status ?? 500 }
     )
   }
 }

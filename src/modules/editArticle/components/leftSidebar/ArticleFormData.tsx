@@ -12,6 +12,10 @@ import { updateArticleById } from '@/lib/articles/updateArticle'
 const ArticleFormData: React.FC = () => {
   const { article, updateArticle } = useEditArticleStore()
 
+  if (article == null) {
+    return null
+  }
+
   const handleOnBlur = (): void => {
     const updateSceneSettings = async (): Promise<void> => {
       await updateArticleById(article?._id, article)
@@ -32,7 +36,7 @@ const ArticleFormData: React.FC = () => {
         <div>
           <Input
             type="text"
-            value={article?.title}
+            value={article?.title ?? ''}
             onChange={(e) => {
               updateArticle({ title: e.target.value })
             }}
@@ -41,26 +45,14 @@ const ArticleFormData: React.FC = () => {
           />
         </div>
         <div>
-          <Label htmlFor="photo">URL de la Foto</Label>
-          <Input
-            id="photo"
-            type="text"
-            value={article?.photo}
-            onChange={(e) => {
-              updateArticle({ photo: e.target.value })
-            }}
-            onBlur={handleOnBlur}
-            placeholder="URL de la Foto"
-          />
-        </div>
-        <div>
           <Label htmlFor="description">Descripción</Label>
           <Textarea
             id="description"
-            value={article?.description}
+            value={article?.description ?? ''}
             onChange={(e) => {
               updateArticle({ description: e.target.value })
             }}
+            onBlur={handleOnBlur}
             placeholder="Descripción"
             className="resize-none h-36"
             maxLength={200}
