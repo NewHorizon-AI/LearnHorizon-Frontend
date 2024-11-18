@@ -36,7 +36,7 @@ const LandingView: React.FC = () => {
       <h1 className="font-bold text-center lg:text-4xl py-4 flex justify-center items-center">
         Descubre nuestros Articulos
       </h1>
-      <ArticleList className="min-h-screen" data={articles} />
+      <ArticleList className="min-h-screen px-16" data={articles} />
     </div>
   )
 }
