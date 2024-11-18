@@ -1,6 +1,8 @@
 import React from 'react'
 import ArticleModule from '@/modules/article/index'
 
+import { MainLayout } from '@/layouts/main/MainLayout'
+
 interface ArticlePageProps {
   params: {
     articleId: string
@@ -8,7 +10,11 @@ interface ArticlePageProps {
 }
 
 const ArticlePage: React.FC<ArticlePageProps> = ({ params }) => {
-  return <ArticleModule articleId={params.articleId} />
+  return (
+    <MainLayout>
+      <ArticleModule articleId={params.articleId} />
+    </MainLayout>
+  )
 }
 
 export default ArticlePage

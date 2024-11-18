@@ -1,4 +1,4 @@
-import type * as THREE from 'three'
+import * as THREE from 'three'
 import { type ITransformationsSettings } from '@/interfaces/scene-settings/scene-settings.interface'
 
 const ApplyTransformations = (
@@ -24,9 +24,9 @@ const ApplyTransformations = (
   )
 
   model.rotation.set(
-    Number(rotation[0]),
-    Number(rotation[1]),
-    Number(rotation[2])
+    THREE.MathUtils.degToRad(Number(rotation[0])), // X
+    THREE.MathUtils.degToRad(Number(rotation[1])), // Y
+    THREE.MathUtils.degToRad(Number(rotation[2])) // Z
   )
 
   model.scale.set(Number(scale[0]), Number(scale[1]), Number(scale[2]))

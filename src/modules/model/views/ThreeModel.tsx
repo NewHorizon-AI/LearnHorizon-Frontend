@@ -107,7 +107,7 @@ const ModelView: React.FC<ModelViewProps> = (props) => {
           article.sceneSettings.transformationsSettings
         )
 
-        centerPivot(loadedModel)
+        centerPivot(loadedModel.position)
         scene.add(loadedModel)
 
         // const helper = new THREE.BoxHelper(loadedModel, 0xff0000)

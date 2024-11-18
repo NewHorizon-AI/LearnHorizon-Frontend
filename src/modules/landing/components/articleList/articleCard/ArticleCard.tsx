@@ -35,7 +35,7 @@ const ArticleCard: React.FC<IArticleCardProps> = (props) => {
         <div className="flex justify-between items-center mt-2 text-gray-600">
           <span>
             {categories.map((category, index) => (
-              <div key={index}>{category}</div>
+              <div key={index}>{category.name}</div>
             ))}
           </span>
           <span>

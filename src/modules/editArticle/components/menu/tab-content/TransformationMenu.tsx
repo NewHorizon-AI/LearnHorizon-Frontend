@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { PrincipalInput } from '@/components/common/input'
 
 import { RotateCcw, Move, Maximize } from 'lucide-react'
@@ -14,16 +14,16 @@ import { UpdateSceneByArticleId } from '@/lib/sceneSettings/updateScene'
 // TODO Hacer Responsivo
 
 const TransformationMenu: React.FC = () => {
-  // ! Utilizar strings para numeros negativos en formularios
-
   const { article, updateArticle } = useEditArticleStore()
 
   if (article == null) return null
 
   const [transformationsSettings, setTransformationsSettings] =
-    useState<ITransformationsSettings>(
-      article?.sceneSettings?.transformationsSettings
-    )
+    useState<ITransformationsSettings>()
+
+  useEffect(() => {
+    setTransformationsSettings(article.sceneSettings.transformationsSettings)
+  }, [article])
 
   const handleInputChange = (
     type: 'position' | 'rotation' | 'scale',
@@ -32,7 +32,6 @@ const TransformationMenu: React.FC = () => {
   ): void => {
     const value = e.target.value
 
-    // const isValidNumber = /^(\s*-?(\d+(\.\d+)?)?\s*)?$/.test(value)
     const isValidNumber = /^(\s*-?\d+)?.?(\d+)?$/.test(value)
     const cleanedInput = value.trim().replace(/\s+/g, ' ')
 
@@ -40,6 +39,8 @@ const TransformationMenu: React.FC = () => {
       alert('Por favor, ingrese un número válido')
       return
     }
+
+    if (transformationsSettings == null) return
 
     const updatedTransformations = {
       ...transformationsSettings,
@@ -51,7 +52,6 @@ const TransformationMenu: React.FC = () => {
     setTransformationsSettings(updatedTransformations)
   }
 
-  // Función handleOnBlur que será llamada cuando se deje de enfocar el input
   const handleOnBlur = (): void => {
     const updateSceneSettings = async (): Promise<void> => {
       await UpdateSceneByArticleId(article._id, article.sceneSettings)
@@ -61,11 +61,12 @@ const TransformationMenu: React.FC = () => {
       console.error(error.message)
     })
 
-    // Actualizamos el artículo completo en el store
     updateArticle({
       sceneSettings: {
         ...article.sceneSettings,
-        transformationsSettings
+        transformationsSettings:
+          transformationsSettings ??
+          article.sceneSettings.transformationsSettings
       }
     })
   }

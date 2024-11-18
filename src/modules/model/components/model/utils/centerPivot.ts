@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-const centerPivot = (model: THREE.Mesh | THREE.Object3D): void => {
+const centerPivot = (model: THREE.Vector3): void => {
   // Solo continúa si el modelo tiene geometría (ej., un Mesh)
   if (model instanceof THREE.Mesh) {
     const geometry = model.geometry

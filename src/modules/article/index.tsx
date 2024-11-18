@@ -1,5 +1,4 @@
 import React from 'react'
-import MainLayout from '@/layouts/main/MainLayout'
 import ArticleView from './views/ArticleView'
 
 interface ArticleModuleProps {
@@ -7,11 +6,7 @@ interface ArticleModuleProps {
 }
 
 const ArticleModule: React.FC<ArticleModuleProps> = ({ articleId }) => {
-  return (
-    <MainLayout>
-      <ArticleView articleId={articleId} />
-    </MainLayout>
-  )
+  return <ArticleView articleId={articleId} />
 }
 
 export default ArticleModule

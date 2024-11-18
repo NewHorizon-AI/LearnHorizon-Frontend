@@ -1,6 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import apiClient from '@/lib/apiClient/apiClient'
-import { type IArticle } from '@/interfaces/article/article.interface'
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   const searchParams = req.nextUrl.searchParams
@@ -22,7 +21,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }).toString()
 
     // Enviar datos procesados con Axios
-    const response = await apiClient.post<IArticle[]>(
+    const response = await apiClient.post(
       `articles/v2/search?${query}`,
       JSON.stringify(filters), // Convertir filtros a string
       {
@@ -32,9 +31,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       }
     )
 
-    const data: IArticle[] = response.data
-
-    console.log('Data:', data)
+    const data = response.data
 
     return NextResponse.json(data, { status: 200 })
   } catch (error: any) {

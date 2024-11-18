@@ -1,4 +1,4 @@
-import { type IArticle } from '@/interfaces/article/article.interface'
+import { type IArticleResponse } from '../interfaces/article-response'
 
 interface IProps {
   page?: number
@@ -9,7 +9,7 @@ interface IProps {
 
 export const getFilteredArticle = async (
   props?: IProps
-): Promise<IArticle[]> => {
+): Promise<IArticleResponse> => {
   const { page = 1, limit = 10, sort = 'createdAt', filters = {} } = props ?? {}
 
   const queryParams = new URLSearchParams({
@@ -34,9 +34,7 @@ export const getFilteredArticle = async (
       throw new Error('Failed to fetch article')
     }
 
-    const article: IArticle[] = await response.json()
-
-    console.log('Article:', article)
+    const article: IArticleResponse = await response.json()
 
     return article
   } catch (error) {
