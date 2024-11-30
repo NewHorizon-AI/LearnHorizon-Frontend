@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-light-periwinkle: #bdd9f2;
+    --color-charcoal-blue: #184059;
+    --color-vivid-sky-blue: #4aa2d9;
+    --color-strong-cyan: #3498bf;
+    --color-peach-puff: #f2b199;
+  }
+}

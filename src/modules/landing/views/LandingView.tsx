@@ -8,6 +8,7 @@ import { Slider } from '@/components/common/slider/Slider'
 import { getFilteredArticle } from '@/modules/landing/lib/getFilteredArticle'
 
 import { ArticleList } from '../components/articleList/ArticleList'
+import { Hero } from '../components/hero/Hero'
 
 import { type IArticleCard } from '../components/articleList/interfaces/articleCard.interface'
 import { type IArticleResponse } from '../interfaces/article-response'
@@ -33,10 +34,8 @@ const LandingView: React.FC = () => {
   return (
     <div>
       <Slider className="md:h-[45vh] lg:h-[65vh]" data={data} />
-      <h1 className="font-bold text-center lg:text-4xl py-4 flex justify-center items-center">
-        Descubre nuestros Articulos
-      </h1>
-      <ArticleList className="min-h-screen px-16" data={articles} />
+
+      <ArticleList className="md:pt-6 min-h-screen px-16" data={articles} />
     </div>
   )
 }

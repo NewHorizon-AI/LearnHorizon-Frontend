@@ -22,7 +22,7 @@ const TransformationMenu: React.FC = () => {
     useState<ITransformationsSettings>()
 
   useEffect(() => {
-    setTransformationsSettings(article.sceneSettings.transformationsSettings)
+    setTransformationsSettings(article.sceneSettings?.transformationsSettings)
   }, [article])
 
   const handleInputChange = (

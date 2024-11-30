@@ -4,6 +4,14 @@
 
 @layer base {
   :root {
+    :root {
+      --primary-bg: #bdd9f2; /* Light Periwinkle (Color de fondo principal) */
+      --secondary-bg: #184059; /* Charcoal Blue (Color de fondo secundario) */
+      --primary-color: #4aa2d9; /* Vivid Sky Blue (Color principal para texto y elementos destacados) */
+      --secondary-color: #3498bf; /* Strong Cyan (Color secundario para texto y elementos) */
+      --accent-color: #f2b199; /* Peach Puff (Color de acento o para elementos de llamada a la acción) */
+    }
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -131,4 +139,32 @@ Typography
 
 div[data-radix-side-sheet-content] .IconButton {
   display: none !important;
+}
+
+.primary-bg {
+  @apply bg-[var(--color-vivid-sky-blue)];
+}
+
+.secondary-bg {
+  @apply bg-[var(--color-strong-cyan)];
+}
+
+.accent-bg {
+  @apply bg-[var(--color-peach-puff)];
+}
+
+.primary-text {
+  @apply text-[var(--color-charcoal-blue)];
+}
+
+.secondary-text {
+  @apply text-[var(--color-vivid-sky-blue)];
+}
+
+.highlight-text {
+  @apply text-[var(--color-strong-cyan)];
+}
+
+.soft-text {
+  @apply text-[var(--color-peach-puff)];
 }
